@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
-import { propsType } from "../../../Types/GlobalType";
+import { propsType } from "../../../helpers/GlobalType";
 import { Bar } from "react-chartjs-2";
 import {
   Chart as ChartJS,

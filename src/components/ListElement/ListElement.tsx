@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { classNameMaker, mapEl } from "../../helpers/helperFunction";
-import { JSXcomponentType, propsType } from "../../Types/GlobalType";
+import { JSXcomponentType, propsType } from "../../helpers/GlobalType";
 
 function ListElements({
   content,

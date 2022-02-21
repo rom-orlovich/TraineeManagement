@@ -1,7 +1,7 @@
 import React from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { iconsLinks } from "../../../style/icons/icons";
-import { propsType } from "../../../Types/GlobalType";
+import { propsType } from "../../../helpers/GlobalType";
 
 import ST from "./AlertBar.module.scss";
 const { FaBell } = iconsLinks;

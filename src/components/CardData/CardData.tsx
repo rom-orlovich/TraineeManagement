@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { iconsLinks } from "../../style/icons/icons";
 import { checkPositive, classNameMaker } from "../../helpers/helperFunction";
-import { JSXcomponentType, propsType } from "../../Types/GlobalType";
+import { JSXcomponentType, propsType } from "../../helpers/GlobalType";
 
 import Card from "../UI/Card/Card";
 import ST from "./CardData.module.scss";

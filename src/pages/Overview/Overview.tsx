@@ -3,15 +3,16 @@ import React, { useState } from "react";
 import Card from "../../components/UI/Card/Card";
 
 import { classNameMaker } from "../../helpers/helperFunction";
-import { propsType } from "../../Types/GlobalType";
+import { propsType } from "../../helpers/GlobalType";
 
 import CardData from "../../components/CardData/CardData";
 import TodayTasks from "./DailyTasks/DailyTasks";
 
-import { OverviewLineChart } from "../../DummyData/DummyData";
+import { OverviewLineChartData } from "../../DummyData/DummyData";
 
 import ST from "./Overview.module.scss";
-import OverviewLineBar from "./OverviewLineBar/OverviewLineBar";
+import OverviewLineBar from "./OverviewLineBar/OverviewLineChart";
+import OverviewLineChart from "./OverviewLineBar/OverviewLineChart";
 function Overview({ className }: propsType) {
   return (
     <section className={classNameMaker(ST.overview_Layout)}>
@@ -24,11 +25,10 @@ function Overview({ className }: propsType) {
       <div className={classNameMaker(ST.data_charts)}>
         <TodayTasks className={classNameMaker(ST.dailyTasks)} />
 
-        <OverviewLineBar
-          data={OverviewLineChart[0].data}
-          options={OverviewLineChart[0].options}
+        <OverviewLineChart
+          data={OverviewLineChartData}
           className={classNameMaker(ST.charts_display)}
-        ></OverviewLineBar>
+        ></OverviewLineChart>
       </div>
     </section>
   );

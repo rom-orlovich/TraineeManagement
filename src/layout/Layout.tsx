@@ -1,6 +1,6 @@
 import React from "react";
 import { Outlet } from "react-router";
-import { propsType } from "../Types/GlobalType";
+import { propsType } from "../helpers/GlobalType";
 
 import Header from "./Header/Header";
 import Main from "./Main/Main";

@@ -10,7 +10,7 @@ import {
   GridRowParams,
 } from "@mui/x-data-grid";
 import { classNameMaker } from "../../../helpers/helperFunction";
-import { propsType } from "../../../Types/GlobalType";
+import { propsType } from "../../../helpers/GlobalType";
 
 import ST from "./DailyTasks.module.scss";
 const { MdOutlineDownloadDone, AiFillDelete } = iconsLinks;

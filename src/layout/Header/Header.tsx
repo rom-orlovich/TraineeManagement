@@ -1,6 +1,6 @@
 import React from "react";
 import { classNameMaker } from "../../helpers/helperFunction";
-import { propsType } from "../../Types/GlobalType";
+import { propsType } from "../../helpers/GlobalType";
 
 import { iconsLinks } from "../../style/icons/icons";
 import UserProfile from "./UserProfile/UserProfile";

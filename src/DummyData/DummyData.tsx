@@ -1,14 +1,6 @@
-import { Button } from "@mui/material";
-import {
-  GridActionsCellItem,
-  GridActionsColDef,
-  GridColDef,
-  GridRenderCellParams,
-  GridRowProps,
-  GridRowsProp,
-} from "@mui/x-data-grid";
-import { ChartData, ChartDataset, ChartOptions } from "chart.js";
-import { AiFillDelete } from "react-icons/ai";
+import { GridColDef } from "@mui/x-data-grid";
+import { ChartData, ChartOptions } from "chart.js";
+import { Colors, Months } from "../helpers/AppVariables";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
 export const Lead = {
@@ -121,47 +113,128 @@ export const chartBarData = {
     },
   },
 };
-export const OverviewLineChart: {
-  data: ChartData<"line", any[], any>;
-  options?: ChartOptions<"line">;
-}[] = [
+
+const options: ChartOptions<"line"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+  scales: {
+    x: {
+      title: {
+        display: true,
+        text: "Months",
+      },
+    },
+  },
+};
+export const OverviewLineChartData: LineChartType[] = [
   {
+    name: "Trainees",
     data: {
-      labels: ["may", "juny", "july"],
+      labels: Months.slice(0, 3),
       datasets: [
         {
-          label: "total trainee",
+          label: "Total trainees",
           data: [12, 17, 8],
-          backgroundColor: "red",
-          borderColor: "red",
-          fill: false,
-          tension: 0.1,
-        },
-        {
-          label: "leads",
-          data: [3, 8, 12],
-          backgroundColor: "blue",
-          borderColor: "blue",
-          fill: false,
-          tension: 0.1,
-        },
-        {
-          label: "income",
-          data: [2, -2, 8],
-          backgroundColor: "green",
-          borderColor: "green",
+          backgroundColor: Colors.purple,
+          borderColor: Colors.purple,
           fill: false,
           tension: 0.1,
         },
       ],
     },
     options: {
-      responsive: true,
-      maintainAspectRatio: false,
+      ...options,
+
+      scales: {
+        ...options.scales,
+        y: {
+          title: {
+            display: true,
+            text: "Total trainees",
+          },
+        },
+      },
+    },
+  },
+  {
+    name: "Leads",
+    data: {
+      labels: Months.slice(0, 3),
+      datasets: [
+        {
+          label: "Leads",
+          data: [3, 8, 12],
+          backgroundColor: Colors.blue,
+          borderColor: Colors.blue,
+          fill: false,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      ...options,
+
+      scales: {
+        ...options.scales,
+        y: {
+          title: {
+            display: true,
+            text: "Leads",
+          },
+        },
+      },
+    },
+  },
+
+  {
+    name: "Earning",
+
+    data: {
+      labels: Months.slice(0, 3),
+      datasets: [
+        {
+          label: "Earning",
+          data: [2000, 5000, 7000],
+          backgroundColor: Colors.green,
+          borderColor: Colors.green,
+          fill: false,
+          tension: 0.1,
+        },
+      ],
+    },
+    options: {
+      ...options,
+
+      scales: {
+        ...options.scales,
+        y: {
+          ticks: {
+            display: true,
+            callback: (value) => value + "$",
+          },
+          title: {
+            display: true,
+            text: "Earning",
+          },
+        },
+      },
     },
   },
 ];
+export type LineChartType = {
+  name: string;
+  data: ChartData<"line", number[], unknown>;
+  options?: ChartOptions<"line">;
+};
 
 export type FieldsLeadType = typeof FieldsLeads;
 export type LeadType = typeof Lead;
 export type LeadsArrType = LeadType[];
+
+// data={{
+//   labels: [...OverviewLineChart[0]!.data!.labels!],
+//   datasets: [
+//     ...OverviewLineChart[0].data.datasets,
+//     ...OverviewLineChart[1].data.datasets,
+//   ],
+// }}

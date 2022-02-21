@@ -1,7 +1,7 @@
 import React from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { useChangeBool, useManageMouseFun } from "../../../helpers/HelperHooks";
-import { MouseEventHook, propsType } from "../../../Types/GlobalType";
+import { MouseEventHook, propsType } from "../../../helpers/GlobalType";
 import ST from "./NavList.module.scss";
 
 function NavList({

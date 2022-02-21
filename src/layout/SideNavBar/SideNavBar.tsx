@@ -4,7 +4,7 @@ import SubLinks from "../../components/Nav/SubLinks/SubLinks";
 
 import { classNameMaker, mapEl } from "../../helpers/helperFunction";
 import ST from "./SideNavBar.module.scss";
-import { propsType } from "../../Types/GlobalType";
+import { propsType } from "../../helpers/GlobalType";
 
 import { Links } from "./Links";
 

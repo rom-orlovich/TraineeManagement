@@ -1,4 +1,4 @@
-import { AnyFun } from "../Types/GlobalType";
+import { AnyFun } from "./GlobalType";
 
 export const mapEl = (elArr: any[], fun: AnyFun) => {
   return elArr.map(fun);

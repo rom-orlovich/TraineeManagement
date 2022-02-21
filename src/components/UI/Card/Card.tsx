@@ -1,6 +1,6 @@
 import React from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
-import { propsType } from "../../../Types/GlobalType";
+import { propsType } from "../../../helpers/GlobalType";
 import ST from "./Card.module.scss";
 
 function Card({ className, children }: propsType) {
