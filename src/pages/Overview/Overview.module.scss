@@ -1,0 +1,45 @@
+@use "../../style/utlites/utilites.scss" as *;
+
+.overview_Layout {
+  // @include flex_control(center, center, column);
+  @include heightAndWidth(100%, 90%);
+  margin-left: 5rem;
+  display: grid;
+  // grid-template-areas:
+  //   " . . . . . ."
+  //   ". stats stats stats stats ."
+  //   ". stats stats stats stats ."
+  //   ". tasks tasks finance finance ."
+  //   ". tasks tasks finance finance .";
+  grid-template-rows: 1fr 2fr;
+  .card_blocks {
+    margin-top: 3rem;
+    // grid-area: stats;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .data_charts {
+    margin-top: 2rem;
+    display: flex;
+    gap: 2rem;
+    margin-left: 1rem;
+    .dailyTasks {
+      resize: vertical;
+      overflow: hidden;
+      // grid-area: tasks;
+
+      flex: 40%;
+
+      @include heightAndWidth(16rem, 16rem);
+    }
+
+    .charts_display {
+      // grid-area: finance;
+      @include heightAndWidth(16rem, 16rem);
+
+      flex: 60%;
+    }
+  }
+}

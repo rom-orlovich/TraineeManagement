@@ -1,0 +1,7 @@
+@function if($condition, $if-a, $else-b) {
+  @if $condition ==true {
+    @return $if-a;
+  } @else {
+    @return $else-b;
+  }
+}

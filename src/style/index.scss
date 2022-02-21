@@ -1,0 +1,13 @@
+@use "./utlites/utilites" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $body_color;
+  font-family: $font;
+  overflow: hidden;
+}

@@ -1,0 +1,54 @@
+@mixin flex_column() {
+  display: flex;
+  flex-direction: column;
+}
+@mixin center_layout {
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex_control($JC, $AI, $dir: row) {
+  display: flex;
+  flex-direction: $dir;
+  justify-content: $JC;
+  align-items: $AI;
+}
+@mixin alertNotificaion($color: rgb(121, 206, 121)) {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: $color;
+  z-index: 5;
+}
+
+@mixin minHeightAndWidth($heightSize, $widthSize) {
+  min-height: $heightSize;
+  min-width: $widthSize;
+}
+@mixin maxHeightAndWidth($heightSize, $widthSize) {
+  max-height: $heightSize;
+  max-width: $widthSize;
+}
+
+@mixin heightAndWidth($heightSize: fit-content, $widthSize: fit-content) {
+  height: $heightSize;
+  width: $widthSize;
+}
+
+@mixin changePosAbs(
+  $left: 0,
+  $top: 0,
+  $centerHorizontal: "false",
+  $centerVertical: "false"
+) {
+  $topRes: if($top==0, 0, $top);
+  $leftRes: if($left==0, 0, $left);
+  left: $left;
+  top: $topRes;
+  $translate-horizontal: if($centerHorizontal, -1 * $left, 0);
+  $translate-vertical: if($centerVertical, -1 * $topRes, 0);
+
+  transform: translate($translate-horizontal, $translate-vertical);
+}

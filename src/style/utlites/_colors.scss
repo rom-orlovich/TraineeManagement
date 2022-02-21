@@ -1,0 +1,11 @@
+@use "sass:color";
+$body_color: rgb(255, 255, 255);
+
+$SideNavBar_color: rgb(42, 42, 124, 3);
+$profileIcon_color: #9da7af;
+$alertBarIcon_color: #9da7af;
+$noNotification: rgb(94, 231, 94);
+$newNotification: red;
+$HeaderNabBar_color: darken($body_color, 3%);
+$Truthy_Color: rgb(94, 231, 94);
+$Falsy_color: red;

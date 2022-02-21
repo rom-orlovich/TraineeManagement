@@ -1,0 +1,13 @@
+@use "../../../style/utlites/utilites.scss" as *;
+.alert {
+  .alertIcon {
+    color: $alertBarIcon_color;
+    height: $sizeAlertIcon;
+    width: $sizeAlertIcon;
+    position: relative;
+    cursor: pointer;
+  }
+  .getAlert {
+    @include alertNotificaion($Truthy_Color);
+  }
+}

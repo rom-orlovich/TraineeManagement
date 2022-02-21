@@ -1,0 +1,10 @@
+@use "../../../style/utlites/utilites" as *;
+
+.Card {
+  box-shadow: $box-shadow;
+  @include heightAndWidth();
+  @include minHeightAndWidth(2rem, 3rem);
+  background-color: white;
+  border: none;
+  border-radius: 8px;
+}

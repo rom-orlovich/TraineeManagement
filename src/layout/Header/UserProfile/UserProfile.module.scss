@@ -1,0 +1,9 @@
+@use "../../../style/utlites/utilites.scss" as *;
+
+.profileIcon {
+  height: $sizeProfileIcon;
+  width: $sizeProfileIcon;
+
+  color: $profileIcon_color;
+  cursor: pointer;
+}

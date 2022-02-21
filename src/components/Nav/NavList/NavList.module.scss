@@ -1,0 +1,14 @@
+@use "./../../../style/utlites/utilites.scss" as *;
+.NavListContainer {
+  position: relative;
+}
+
+.NavList {
+  position: absolute;
+  // @include changePosAbs(50%, 130%, false, true);
+  @include minHeightAndWidth(4rem, 6rem);
+  @include heightAndWidth();
+  border-radius: 5px;
+  box-shadow: $box-shadow;
+  background-color: $HeaderNabBar_color;
+}

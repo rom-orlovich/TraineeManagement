@@ -1,0 +1,25 @@
+@use "./../../style/utlites/utilites" as *;
+
+.block {
+  position: relative;
+  background-color: white;
+  @include heightAndWidth(10rem, 12rem);
+  @include flex_control(center, center, column);
+
+  .lineIndicator {
+    position: absolute;
+    top: 0;
+    @include heightAndWidth(1rem, 100%);
+    box-shadow: $box-shadow;
+    &_positive {
+      @extend .lineIndicator;
+
+      background-color: $Truthy_Color;
+    }
+    &_negative {
+      @extend .lineIndicator;
+
+      background-color: $Falsy_color;
+    }
+  }
+}

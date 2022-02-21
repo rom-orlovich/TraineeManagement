@@ -1,0 +1,42 @@
+@use "../style//utlites//utilites.scss" as *;
+.main_area {
+  grid-area: main;
+  height: $heightMain;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.sideBar_area {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: $widthSideNavBar;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  z-index: 1200;
+}
+
+.header_area {
+  grid-area: header;
+  width: 100%;
+  height: 4rem;
+  position: fixed;
+  height: $heightNavBarHeader;
+  right: 0;
+  width: $withHeaderNavBar;
+  background-color: $HeaderNabBar_color;
+  z-index: 1000;
+}
+
+.layout_grid {
+  display: grid;
+  position: relative;
+  //   grid-template-columns: repeat(4,50px);
+  grid-row: auto;
+  grid-template-areas:
+    ". header header header header  "
+    ".  main main  main  main"
+    ".  main main  main  main "
+    ".  main main  main  main  ";
+}

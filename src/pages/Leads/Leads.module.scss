@@ -1,0 +1,11 @@
+@use "../../style/utlites/utilites.scss" as *;
+
+.leads_Layout {
+  @include flex_control(center, center, column);
+  @include heightAndWidth(100%, 100%);
+}
+.Card {
+  @include heightAndWidth(40%);
+  overflow-y: auto;
+  resize: both;
+}

@@ -1,0 +1,4 @@
+@use "./../../../style/utlites/utilites" as *;
+.chartBar {
+  @include heightAndWidth(100%, 100%);
+}
