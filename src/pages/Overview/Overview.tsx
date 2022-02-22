@@ -6,13 +6,18 @@ import { classNameMaker } from "../../helpers/helperFunction";
 import { propsType } from "../../helpers/GlobalType";
 
 import CardData from "../../components/CardData/CardData";
-import TodayTasks from "./DailyTasks/DailyTasks";
+import DailyTasks from "./DailyTasks/DailyTasks";
 
-import { OverviewLineChartData } from "../../DummyData/DummyData";
+import {
+  columns,
+  OverviewLineChartData,
+  rows,
+} from "../../DummyData/DummyData";
 
 import ST from "./Overview.module.scss";
 import OverviewLineBar from "./OverviewLineBar/OverviewLineChart";
 import OverviewLineChart from "./OverviewLineBar/OverviewLineChart";
+import DataGridTable from "../../components/DataGridTable/DataGridTable";
 function Overview({ className }: propsType) {
   return (
     <section className={classNameMaker(ST.overview_Layout)}>
@@ -23,7 +28,14 @@ function Overview({ className }: propsType) {
         <CardData heading="Balance" text="0 Nis" change="-3"></CardData>
       </div>
       <div className={classNameMaker(ST.data_charts)}>
-        <TodayTasks className={classNameMaker(ST.dailyTasks)} />
+        {/* <DailyTasks className={classNameMaker(ST.dailyTasks)} /> */}
+        <DataGridTable
+          columns={columns}
+          rows={rows}
+          heading="Daily Tasks"
+          className={classNameMaker(ST.dailyTasks)}
+          displayDate
+        ></DataGridTable>
 
         <OverviewLineChart
           data={OverviewLineChartData}

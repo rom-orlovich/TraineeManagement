@@ -13,7 +13,8 @@ import { classNameMaker } from "../../../helpers/helperFunction";
 import { propsType } from "../../../helpers/GlobalType";
 
 import ST from "./DailyTasks.module.scss";
-const { MdOutlineDownloadDone, AiFillDelete } = iconsLinks;
+import { colors } from "@mui/material";
+const { MdOutlineDownloadDone: Vicon, AiFillDelete } = iconsLinks;
 function TodayTasks({ className }: propsType) {
   const [rowsNew, setRowsNew] = useState(rows);
 
@@ -24,10 +25,10 @@ function TodayTasks({ className }: propsType) {
       }>
     ) => {
       let cur = rowsNew.find((el) => el.id === parma.id);
-      if (parma.row.status === "false")
+      if (!parma.row.status)
         setRowsNew((pre) => [
           ...pre.filter((el) => el.id !== parma.id),
-          { ...cur!, status: "done" },
+          { ...cur!, status: true },
         ]);
     },
     []
@@ -39,7 +40,7 @@ function TodayTasks({ className }: propsType) {
         [key: string]: any;
       }>
     ) => {
-      if (parma.row.status === "done")
+      if (parma.row.status)
         setRowsNew((pre) => [...pre.filter((el) => el.id !== parma.id)]);
     },
     []
@@ -51,12 +52,7 @@ function TodayTasks({ className }: propsType) {
       <GridActionsCellItem
         label="confirm"
         onClick={() => clickDone(parma)}
-        icon={
-          <MdOutlineDownloadDone
-            size={25}
-            color="green"
-          ></MdOutlineDownloadDone>
-        }
+        icon={<Vicon size={25} color={colors.green.A700}></Vicon>}
       />,
       <GridActionsCellItem
         label="delete"

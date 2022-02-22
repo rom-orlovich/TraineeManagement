@@ -76,13 +76,14 @@ export const columns: GridColDef[] = [
   {
     field: "status",
     headerName: "Status",
+    type: "boolean",
     flex: 1,
   },
 ];
 export const rows = [
-  { id: 1, hour: "12:00", topic: "training", status: "false" },
-  { id: 2, hour: "15:00", topic: "eating", status: "false" },
-  { id: 3, hour: "17:00", topic: "sleeping", status: "false" },
+  { id: 1, hour: "12:00", topic: "training", status: false },
+  { id: 2, hour: "15:00", topic: "eating", status: false },
+  { id: 3, hour: "17:00", topic: "sleeping", status: false },
 ];
 
 export const chartBarData = {
@@ -135,8 +136,8 @@ export const OverviewLineChartData: LineChartType[] = [
         {
           label: "Total trainees",
           data: [12, 17, 8],
-          backgroundColor: Colors.purple,
-          borderColor: Colors.purple,
+          backgroundColor: Colors.purple[500],
+          borderColor: Colors.purple[500],
           fill: false,
           tension: 0.1,
         },
@@ -164,8 +165,8 @@ export const OverviewLineChartData: LineChartType[] = [
         {
           label: "Leads",
           data: [3, 8, 12],
-          backgroundColor: Colors.blue,
-          borderColor: Colors.blue,
+          backgroundColor: Colors.blue[700],
+          borderColor: Colors.blue[700],
           fill: false,
           tension: 0.1,
         },
@@ -195,8 +196,8 @@ export const OverviewLineChartData: LineChartType[] = [
         {
           label: "Earning",
           data: [2000, 5000, 7000],
-          backgroundColor: Colors.green,
-          borderColor: Colors.green,
+          backgroundColor: Colors.green[600],
+          borderColor: Colors.green[600],
           fill: false,
           tension: 0.1,
         },

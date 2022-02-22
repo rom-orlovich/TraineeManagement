@@ -1,9 +1,6 @@
-export const Colors = {
-  blue: "rgb(60, 81, 242 )",
-  red: "rgb(236, 131, 122)",
-  green: "rgb(49, 220, 66)",
-  purple: "rgb(120, 49, 220 )",
-};
+import { colors } from "@mui/material";
+
+export const Colors = colors;
 export const Months = [
   "January",
   "February",
@@ -18,5 +15,13 @@ export const Months = [
   "November",
   "December",
 ];
+console.log();
+const localTimeAndDate = new Date(Date.now())
+  .toLocaleString()
+  .trim()
+  .split(",");
+export const localDate = localTimeAndDate[0].replaceAll(".", "/");
+export const localTime = localTimeAndDate[1];
+
 console.log();
 // export const getLocalCurrency=(value:number)=>{value.toLocaleString(navigator.language);}

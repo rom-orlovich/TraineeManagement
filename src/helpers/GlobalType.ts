@@ -1,4 +1,4 @@
-import {
+import React, {
   CSSProperties,
   DetailedHTMLProps,
   HTMLAttributes,
@@ -14,3 +14,8 @@ export type MouseEventHook = {
   onMouseLeave?: AnyFun;
   stateBool?: boolean;
 };
+
+export type IdType = string | number;
+export type ObjExtendIDKey<T> = T & { id: IdType };
+// export type ObjHasOtherObj<T, K> = T extends { [p in keyof K]: any } ? T : never;
+// export type ObjHasKey<T, K> = K extends keyof T ? T : never;
