@@ -1,6 +1,9 @@
-import { GridColDef } from "@mui/x-data-grid";
+import { GridColDef, GridColumns, GridRowsProp } from "@mui/x-data-grid";
 import { ChartData, ChartOptions } from "chart.js";
 import { Colors, Months } from "../helpers/AppVariables";
+import { IdType } from "../helpers/GlobalType";
+import { createTasks, createTrainee } from "./DummyDataFunction";
+import { DataGrid, LineChartType, Tasks, Trainee } from "./DummyDataType";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
 export const Lead = {
@@ -69,22 +72,65 @@ export const TasksData = [
   { id: "f", hour: "12:00", topic: "training", status: false },
   { id: "r", hour: "12:00", topic: "training", status: false },
 ];
-export const columns: GridColDef[] = [
-  { field: "id", hide: true },
-  { field: "hour", headerName: "Hour", flex: 1 },
-  { field: "topic", headerName: "Topic", flex: 2 },
-  {
-    field: "status",
-    headerName: "Status",
-    type: "boolean",
-    flex: 1,
-  },
-];
-export const rows = [
-  { id: 1, hour: "12:00", topic: "training", status: false },
-  { id: 2, hour: "15:00", topic: "eating", status: false },
-  { id: 3, hour: "17:00", topic: "sleeping", status: false },
-];
+
+export const DailyTask: DataGrid<Tasks> = {
+  columns: [
+    { field: "id", hide: true },
+    { field: "hour", headerName: "Hour", flex: 1 },
+    { field: "topic", headerName: "Topic", flex: 2 },
+    {
+      field: "status",
+      headerName: "status",
+      type: "boolean",
+      flex: 1,
+    },
+  ],
+  rows: [
+    { id: 1, hour: "12:00", topic: "training", status: false },
+    { id: 2, hour: "15:00", topic: "eating", status: false },
+    { id: 3, hour: "17:00", topic: "sleeping", status: false },
+  ],
+};
+
+export const TraineeTable: DataGrid<Trainee> = {
+  columns: [
+    { field: "id", hide: true },
+    {
+      field: "name",
+      headerName: "Name",
+      flex: 1,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "tel",
+      headerName: "Tel",
+      flex: 1,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "email",
+      headerName: "Email",
+      flex: 2,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "status",
+      headerName: "Active",
+      flex: 1,
+      type: "boolean",
+      headerAlign: "center",
+      align: "center",
+    },
+  ],
+  rows: [
+    createTrainee("reb", "054222222", "madasdasd@gmail.com", true),
+    createTrainee("r", "05423222", "msd@gmail.com", true),
+    createTrainee("msd", "2345123", "madaasdasd@gmail.com", true),
+  ],
+};
 
 export const chartBarData = {
   data: {
@@ -127,7 +173,7 @@ const options: ChartOptions<"line"> = {
     },
   },
 };
-export const OverviewLineChartData: LineChartType[] = [
+export const OverviewLineChartData: LineChartType<"line">[] = [
   {
     name: "Trainees",
     data: {
@@ -222,15 +268,6 @@ export const OverviewLineChartData: LineChartType[] = [
     },
   },
 ];
-export type LineChartType = {
-  name: string;
-  data: ChartData<"line", number[], unknown>;
-  options?: ChartOptions<"line">;
-};
-
-export type FieldsLeadType = typeof FieldsLeads;
-export type LeadType = typeof Lead;
-export type LeadsArrType = LeadType[];
 
 // data={{
 //   labels: [...OverviewLineChart[0]!.data!.labels!],

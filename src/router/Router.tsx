@@ -5,7 +5,7 @@ import App from "../App";
 import Layout from "../layout/Layout";
 import Overview from "../pages/Overview/Overview";
 import Financial from "../pages/Financial/Financial";
-import Trainees from "../pages/Trainees";
+import Trainees from "../pages/Trainees/Trainees";
 import Calender from "../pages/Calender/Calender";
 import Settings from "../pages/Settings/Settings";
 import Leads from "../pages/Leads/Leads";

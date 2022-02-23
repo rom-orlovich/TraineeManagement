@@ -5,13 +5,14 @@
   @include heightAndWidth(100%, 90%);
   margin-left: 5rem;
   display: grid;
+
+  grid-template-rows: 1fr 2fr;
   // grid-template-areas:
   //   " . . . . . ."
   //   ". stats stats stats stats ."
   //   ". stats stats stats stats ."
   //   ". tasks tasks finance finance ."
   //   ". tasks tasks finance finance .";
-  grid-template-rows: 1fr 2fr;
   .card_blocks {
     margin-top: 3rem;
     // grid-area: stats;

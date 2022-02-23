@@ -1,0 +1,25 @@
+@use "../../style/utlites/utilites.scss" as *;
+
+.Trainee_layout {
+  @include heightAndWidth(90%, 100%);
+
+  display: grid;
+
+  grid-template-rows: 1fr 2fr;
+
+  .Trainee_List {
+    @include flex_control(center, null, colmun);
+
+    .Trainees_ListCard {
+      margin-top: 3rem;
+      @include heightAndWidth(16rem, 80%);
+      text-align: center;
+      resize: vertical;
+      overflow: hidden;
+    }
+
+    .Trainees_Statisic {
+      height: 5rem;
+    }
+  }
+}

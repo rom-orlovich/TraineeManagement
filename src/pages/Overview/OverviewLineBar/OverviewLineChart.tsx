@@ -6,8 +6,9 @@ import { ChartData, ChartOptions } from "chart.js";
 
 import Card from "../../../components/UI/Card/Card";
 import LineChart from "../../../components/Charts/LineChart/LineChart";
+
+import { LineChartType } from "../../../DummyData/DummyDataType";
 import ST from "./OverviewLineChart.module.scss";
-import { LineChartType } from "../../../DummyData/DummyData";
 function OverviewLineChart({
   data,
 
@@ -15,7 +16,7 @@ function OverviewLineChart({
   selectOptions,
   className,
 }: propsType & {
-  data: LineChartType[];
+  data: LineChartType<"line">[];
 
   select?: boolean;
   selectOptions?: string[];

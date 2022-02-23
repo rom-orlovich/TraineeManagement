@@ -32,7 +32,7 @@
 .layout_grid {
   display: grid;
   position: relative;
-  //   grid-template-columns: repeat(4,50px);
+
   grid-row: auto;
   grid-template-areas:
     ". header header header header  "

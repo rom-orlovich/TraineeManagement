@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from "react";
-import { columns, rows } from "../../../DummyData/DummyData";
+import { DailyTask } from "../../../DummyData/DummyData";
 
 import Card from "../../../components/UI/Card/Card";
 import { iconsLinks } from "../../../style/icons/icons";
@@ -15,6 +15,7 @@ import { propsType } from "../../../helpers/GlobalType";
 import ST from "./DailyTasks.module.scss";
 import { colors } from "@mui/material";
 const { MdOutlineDownloadDone: Vicon, AiFillDelete } = iconsLinks;
+const { columns, rows } = DailyTask;
 function TodayTasks({ className }: propsType) {
   const [rowsNew, setRowsNew] = useState(rows);
 
@@ -24,12 +25,12 @@ function TodayTasks({ className }: propsType) {
         [key: string]: any;
       }>
     ) => {
-      let cur = rowsNew.find((el) => el.id === parma.id);
-      if (!parma.row.status)
-        setRowsNew((pre) => [
-          ...pre.filter((el) => el.id !== parma.id),
-          { ...cur!, status: true },
-        ]);
+      // let cur = rowsNew.find((el) => el.id === parma.id);
+      // if (!parma.row.status)
+      //   setRowsNew((pre) => [
+      //     ...pre.filter((el) => el.id !== parma.id),
+      //     { ...cur!, status: true },
+      //   ]);
     },
     []
   );
@@ -40,8 +41,8 @@ function TodayTasks({ className }: propsType) {
         [key: string]: any;
       }>
     ) => {
-      if (parma.row.status)
-        setRowsNew((pre) => [...pre.filter((el) => el.id !== parma.id)]);
+      // if (parma.row.status)
+      //   setRowsNew((pre) => [...pre.filter((el) => el.id !== parma.id)]);
     },
     []
   );

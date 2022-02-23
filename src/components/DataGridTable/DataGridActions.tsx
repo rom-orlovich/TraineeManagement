@@ -1,37 +1,14 @@
 import { colors } from "@mui/material";
-import {
-  GridActionsCellItem,
-  GridActionsColDef,
-  GridRowParams,
-} from "@mui/x-data-grid";
-import { useCallback } from "react";
-import { AnyFun, JSXcomponentType } from "../../helpers/GlobalType";
+import { GridActionsCellItem, GridActionsColDef } from "@mui/x-data-grid";
+
 import { iconsLinks } from "../../style/icons/icons";
+import {
+  ActionsGridDataType,
+  actionTypeFun,
+  ReactDispatchType,
+  ReactStateType,
+} from "./DataGridTypes";
 const { MdOutlineDownloadDone: Vicon, AiFillDelete } = iconsLinks;
-
-export type ReactDispatchType = React.Dispatch<
-  React.SetStateAction<ReactStateType>
->;
-export type ReactStateType = readonly {
-  [key: string]: any;
-}[];
-
-type actionTypeFun = (
-  parma: GridRowParams<{
-    [key: string]: any;
-  }>,
-  fun?: ReactDispatchType,
-  curState?: ReactStateType
-) => void;
-
-type ActionsGridDataType<T> = {
-  label: keyof T;
-  icon: {
-    iconElement: JSXcomponentType;
-    iconDetails?: { color?: string; size?: number };
-  };
-  action: actionTypeFun;
-}[];
 
 const clickDone: actionTypeFun = (parma, fun?, curState?) => {
   let cur = curState?.find((el) => el.id === parma.id);
@@ -48,13 +25,10 @@ const clickDelete: actionTypeFun = (parma, fun?) =>
   fun &&
   fun((pre) => [...pre.filter((el) => el.id !== parma.id)]);
 
-const actionsFunsObj = {
-  delete: clickDelete,
-  confirm: clickDone,
-};
+export const arrayActions = ["confirm", "delete"];
 
-export const actionsDataGrid: ActionsGridDataType<typeof actionsFunsObj> = [
-  {
+export const actionsDataGrid: ActionsGridDataType<typeof arrayActions> = {
+  confirm: {
     label: "confirm",
     icon: {
       iconElement: Vicon,
@@ -65,16 +39,16 @@ export const actionsDataGrid: ActionsGridDataType<typeof actionsFunsObj> = [
     },
     action: clickDone,
   },
-  {
+  delete: {
     label: "delete",
     icon: {
       iconElement: AiFillDelete,
     },
     action: clickDelete,
   },
-];
+};
 export const getDataGridMakeActions = (
-  arr: typeof actionsDataGrid,
+  arr: Partial<typeof arrayActions>,
   state: ReactStateType,
   fun: ReactDispatchType
 ): GridActionsColDef => {
@@ -83,13 +57,15 @@ export const getDataGridMakeActions = (
     type: "actions",
     getActions: (parma) =>
       arr.map((el) => {
+        if (!el) el = "confirm";
+        const elData = actionsDataGrid[el];
         return (
           <GridActionsCellItem
-            key={el.label}
-            label={el.label}
-            icon={<el.icon.iconElement {...el.icon.iconDetails} />}
+            key={elData.label}
+            label={elData.label}
+            icon={<elData.icon.iconElement {...elData.icon.iconDetails} />}
             onClick={() => {
-              el.action(parma, fun, state);
+              elData.action(parma, fun, state);
             }}
           />
         );

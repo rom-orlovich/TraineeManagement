@@ -10,23 +10,29 @@ import { localDate } from "../../helpers/AppVariables";
 import ST from "./DataGridTable.module.scss";
 import {
   actionsDataGrid as actionsList,
+  arrayActions,
   getDataGridMakeActions as getActions,
 } from "./DataGridActions";
+import { SxProps, Theme } from "@mui/material";
 function DataGridTable({
   className,
   columns,
   heading,
   displayDate,
   rows,
+  sx,
+  actions,
 }: propsType & {
   columns: GridColumns;
   rows: GridRowsProp;
   heading?: string;
   displayDate?: true;
+  actions?: typeof arrayActions;
+  sx?: SxProps<Theme> | undefined;
 }) {
   useState();
   const [rowsNew, setRowsNew] = useState(rows);
-
+  const Actions = actions || [];
   return (
     <Card className={classNameMaker(ST, className)}>
       <div className={classNameMaker(ST.heading_card)}>
@@ -35,7 +41,8 @@ function DataGridTable({
       </div>
 
       <DataGrid
-        columns={[...columns, getActions(actionsList, rowsNew, setRowsNew)]}
+        sx={sx}
+        columns={[...columns, getActions(Actions, rowsNew, setRowsNew)]}
         rows={rowsNew}
       />
     </Card>

@@ -8,17 +8,14 @@ import { propsType } from "../../helpers/GlobalType";
 import CardData from "../../components/CardData/CardData";
 import DailyTasks from "./DailyTasks/DailyTasks";
 
-import {
-  columns,
-  OverviewLineChartData,
-  rows,
-} from "../../DummyData/DummyData";
+import { DailyTask, OverviewLineChartData } from "../../DummyData/DummyData";
 
-import ST from "./Overview.module.scss";
 import OverviewLineBar from "./OverviewLineBar/OverviewLineChart";
 import OverviewLineChart from "./OverviewLineBar/OverviewLineChart";
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
+import ST from "./Overview.module.scss";
 function Overview({ className }: propsType) {
+  const { columns, rows } = DailyTask;
   return (
     <section className={classNameMaker(ST.overview_Layout)}>
       <div className={classNameMaker(ST.card_blocks)}>
