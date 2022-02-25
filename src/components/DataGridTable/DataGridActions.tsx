@@ -3,7 +3,8 @@ import { GridActionsCellItem, GridActionsColDef } from "@mui/x-data-grid";
 
 import { iconsLinks } from "../../style/icons/icons";
 import {
-  ActionsGridDataType,
+  ActionsKindsColumns,
+  ActionsDataGridType,
   actionTypeFun,
   ReactDispatchType,
   ReactStateType,
@@ -25,9 +26,7 @@ const clickDelete: actionTypeFun = (parma, fun?) =>
   fun &&
   fun((pre) => [...pre.filter((el) => el.id !== parma.id)]);
 
-export const arrayActions = ["confirm", "delete"];
-
-export const actionsDataGrid: ActionsGridDataType<typeof arrayActions> = {
+export const actionsDataGrid: ActionsDataGridType<ActionsKindsColumns> = {
   confirm: {
     label: "confirm",
     icon: {
@@ -48,7 +47,7 @@ export const actionsDataGrid: ActionsGridDataType<typeof arrayActions> = {
   },
 };
 export const getDataGridMakeActions = (
-  arr: Partial<typeof arrayActions>,
+  arr: ActionsKindsColumns[],
   state: ReactStateType,
   fun: ReactDispatchType
 ): GridActionsColDef => {
@@ -57,8 +56,7 @@ export const getDataGridMakeActions = (
     type: "actions",
     getActions: (parma) =>
       arr.map((el) => {
-        if (!el) el = "confirm";
-        const elData = actionsDataGrid[el];
+        const elData = actionsDataGrid[el.action];
         return (
           <GridActionsCellItem
             key={elData.label}

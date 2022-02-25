@@ -17,10 +17,12 @@ export type actionTypeFun = (
 ) => void;
 
 // export type arrayActionsType = typeof arrayActions[number];
-
-export type ActionsGridDataType<T extends readonly string[]> = {
-  [p in T[number]]: {
-    label: p;
+export interface ActionsKindsColumns {
+  action: "confirm" | "delete";
+}
+export type ActionsDataGridType<T extends ActionsKindsColumns> = {
+  [P in T as P["action"]]: {
+    label: P["action"];
     icon: {
       iconElement: JSXcomponentType;
       iconDetails?: { color?: string; size?: number };
@@ -29,4 +31,4 @@ export type ActionsGridDataType<T extends readonly string[]> = {
   };
 };
 
-type t = ActionsGridDataType<["s", "g"]>;
+// type try = ActionsDataGridType<{ action: "confirm" | "delete" }>;

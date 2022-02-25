@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 import { iconsLinks } from "../../style/icons/icons";
 import { checkPositive, classNameMaker } from "../../helpers/helperFunction";
@@ -16,7 +16,7 @@ function CardData({
   heading?: string;
   text?: string;
   change?: string;
-  Element?: JSXcomponentType;
+  Element?: ReactNode;
 }) {
   const positiveText = checkPositive(text as string);
   const postiveChange = checkPositive(change as string);
@@ -33,7 +33,7 @@ function CardData({
         )}
       ></div>
       {Element ? (
-        <Element />
+        Element
       ) : (
         <>
           <h3>{heading} </h3>

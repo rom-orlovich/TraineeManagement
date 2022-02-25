@@ -15,7 +15,11 @@ function Router() {
       <Route path="/" element={<App />}>
         <Route path="/" element={<Overview />}></Route>
         <Route path="calender" element={<Calender />}></Route>
-        <Route path="trainees" element={<Trainees />}></Route>
+        <Route path="trainees" element={<Trainees />}>
+          <Route path="userProfile/:id" element={<Trainees />}>
+            {" "}
+          </Route>
+        </Route>
         <Route path="leads" element={<Leads />}></Route>
         <Route path="financial" element={<Financial />}></Route>
         <Route path="setting" element={<Settings />}></Route>

@@ -1,6 +1,6 @@
 @use "../../style/utlites/utilites.scss" as *;
 
-.NavBar {
+.SideNavBar {
   background-color: $SideNavBar_color;
 
   @include flex_column();
@@ -11,17 +11,16 @@
   }
 
   ul {
-    padding-left: 0.2rem;
     li {
       list-style: none;
-      padding-left: 1.5rem;
+      // padding-left: 1.5rem;
 
-      &:hover {
-        background-color: lighten($color: $SideNavBar_color, $amount: 5);
-      }
       a {
         text-decoration: none;
         color: white;
+        &:hover {
+          background-color: lighten($color: $SideNavBar_color, $amount: 5);
+        }
       }
     }
   }

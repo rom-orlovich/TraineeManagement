@@ -2,7 +2,8 @@
 .main_area {
   grid-area: main;
   height: $heightMain;
-  justify-content: center;
+  width: 95%;
+
   margin-top: 2rem;
 }
 
@@ -31,12 +32,11 @@
 
 .layout_grid {
   display: grid;
-  position: relative;
 
   grid-row: auto;
   grid-template-areas:
     ". header header header header  "
-    ".  main main  main  main"
-    ".  main main  main  main "
-    ".  main main  main  main  ";
+    ".  . main  main  main"
+    ".  . main  main  main "
+    ".  . main  main  main  ";
 }

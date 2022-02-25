@@ -2,8 +2,8 @@
 
 .overview_Layout {
   // @include flex_control(center, center, column);
-  @include heightAndWidth(100%, 90%);
-  margin-left: 5rem;
+  @include heightAndWidth(100%, 95%);
+
   display: grid;
 
   grid-template-rows: 1fr 2fr;
@@ -15,17 +15,18 @@
   //   ". tasks tasks finance finance .";
   .card_blocks {
     margin-top: 3rem;
-    // grid-area: stats;
+
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
   }
 
   .data_charts {
     margin-top: 2rem;
     display: flex;
     gap: 2rem;
-    margin-left: 1rem;
+    // margin-left: 1rem;
+    width: 100%;
     .dailyTasks {
       resize: vertical;
       overflow: hidden;

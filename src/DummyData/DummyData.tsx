@@ -1,9 +1,11 @@
+import { borderRadius } from "@mui/system";
 import { GridColDef, GridColumns, GridRowsProp } from "@mui/x-data-grid";
-import { ChartData, ChartOptions } from "chart.js";
+import { ChartData, ChartOptions, PieController } from "chart.js";
+import { NavLink } from "react-router-dom";
 import { Colors, Months } from "../helpers/AppVariables";
 import { IdType } from "../helpers/GlobalType";
 import { createTasks, createTrainee } from "./DummyDataFunction";
-import { DataGrid, LineChartType, Tasks, Trainee } from "./DummyDataType";
+import { DataGrid, chartDataType, Tasks, Trainee } from "./DummyDataType";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
 export const Lead = {
@@ -124,6 +126,31 @@ export const TraineeTable: DataGrid<Trainee> = {
       headerAlign: "center",
       align: "center",
     },
+    {
+      field: "profile",
+      headerName: "Profile",
+      flex: 1,
+
+      headerAlign: "center",
+      align: "center",
+      renderCell: (parms) => {
+        return (
+          <NavLink
+            style={{
+              padding: "0.2rem",
+              backgroundColor: `${Colors.blue[400]}`,
+              borderRadius: "8px",
+              textDecoration: "none",
+              color: `${"white"}`,
+            }}
+            to={`userProfile/${parms.id}`}
+          >
+            {" "}
+            {/*  */}Profile{" "}
+          </NavLink>
+        );
+      },
+    },
   ],
   rows: [
     createTrainee("reb", "054222222", "madasdasd@gmail.com", true),
@@ -161,7 +188,7 @@ export const chartBarData = {
   },
 };
 
-const options: ChartOptions<"line"> = {
+const optionsLineChart: ChartOptions<"line"> = {
   responsive: true,
   maintainAspectRatio: false,
   scales: {
@@ -173,7 +200,7 @@ const options: ChartOptions<"line"> = {
     },
   },
 };
-export const OverviewLineChartData: LineChartType<"line">[] = [
+export const OverviewLineChartData: chartDataType<"line">[] = [
   {
     name: "Trainees",
     data: {
@@ -190,10 +217,10 @@ export const OverviewLineChartData: LineChartType<"line">[] = [
       ],
     },
     options: {
-      ...options,
+      ...optionsLineChart,
 
       scales: {
-        ...options.scales,
+        ...optionsLineChart.scales,
         y: {
           title: {
             display: true,
@@ -219,10 +246,10 @@ export const OverviewLineChartData: LineChartType<"line">[] = [
       ],
     },
     options: {
-      ...options,
+      ...optionsLineChart,
 
       scales: {
-        ...options.scales,
+        ...optionsLineChart.scales,
         y: {
           title: {
             display: true,
@@ -250,10 +277,10 @@ export const OverviewLineChartData: LineChartType<"line">[] = [
       ],
     },
     options: {
-      ...options,
+      ...optionsLineChart,
 
       scales: {
-        ...options.scales,
+        ...optionsLineChart.scales,
         y: {
           ticks: {
             display: true,
@@ -269,10 +296,95 @@ export const OverviewLineChartData: LineChartType<"line">[] = [
   },
 ];
 
-// data={{
-//   labels: [...OverviewLineChart[0]!.data!.labels!],
-//   datasets: [
-//     ...OverviewLineChart[0].data.datasets,
-//     ...OverviewLineChart[1].data.datasets,
-//   ],
-// }}
+const optionsChartPie: ChartOptions<"pie"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+
+  plugins: {
+    legend: {
+      display: false,
+    },
+    datalabels: {
+      font: {
+        size: 15,
+      },
+      color: "white",
+      formatter: (value) => {
+        return ` ${value}%`;
+      },
+    },
+    tooltip: {
+      callbacks: {
+        label: (context) =>
+          ` ${context.label} ${context.dataset.label} is ${context.parsed}%`,
+      },
+    },
+  },
+};
+export const dataPie: chartDataType<"pie">[] = [
+  {
+    name: "Ages Stats",
+    data: {
+      labels: ["8-16", "16-40", "40-60"],
+      datasets: [
+        {
+          label: "Ages",
+          data: [20, 60, 20],
+          backgroundColor: [
+            Colors.yellow["600"],
+            Colors.blue["600"],
+            Colors.red["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
+
+  {
+    name: "Areas",
+    data: {
+      labels: ["Kiryat Ono", "Tel-aviv", "Ramat Gan"],
+      datasets: [
+        {
+          label: "Area",
+          data: [40, 53, 7],
+          backgroundColor: [
+            Colors.deepOrange["600"],
+            Colors.cyan["600"],
+            Colors.purple["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
+
+  {
+    name: "Sources",
+    data: {
+      labels: ["Facebook", "Instagram", "Other"],
+      datasets: [
+        {
+          label: "Source",
+          data: [35, 43, 22],
+          backgroundColor: [
+            Colors.indigo["600"],
+            Colors.pink["600"],
+            Colors.lightBlue["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
+];

@@ -8,11 +8,11 @@ import { propsType } from "../../helpers/GlobalType";
 
 import { Links } from "./Links";
 
-function NavBar({ className }: propsType) {
+function SideNavBar({ className }: propsType) {
   return (
-    <nav className={classNameMaker(ST.NavBar, className)}>
-      <div className={ST.NavBar_logo}> </div>
-      <ul>
+    <nav className={classNameMaker(ST.SideNavBar, className)}>
+      <div className={classNameMaker(ST.SideNavBar_logo)}> </div>
+      <ul className={classNameMaker()}>
         {mapEl(Links, (el) => (
           <SubLinks key={el.name} {...el}></SubLinks>
         ))}
@@ -21,4 +21,4 @@ function NavBar({ className }: propsType) {
   );
 }
 
-export default NavBar;
+export default SideNavBar;

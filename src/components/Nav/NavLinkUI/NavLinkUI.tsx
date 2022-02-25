@@ -1,7 +1,8 @@
-import { MouseEventHandler } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
 
 import { NavLink, NavLinkProps } from "react-router-dom";
 import { classNameMaker } from "../../../helpers/helperFunction";
+import { useChangeBool } from "../../../helpers/HelperHooks";
 
 import { IconsSideNavBarType } from "../../../style/icons/iconType";
 
@@ -25,16 +26,30 @@ function NavLinkUI({
     else [IconLink] = iconsArray;
 
   return (
-    <li className={classNameMaker(ST.nav_link, className)} onClick={onClick}>
-      <span className={classNameMaker()}>
-        {IconLink && <IconLink size={20} />}
-      </span>
-      <NavLink to={to}>{children}</NavLink>
-      <span className={classNameMaker()}>
-        {isOpen ? IconUp && <IconUp /> : IconDown && <IconDown />}
-      </span>
+    <li className={classNameMaker()} onClick={onClick}>
+      <NavLink
+        className={({ isActive }) =>
+          classNameMaker(ST.nav_link, isActive ? ST.isActive : "", className)
+        }
+        to={to}
+      >
+        {
+          <>
+            <span className={classNameMaker()}>
+              {IconLink && <IconLink size={20} />}
+            </span>
+            {children}
+          </>
+        }
+      </NavLink>
     </li>
   );
 }
 
 export default NavLinkUI;
+
+{
+  /* <span className={classNameMaker()}>
+        {isOpen ? IconUp && <IconUp /> : IconDown && <IconDown />}
+      </span> */
+}

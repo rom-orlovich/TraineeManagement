@@ -1,4 +1,6 @@
-.nav_link {
+@use "../../../style/utlites/utilites.scss" as *;
+
+a.nav_link {
   padding: 0.5rem 1rem;
   margin-top: 2rem;
   width: 100%;
@@ -12,5 +14,9 @@
   span {
     margin: 0 0.5rem;
     height: 1.2rem;
+  }
+
+  &.isActive {
+    background-color: lighten($color: $SideNavBar_color, $amount: 5);
   }
 }

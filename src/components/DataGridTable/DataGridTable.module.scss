@@ -1,11 +1,9 @@
 @use "./../../style/utlites/utilites.scss" as *;
 
 .heading_card {
-  display: flex;
-  justify-content: space-around;
+  @include flex_control(space-around, null, row);
   h2 {
     font-weight: 400;
     font-size: 1.5rem;
-    // margin: 0 2rem;
   }
 }

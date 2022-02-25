@@ -7,13 +7,14 @@ import { propsType } from "../../helpers/GlobalType";
 import Card from "../UI/Card/Card";
 
 import { localDate } from "../../helpers/AppVariables";
-import ST from "./DataGridTable.module.scss";
+
 import {
   actionsDataGrid as actionsList,
-  arrayActions,
   getDataGridMakeActions as getActions,
 } from "./DataGridActions";
 import { SxProps, Theme } from "@mui/material";
+import { ActionsKindsColumns } from "./DataGridTypes";
+import ST from "./DataGridTable.module.scss";
 function DataGridTable({
   className,
   columns,
@@ -27,7 +28,7 @@ function DataGridTable({
   rows: GridRowsProp;
   heading?: string;
   displayDate?: true;
-  actions?: typeof arrayActions;
+  actions?: ActionsKindsColumns[];
   sx?: SxProps<Theme> | undefined;
 }) {
   useState();
