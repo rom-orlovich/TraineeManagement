@@ -4,66 +4,17 @@ import { ChartData, ChartOptions, PieController } from "chart.js";
 import { NavLink } from "react-router-dom";
 import { Colors, Months } from "../helpers/AppVariables";
 import { IdType } from "../helpers/GlobalType";
-import { createTasks, createTrainee } from "./DummyDataFunction";
-import { DataGrid, chartDataType, Tasks, Trainee } from "./DummyDataType";
+import {
+  createColField,
+  createLead,
+  createTask,
+  createTrainee,
+} from "./DummyDataFunction";
+import { DataGrid, chartDataType, Task, Trainee, Lead } from "./DummyDataType";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
-export const Lead = {
-  id: "1st3scas",
-  date: "12/12/2021",
-  name: "sa",
-  tel: "0543442133",
-  email: "madma@280797.com",
-  notes: "asdas asdad asd",
-  source: "facebook",
-  status: true,
-};
 
-export const leadsListOverview = [
-  Lead,
-  {
-    id: "1sasas",
-    date: "12/12/2023",
-    name: "sasad",
-    tel: "05434s133",
-    email: "madma@280797.com",
-    notes: "ad asd",
-    source: "twitter",
-    status: false,
-  },
-  {
-    id: "1sscas",
-    date: "12/12/2023",
-    name: "sasad",
-    tel: "05434s133",
-    email: "madma@280797.com",
-    notes: "ad asd",
-    source: "twitter",
-    status: false,
-  },
-  {
-    id: "1sascas",
-    date: "12/12/2023",
-    name: "sasad",
-    tel: "05434s133",
-    email: "madma@280797.com",
-    notes: "ad asd",
-    source: "twitter",
-    status: false,
-  },
-  {
-    id: "1ssscas",
-    date: "12/12/2023",
-    name: "sasad",
-    tel: "05434s133",
-    email: "madma@280797.com",
-    notes: "ad asd",
-    source: "twitter",
-    status: false,
-  },
-];
-
-export const TasksData = [
+export const TaskData = [
   { id: "a", hour: "12:00", topic: "training", status: false },
   { id: "ab", hour: "12:00", topic: "training", status: false },
   { id: "asd", hour: "12:00", topic: "training", status: false },
@@ -75,7 +26,7 @@ export const TasksData = [
   { id: "r", hour: "12:00", topic: "training", status: false },
 ];
 
-export const DailyTask: DataGrid<Tasks> = {
+export const DailyTask: DataGrid<Task> = {
   columns: [
     { field: "id", hide: true },
     { field: "hour", headerName: "Hour", flex: 1 },
@@ -101,6 +52,13 @@ export const TraineeTable: DataGrid<Trainee> = {
       field: "name",
       headerName: "Name",
       flex: 1,
+      headerAlign: "center",
+      align: "center",
+    },
+    {
+      field: "gender",
+      headerName: "Gender",
+      flex: 0.5,
       headerAlign: "center",
       align: "center",
     },
@@ -145,17 +103,46 @@ export const TraineeTable: DataGrid<Trainee> = {
             }}
             to={`userProfile/${parms.id}`}
           >
-            {" "}
-            {/*  */}Profile{" "}
+            Profile
           </NavLink>
         );
       },
     },
   ],
   rows: [
-    createTrainee("reb", "054222222", "madasdasd@gmail.com", true),
-    createTrainee("r", "05423222", "msd@gmail.com", true),
-    createTrainee("msd", "2345123", "madaasdasd@gmail.com", true),
+    createTrainee("reb", "Male", "054222222", "madasdasd@gmail.com", true),
+    createTrainee("r", "Female", "05423222", "msd@gmail.com", true),
+    createTrainee("msd", "Female", "2345123", "madaasdasd@gmail.com", true),
+  ],
+};
+
+export const LeadsTable: DataGrid<Lead> = {
+  columns: [
+    { field: "id", hide: true },
+    { ...createColField("date", "Date", 1) },
+    { ...createColField("name", "Name", 1) },
+    { ...createColField("tel", "Tel", 1) },
+    { ...createColField("notes", "Notes", 2), editable: true },
+    { ...createColField("source", "Source", 1) },
+    { ...createColField("status", "isDone", 0.5), type: "boolean" },
+  ],
+  rows: [
+    createLead(
+      "12/02/2020",
+      "rm",
+      "0543131",
+      "asdasd  asdasd",
+      "instagram",
+      false
+    ),
+    createLead(
+      "12/12/2021",
+      "rom",
+      "054322131",
+      "asdasd asdasd asdasd",
+      "facebook",
+      false
+    ),
   ],
 };
 
@@ -321,6 +308,7 @@ const optionsChartPie: ChartOptions<"pie"> = {
     },
   },
 };
+
 export const dataPie: chartDataType<"pie">[] = [
   {
     name: "Ages Stats",
@@ -334,6 +322,50 @@ export const dataPie: chartDataType<"pie">[] = [
             Colors.yellow["600"],
             Colors.blue["600"],
             Colors.red["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
+  {
+    name: "Client Status",
+    data: {
+      labels: ["Active", "InActive"],
+      datasets: [
+        {
+          label: "Client Status",
+          data: [60, 40],
+          backgroundColor: [
+            Colors.indigo["600"],
+            Colors.pink["600"],
+            Colors.lightBlue["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
+
+  {
+    name: "Period Training",
+    data: {
+      labels: ["0-3 Months", "3-6 Months", "6-12 Months", "1+ Years"],
+      datasets: [
+        {
+          label: "Period",
+          data: [60, 28, 7, 5],
+          backgroundColor: [
+            Colors.indigo["600"],
+            Colors.pink["600"],
+            Colors.lightBlue["600"],
+            Colors.deepOrange["600"],
           ],
         },
       ],
@@ -366,6 +398,27 @@ export const dataPie: chartDataType<"pie">[] = [
     },
   },
 
+  {
+    name: "Genders",
+    data: {
+      labels: ["Male", "Female", "Other"],
+      datasets: [
+        {
+          label: "Genders",
+          data: [50, 40, 10],
+          backgroundColor: [
+            Colors.indigo["600"],
+            Colors.pink["600"],
+            Colors.lightBlue["600"],
+          ],
+        },
+      ],
+    },
+
+    options: {
+      ...optionsChartPie,
+    },
+  },
   {
     name: "Sources",
     data: {

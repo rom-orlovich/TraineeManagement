@@ -17,10 +17,25 @@ function Overview({ className }: propsType) {
   return (
     <section className={classNameMaker(ST.overview_Layout)}>
       <div className={classNameMaker(ST.card_blocks)}>
-        <CardData heading="Todal Trainees" text="1" change="3"></CardData>
+        <CardData
+          className={classNameMaker(ST.block_data)}
+          heading="Todal Trainees"
+          text="1"
+          change="3"
+        ></CardData>
 
-        <CardData heading="Today leads" text="0" change="0"></CardData>
-        <CardData heading="Balance" text="0 Nis" change="-3"></CardData>
+        <CardData
+          className={classNameMaker(ST.block_data)}
+          heading="Today leads"
+          text="0"
+          change="0"
+        ></CardData>
+        <CardData
+          className={classNameMaker(ST.block_data)}
+          heading="Balance"
+          text="0 Nis"
+          change="-3"
+        ></CardData>
       </div>
       <div className={classNameMaker(ST.data_charts)}>
         <DataGridTable

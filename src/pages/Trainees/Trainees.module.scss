@@ -1,30 +1,20 @@
 @use "../../style/utlites/utilites.scss" as *;
 
 .Trainee_layout {
-  @include heightAndWidth(94%, 100%);
-
-  display: grid;
-
-  grid-template-rows: 1fr 2fr;
+  @extend %layout;
 
   .Trainee_List {
-    @include flex_control(center, null, colmun);
-
+    @extend %section_1;
     .Trainees_ListCard {
-      margin-top: 3rem;
       @include heightAndWidth(15rem, 90%);
-      text-align: center;
-      resize: vertical;
-      overflow: hidden;
-      margin-left: 4rem;
     }
   }
 
   .Trainees_Statisic {
-    @include flex_control(center, center, row);
-    margin-top: 0.6rem;
-    gap: 4rem;
-    @include heightAndWidth(100%, 100%);
+    @extend %section_2;
+    justify-content: space-around;
+    margin-top: 2rem;
+
     .statsBlock {
       @include heightAndWidth(12.5rem, 15rem);
     }

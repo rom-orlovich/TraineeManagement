@@ -26,19 +26,19 @@ function Trainees({ className }: propsType) {
           className={classNameMaker(ST.statsBlock)}
           data={dataPie[0].data}
           options={dataPie[0].options}
-          heading="Ages"
+          heading={dataPie[0].name}
         ></ChartPie>
         <ChartPie
           className={classNameMaker(ST.statsBlock)}
           data={dataPie[1].data}
           options={dataPie[1].options}
-          heading="Areas"
+          heading={dataPie[1].name}
         ></ChartPie>
         <ChartPie
           className={classNameMaker(ST.statsBlock)}
           data={dataPie[2].data}
           options={dataPie[2].options}
-          heading="Sources"
+          heading={dataPie[2].name}
         ></ChartPie>
       </div>
     </section>

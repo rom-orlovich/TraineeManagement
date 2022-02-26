@@ -35,7 +35,7 @@ function DataGridTable({
   const [rowsNew, setRowsNew] = useState(rows);
   const Actions = actions || [];
   return (
-    <Card className={classNameMaker(ST, className)}>
+    <Card className={classNameMaker(ST.table_card, ST, className)}>
       <div className={classNameMaker(ST.heading_card)}>
         <h2> {heading ? heading : ""}</h2>
         {displayDate && <h2> {localDate}</h2>}

@@ -1,11 +1,22 @@
 @use "../../style/utlites/utilites.scss" as *;
 
 .leads_Layout {
-  @include flex_control(center, center, column);
-  @include heightAndWidth(100%, 100%);
-}
-.Card {
-  @include heightAndWidth(40%);
-  overflow-y: auto;
-  resize: both;
+  @extend %layout;
+
+  .leads_List {
+    @extend %section_1;
+    .leads_ListCard {
+      @include heightAndWidth(15rem, 90%);
+    }
+  }
+
+  .leads_Statisic {
+    @extend %section_2;
+    justify-content: space-around;
+    margin-top: 2rem;
+
+    .statsBlock {
+      @include heightAndWidth(12.5rem, 15rem);
+    }
+  }
 }

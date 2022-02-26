@@ -1,22 +1,32 @@
 import { GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { ChartData, ChartOptions, ChartType } from "chart.js";
 import { IdType } from "../helpers/GlobalType";
-import { FieldsLeads, Lead } from "./DummyData";
+import { FieldsLeads } from "./DummyData";
 export type FieldsLeadType = typeof FieldsLeads;
-export type LeadType = typeof Lead;
-export type LeadsArrType = LeadType[];
+
 export interface Trainee {
   id: IdType;
+  gender: "Male" | "Female" | "Other";
   name: string;
   email: string;
   tel: string;
   status: boolean;
 }
 
-export interface Tasks {
-  id: number;
+export interface Task {
+  id: IdType;
   hour: string;
   topic: string;
+  status: boolean;
+}
+
+export interface Lead {
+  id: IdType;
+  date: string;
+  name: string;
+  tel: string;
+  notes: string;
+  source: string;
   status: boolean;
 }
 

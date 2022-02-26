@@ -1,46 +1,28 @@
 @use "../../style/utlites/utilites.scss" as *;
 
 .overview_Layout {
-  // @include flex_control(center, center, column);
-  @include heightAndWidth(100%, 95%);
+  @extend %layout;
 
-  display: grid;
-
-  grid-template-rows: 1fr 2fr;
-  // grid-template-areas:
-  //   " . . . . . ."
-  //   ". stats stats stats stats ."
-  //   ". stats stats stats stats ."
-  //   ". tasks tasks finance finance ."
-  //   ". tasks tasks finance finance .";
   .card_blocks {
-    margin-top: 3rem;
+    @extend %section_1;
+    justify-content: space-around;
 
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    .block_data {
+      @include heightAndWidth(11rem, 13rem);
+    }
   }
 
   .data_charts {
-    margin-top: 2rem;
-    display: flex;
-    gap: 2rem;
-    // margin-left: 1rem;
-    width: 100%;
+    @extend %section_2;
+    gap: 1rem;
+
     .dailyTasks {
-      resize: vertical;
-      overflow: hidden;
-      // grid-area: tasks;
-
       flex: 40%;
-
       @include heightAndWidth(16rem, 16rem);
     }
 
     .charts_display {
-      // grid-area: finance;
       @include heightAndWidth(16rem, 16rem);
-
       flex: 60%;
     }
   }
