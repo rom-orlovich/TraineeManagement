@@ -1,13 +1,7 @@
 @use "../../../style/utlites/utilites.scss" as *;
 
 a.nav_link {
-  padding: 0.5rem 1rem;
-  margin-top: 2rem;
-  width: 100%;
-
-  display: flex;
-  align-items: center;
-  color: white;
+  @extend %link;
 
   cursor: pointer;
 

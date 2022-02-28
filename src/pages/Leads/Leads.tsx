@@ -1,4 +1,6 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
+import CardData from "../../components/CardData/CardData";
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
 import { dataPie, LeadsTable } from "../../DummyData/DummyData";
@@ -8,34 +10,39 @@ import { classNameMaker } from "../../helpers/helperFunction";
 import ST from "./Leads.module.scss";
 function Leads({ className }: propsType) {
   return (
-    <section className={classNameMaker(ST.leads_Layout, className)}>
-      <div className={classNameMaker(ST.leads_List)}>
+    <section className={classNameMaker(ST.leads_layout, className)}>
+      <div className={classNameMaker(ST.leads_numbers)}>
+        <CardData
+          className={classNameMaker(ST.stats_block)}
+          heading="Leads Numbers"
+          text="5"
+          displayIndicator
+          displayPrecentage={false}
+        ></CardData>
+        <CardData
+          className={classNameMaker(ST.stats_block)}
+          heading="Handle"
+          text="3"
+          displayIndicator
+          displayPrecentage={false}
+        ></CardData>
+        <CardData
+          className={classNameMaker(ST.stats_block)}
+          heading="Not Handle"
+          text="2"
+          displayIndicator
+          displayIndicatorPositive={false}
+          displayPrecentage={false}
+        ></CardData>
+      </div>
+
+      <div className={classNameMaker(ST.leads_list)}>
         <DataGridTable
-          className={classNameMaker(ST.leads_ListCard)}
+          className={classNameMaker(ST.leads_listCard)}
           columns={LeadsTable.columns}
           rows={LeadsTable.rows}
           actions={[{ action: "confirm" }]}
         ></DataGridTable>
-      </div>
-      <div className={classNameMaker(ST.leads_Statisic)}>
-        <ChartPie
-          className={classNameMaker(ST.statsBlock)}
-          data={dataPie[3].data}
-          options={dataPie[3].options}
-          heading={dataPie[3].name}
-        ></ChartPie>
-        <ChartPie
-          className={classNameMaker(ST.statsBlock)}
-          data={dataPie[4].data}
-          options={dataPie[4].options}
-          heading={dataPie[4].name}
-        ></ChartPie>
-        <ChartPie
-          className={classNameMaker(ST.statsBlock)}
-          data={dataPie[5].data}
-          options={dataPie[5].options}
-          heading={dataPie[5].name}
-        ></ChartPie>
       </div>
     </section>
   );

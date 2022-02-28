@@ -9,6 +9,7 @@ import Trainees from "../pages/Trainees/Trainees";
 import Calender from "../pages/Calender/Calender";
 import Settings from "../pages/Settings/Settings";
 import Leads from "../pages/Leads/Leads";
+import Analytics from "../pages/Analytics/Analytics.";
 function Router() {
   return (
     <Routes>
@@ -16,12 +17,15 @@ function Router() {
         <Route path="/" element={<Overview />}></Route>
         <Route path="calender" element={<Calender />}></Route>
         <Route path="trainees" element={<Trainees />}>
-          <Route path="userProfile/:id" element={<Trainees />}>
-            {" "}
-          </Route>
+          <Route path="userProfile/:id" element={<Trainees />}></Route>
         </Route>
+
         <Route path="leads" element={<Leads />}></Route>
-        <Route path="financial" element={<Financial />}></Route>
+        {/* <Route path="leads/analytics" element={<Analytics />}></Route> */}
+        <Route path="financial" element={<Financial />}>
+          <Route path="activities" element={<Financial />}></Route>
+        </Route>
+        <Route path="analytics" element={<Analytics />}></Route>
         <Route path="setting" element={<Settings />}></Route>
       </Route>
     </Routes>

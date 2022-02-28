@@ -1,22 +1,19 @@
 @use "../../style/utlites/utilites.scss" as *;
 
-.leads_Layout {
+.leads_layout {
   @extend %layout;
-
-  .leads_List {
+  .leads_numbers {
     @extend %section_1;
-    .leads_ListCard {
-      @include heightAndWidth(15rem, 90%);
+    .stats_block {
+      @include heightAndWidth(10rem, 12rem);
     }
   }
 
-  .leads_Statisic {
+  .leads_list {
     @extend %section_2;
-    justify-content: space-around;
-    margin-top: 2rem;
-
-    .statsBlock {
-      @include heightAndWidth(12.5rem, 15rem);
+    @include heightAndWidth(80%, 100%);
+    .leads_listCard {
+      @include heightAndWidth(100%, 80%);
     }
   }
 }

@@ -1,6 +1,6 @@
 import { AnyFun, IdType, ObjExtendIDKey } from "./GlobalType";
 
-export const mapEl = (elArr: any[], fun: AnyFun) => {
+export const mapEl = <T>(elArr: T[], fun: (el: T) => any) => {
   return elArr.map(fun);
 };
 

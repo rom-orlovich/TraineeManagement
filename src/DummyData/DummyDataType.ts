@@ -47,3 +47,13 @@ export type chartDataType<T extends ChartType> = {
 //   data: ChartData<T, number[], unknown>;
 //   options?: ChartOptions<T>;
 // };
+
+export interface selectOption {
+  id?: IdType;
+  value: string | number;
+  text: string;
+}
+export interface SelectOptions {
+  name: string;
+  options: selectOption[];
+}

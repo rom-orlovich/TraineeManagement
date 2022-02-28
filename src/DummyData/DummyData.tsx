@@ -1,7 +1,7 @@
 import { borderRadius } from "@mui/system";
 import { GridColDef, GridColumns, GridRowsProp } from "@mui/x-data-grid";
 import { ChartData, ChartOptions, PieController } from "chart.js";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { Colors, Months } from "../helpers/AppVariables";
 import { IdType } from "../helpers/GlobalType";
 import {
@@ -10,8 +10,25 @@ import {
   createTask,
   createTrainee,
 } from "./DummyDataFunction";
-import { DataGrid, chartDataType, Task, Trainee, Lead } from "./DummyDataType";
-
+import {
+  DataGrid,
+  chartDataType,
+  Task,
+  Trainee,
+  Lead,
+  SelectOptions,
+} from "./DummyDataType";
+export const optionSelector: SelectOptions[] = [
+  {
+    name: "Period",
+    options: [
+      { text: "select option", value: "" },
+      { text: "last 3 Months", value: "3" },
+      { text: "last 6 Months", value: "6" },
+      { text: "last 12 Months", value: "12" },
+    ],
+  },
+];
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
 
 export const TaskData = [
@@ -93,7 +110,7 @@ export const TraineeTable: DataGrid<Trainee> = {
       align: "center",
       renderCell: (parms) => {
         return (
-          <NavLink
+          <Link
             style={{
               padding: "0.2rem",
               backgroundColor: `${Colors.blue[400]}`,
@@ -104,7 +121,7 @@ export const TraineeTable: DataGrid<Trainee> = {
             to={`userProfile/${parms.id}`}
           >
             Profile
-          </NavLink>
+          </Link>
         );
       },
     },
@@ -124,7 +141,7 @@ export const LeadsTable: DataGrid<Lead> = {
     { ...createColField("tel", "Tel", 1) },
     { ...createColField("notes", "Notes", 2), editable: true },
     { ...createColField("source", "Source", 1) },
-    { ...createColField("status", "isDone", 0.5), type: "boolean" },
+    { ...createColField("status", "Done", 0.5), type: "boolean" },
   ],
   rows: [
     createLead(
@@ -144,35 +161,6 @@ export const LeadsTable: DataGrid<Lead> = {
       false
     ),
   ],
-};
-
-export const chartBarData = {
-  data: {
-    labels: ["may", "juny", "july"],
-    datasets: [
-      {
-        label: "incomes",
-        data: [4000, 5000, 6000],
-        backgroundColor: ["green"],
-      },
-      {
-        label: "outcome",
-        data: [2000, 2000, 1000],
-        backgroundColor: "red",
-      },
-    ],
-  },
-  options: {
-    responsive: true,
-    maintainAspectRatio: false,
-
-    plugins: {
-      legend: {
-        title: { display: true, text: "Balance" },
-        display: true,
-      },
-    },
-  },
 };
 
 const optionsLineChart: ChartOptions<"line"> = {
@@ -332,13 +320,13 @@ export const dataPie: chartDataType<"pie">[] = [
     },
   },
   {
-    name: "Client Status",
+    name: "Type Plan",
     data: {
-      labels: ["Active", "InActive"],
+      labels: ["Nutrition", "Training", "Other"],
       datasets: [
         {
           label: "Client Status",
-          data: [60, 40],
+          data: [60, 30, 10],
           backgroundColor: [
             Colors.indigo["600"],
             Colors.pink["600"],
@@ -360,7 +348,7 @@ export const dataPie: chartDataType<"pie">[] = [
       datasets: [
         {
           label: "Period",
-          data: [60, 28, 7, 5],
+          data: [47, 28, 12, 13],
           backgroundColor: [
             Colors.indigo["600"],
             Colors.pink["600"],
@@ -440,4 +428,98 @@ export const dataPie: chartDataType<"pie">[] = [
       ...optionsChartPie,
     },
   },
+  {
+    name: "y",
+    data: { datasets: [], labels: [] },
+    options: {
+      ...optionsChartPie,
+    },
+  },
+  {
+    name: "f",
+    data: { datasets: [], labels: [] },
+    options: {
+      ...optionsChartPie,
+    },
+  },
+  {
+    name: "t",
+    data: { datasets: [], labels: [] },
+    options: {
+      ...optionsChartPie,
+    },
+  },
 ];
+
+export const optionsChartBar: ChartOptions<"bar"> = {
+  responsive: true,
+  maintainAspectRatio: false,
+
+  plugins: {
+    legend: {
+      display: true,
+    },
+  },
+};
+
+export const chartsBarData: chartDataType<"bar">[] = [
+  {
+    name: "Trainees Amount",
+    data: {
+      labels: Months,
+      datasets: [
+        { label: "News", data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2] },
+        { label: "Left", data: [2, 1, 0, 2, 1, 3, 2, 1, 2, 2, 1, 2] },
+        {
+          label: "Total",
+          data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2].map(
+            (el, i) => el - [2, 1, 0, 2, 1, 3, 2, 1, 2, 2, 1, 2][i]
+          ),
+
+          backgroundColor: "blue",
+        },
+      ],
+    },
+    options: {
+      ...optionsChartBar,
+    },
+  },
+  {
+    name: "Leads Amount",
+    data: {
+      labels: [],
+      datasets: [],
+    },
+    options: {
+      ...optionsChartBar,
+    },
+  },
+  {
+    name: "Trainees Amount",
+    data: {
+      labels: [],
+      datasets: [],
+    },
+    options: {
+      ...optionsChartBar,
+    },
+  },
+];
+
+export const dataProvider = {
+  trainees: {
+    table: TraineeTable,
+    chartPie: dataPie.slice(0, 3),
+    chartBar: chartsBarData[0],
+  },
+  leads: {
+    table: LeadsTable,
+    chartPie: dataPie.slice(3, 6),
+    chartBar: chartsBarData[0],
+  },
+
+  activities: {
+    chartPie: dataPie.slice(6, 9),
+    chartBar: chartsBarData[0],
+  },
+};

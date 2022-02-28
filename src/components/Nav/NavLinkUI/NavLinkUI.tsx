@@ -20,9 +20,9 @@ function NavLinkUI({
   isOpen?: boolean;
 }) {
   const iconsArray = icons || [];
-  let IconUp, IconDown, IconLink;
+  let IconRight, IconDown, IconLink;
   if (iconsArray.length !== 0)
-    if (iconsArray.length === 3) [IconUp, IconDown, IconLink] = iconsArray;
+    if (iconsArray.length === 3) [IconRight, IconDown, IconLink] = iconsArray;
     else [IconLink] = iconsArray;
 
   return (
@@ -39,6 +39,9 @@ function NavLinkUI({
               {IconLink && <IconLink size={20} />}
             </span>
             {children}
+            <span className={classNameMaker()}>
+              {isOpen ? IconDown && <IconDown /> : IconRight && <IconRight />}
+            </span>
           </>
         }
       </NavLink>
@@ -49,7 +52,4 @@ function NavLinkUI({
 export default NavLinkUI;
 
 {
-  /* <span className={classNameMaker()}>
-        {isOpen ? IconUp && <IconUp /> : IconDown && <IconDown />}
-      </span> */
 }

@@ -12,9 +12,15 @@ function CardData({
   text,
   change,
   Element,
+  displayIndicator = true,
+  displayPrecentage = true,
+  displayIndicatorPositive = true,
 }: propsType & {
   heading?: string;
   text?: string;
+  displayIndicator?: boolean;
+  displayIndicatorPositive?: boolean;
+  displayPrecentage?: boolean;
   change?: string;
   Element?: ReactNode;
 }) {
@@ -23,30 +29,34 @@ function CardData({
 
   return (
     <Card className={classNameMaker(ST.block, className)}>
-      <div
-        className={classNameMaker(
-          text
-            ? positiveText
-              ? ST.lineIndicator_positive
-              : ST.lineIndicator_negative
-            : ""
-        )}
-      ></div>
+      {displayIndicator && (
+        <div
+          className={classNameMaker(
+            text
+              ? positiveText && displayIndicatorPositive
+                ? ST.lineIndicator_positive
+                : ST.lineIndicator_negative
+              : ""
+          )}
+        ></div>
+      )}
       {Element ? (
         Element
       ) : (
         <>
           <h3>{heading} </h3>
           <span> {text}</span>{" "}
-          <span
-            style={{
-              color: `${
-                change === "0" ? "grey" : postiveChange ? "green" : "red"
-              }`,
-            }}
-          >
-            {`${change === "0" ? "" : postiveChange ? "+" : ""}${change} %`}
-          </span>
+          {displayPrecentage && (
+            <span
+              style={{
+                color: `${
+                  change === "0" ? "grey" : postiveChange ? "green" : "red"
+                }`,
+              }}
+            >
+              {`${change === "0" ? "" : postiveChange ? "+" : ""}${change} %`}
+            </span>
+          )}
         </>
       )}
     </Card>

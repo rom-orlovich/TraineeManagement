@@ -5,25 +5,27 @@
 
   .card_blocks {
     @extend %section_1;
-    justify-content: space-around;
+    justify-content: space-evenly;
 
     .block_data {
-      @include heightAndWidth(11rem, 13rem);
+      @include heightAndWidth(11rem, 12rem);
     }
   }
 
   .data_charts {
     @extend %section_2;
+    @include heightAndWidth(100%, 90%);
+    justify-self: center;
     gap: 1rem;
 
     .dailyTasks {
-      flex: 40%;
+      flex: 45%;
       @include heightAndWidth(16rem, 16rem);
     }
 
     .charts_display {
       @include heightAndWidth(16rem, 16rem);
-      flex: 60%;
+      flex: 55%;
     }
   }
 }

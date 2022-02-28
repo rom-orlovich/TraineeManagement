@@ -17,7 +17,7 @@ function SubNavBar({ name, to, subLinks, icons }: SideNavLinkType) {
         {name}
       </NavLinkUI>
 
-      {/* <ul className={classNameMaker(ST.SubLinks)}>
+      <ul className={classNameMaker(ST.SubLinks)}>
         {isOpen &&
           links?.length !== 0 &&
           mapEl(links, ({ name, ...rest }) => (
@@ -25,7 +25,7 @@ function SubNavBar({ name, to, subLinks, icons }: SideNavLinkType) {
               {name}
             </NavLinkUI>
           ))}
-      </ul> */}
+      </ul>
     </ul>
   );
 }

@@ -9,15 +9,25 @@ import {
   MdOutlineDownloadDone,
 } from "react-icons/md";
 import { FaUserCircle, FaBell } from "react-icons/fa";
-import { BiLineChart, BiChevronUp, BiChevronDown } from "react-icons/bi";
-import { IoIosAddCircle } from "react-icons/io";
+import { BiLineChart, BiTransfer } from "react-icons/bi";
+import {
+  IoIosStats,
+  IoIosAddCircle,
+  IoIosArrowBack,
+  IoIosArrowDown,
+  IoIosArrowForward,
+  IoIosArrowUp,
+} from "react-icons/io";
 import { SiGoogleads } from "react-icons/si";
 
 export const iconsLinks = {
+  IoIosArrowBack,
+  IoIosArrowDown,
+  IoIosArrowForward,
+  IoIosArrowUp,
   BsFillCalendarDateFill,
   MdViewHeadline,
-  BiChevronUp,
-  BiChevronDown,
+
   BsFillPeopleFill,
   MdOutlineAttachMoney,
   MdOutlineSummarize,
@@ -30,4 +40,6 @@ export const iconsLinks = {
   SiGoogleads,
   AiFillDelete,
   MdOutlineDownloadDone,
+  IoIosStats,
+  BiTransfer,
 };

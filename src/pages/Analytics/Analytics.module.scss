@@ -1,0 +1,28 @@
+@use "../../style/utlites/utilites.scss" as *;
+.select_display {
+  margin-top: 2.5rem;
+  margin-left: 0.5rem;
+}
+.analytics_layout {
+  @extend %layout;
+  margin-top: 0rem;
+  .analytics_blocks {
+    @extend %section_2;
+    margin-top: 0.5rem;
+    .stats_block {
+      @include heightAndWidth(11rem, 12rem);
+    }
+  }
+
+  .Trainees_Statisic {
+    @extend %section_1;
+
+    .Trainees_ListCard {
+      @include heightAndWidth(15rem, 90%);
+    }
+  }
+
+  .chart {
+    @include heightAndWidth(15rem, 90%);
+  }
+}

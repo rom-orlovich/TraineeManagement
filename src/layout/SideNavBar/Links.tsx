@@ -5,19 +5,24 @@ import { IconsSideNavBarType } from "../../style/icons/iconType";
 const {
   BsFillCalendarDateFill,
   MdViewHeadline,
-  BiChevronUp,
-  BiChevronDown,
+  IoIosArrowBack,
+  IoIosArrowDown,
+  IoIosArrowForward,
+  IoIosArrowUp,
   BsFillPeopleFill,
   MdOutlineAttachMoney,
   AiFillSetting,
   MdOutlineSummarize,
   CgProfile,
   BiLineChart,
+  BiTransfer,
+  IoIosStats,
   SiGoogleads,
 } = iconsLinks;
 const iconsWithArrow = (...icons: IconsSideNavBarType) => [
-  BiChevronUp,
-  BiChevronDown,
+  IoIosArrowForward,
+  IoIosArrowDown,
+
   ...icons,
 ];
 
@@ -49,8 +54,12 @@ export const Links: SideNavLinksType = [
   {
     name: "Financial",
     to: "/financial",
-    icons: [MdOutlineAttachMoney],
-    subLinks: [],
+    icons: iconsWithArrow(MdOutlineAttachMoney),
+    subLinks: [
+      { name: "Activities", to: "financial/activities", icons: [BiTransfer] },
+    ],
   },
-  { name: "Setting", to: "/Setting", icons: [AiFillSetting], subLinks: [] },
+
+  { name: "Analytics", to: "/analytics", icons: [IoIosStats] },
+  { name: "Setting", to: "/setting", icons: [AiFillSetting], subLinks: [] },
 ];
