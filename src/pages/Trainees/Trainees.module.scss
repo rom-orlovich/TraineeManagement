@@ -3,14 +3,14 @@
 .trainee_layout {
   @extend %layout;
   .trainees_numbers {
-    @extend %section_1;
+    @extend %blocks_section;
     .stats_block {
       @include heightAndWidth(10rem, 12rem);
     }
   }
 
   .trainee_list {
-    @extend %section_2;
+    @extend %oneBlock_section;
     @include heightAndWidth(80%, 100%);
     .trainees_listCard {
       @include heightAndWidth(100%, 80%);

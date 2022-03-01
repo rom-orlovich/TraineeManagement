@@ -3,9 +3,8 @@
 .overview_Layout {
   @extend %layout;
 
-  .card_blocks {
-    @extend %section_1;
-    justify-content: space-evenly;
+  .cards_block {
+    @extend %blocks_section;
 
     .block_data {
       @include heightAndWidth(11rem, 12rem);
@@ -13,7 +12,7 @@
   }
 
   .data_charts {
-    @extend %section_2;
+    @extend %oneBlock_section;
     @include heightAndWidth(100%, 90%);
     justify-self: center;
     gap: 1rem;

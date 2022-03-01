@@ -1,4 +1,7 @@
 @use "./../../../style/utlites/utilites" as *;
 .chartBar {
-  @include heightAndWidth(100%, 100%);
+  @include heightAndWidth(90%, 98%);
+}
+
+.heading_card {
 }

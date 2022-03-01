@@ -7,7 +7,12 @@ import { propsType } from "../../helpers/GlobalType";
 
 import CardData from "../../components/CardData/CardData";
 
-import { DailyTask, OverviewLineChartData } from "../../DummyData/DummyData";
+import {
+  DailyTask,
+  dataProvider,
+  optionSelect,
+  OverviewLineChartData,
+} from "../../DummyData/DummyData";
 
 import OverviewLineChart from "./OverviewLineBar/OverviewLineChart";
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
@@ -16,7 +21,7 @@ function Overview({ className }: propsType) {
   const { columns, rows } = DailyTask;
   return (
     <section className={classNameMaker(ST.overview_Layout)}>
-      <div className={classNameMaker(ST.card_blocks)}>
+      <div className={classNameMaker(ST.cards_block)}>
         <CardData
           className={classNameMaker(ST.block_data)}
           heading="Todal Trainees"
@@ -48,7 +53,14 @@ function Overview({ className }: propsType) {
         ></DataGridTable>
 
         <OverviewLineChart
-          data={OverviewLineChartData}
+          data={dataProvider}
+          selectOptions={{
+            ...optionSelect[1],
+            options: [
+              ...optionSelect[1].options.slice(0, 2),
+              { text: "Earning", value: "earning" },
+            ],
+          }}
           className={classNameMaker(ST.charts_display)}
         ></OverviewLineChart>
       </div>

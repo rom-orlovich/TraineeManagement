@@ -15,16 +15,20 @@ import {
 } from "chart.js";
 
 import Card from "../../UI/Card/Card";
-import ST from "./ChartBar.module.scss";
+
 import SelectInput from "../../Form/SelectInput/SelectInput";
-import { optionSelector } from "../../../DummyData/DummyData";
+import { optionSelect } from "../../../DummyData/DummyData";
+import ST from "./ChartBar.module.scss";
+import { SelectOptions } from "../../../DummyData/DummyDataType";
 function ChartBar({
   data,
   options,
   className,
+  selectOptions,
 }: propsType & {
   data: ChartData<"bar", number[], unknown>;
   options?: ChartOptions<"bar">;
+  selectOptions?: SelectOptions;
 }) {
   ChartJS.register(
     CategoryScale,
@@ -34,27 +38,27 @@ function ChartBar({
     Tooltip,
     Legend
   );
+
   const [selectOption, setSelectOption] = useState("");
+
   return (
     <Card className={classNameMaker(className)}>
       <div className={classNameMaker(ST.heading_card)}>
-        {/* <select id="select_preiod" name="select_preiod" onClick={() => {}}>
-          <option value="">select option </option>
-          <option value="3"> last 3 Month </option>
-          <option value="6"> last 6 Month</option>
-          <option value="12"> last 12 Month</option>
-        </select> */}
-        <SelectInput
-          data={optionSelector[0]}
-          fun={setSelectOption}
-        ></SelectInput>
+        {selectOptions && (
+          <SelectInput
+            data={selectOptions}
+            SetValueOnChange={setSelectOption}
+          ></SelectInput>
+        )}
       </div>
 
       <div className={classNameMaker(ST.chartBar)}>
         <Bar
+          style={{ position: "absolute" }}
+          className={classNameMaker(className)}
           data={{
             ...data,
-            labels: data.labels?.slice(0, parseInt(selectOption) - 1),
+            labels: data.labels?.slice(0, parseInt(selectOption || "3")),
           }}
           options={options}
         ></Bar>
@@ -64,3 +68,11 @@ function ChartBar({
 }
 
 export default ChartBar;
+{
+  /* <select id="select_preiod" name="select_preiod" onClick={() => {}}>
+          <option value="">select option </option>
+          <option value="3"> last 3 Month </option>
+          <option value="6"> last 6 Month</option>
+          <option value="12"> last 12 Month</option>
+        </select> */
+}

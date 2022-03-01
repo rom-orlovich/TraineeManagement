@@ -18,14 +18,23 @@ import {
   Lead,
   SelectOptions,
 } from "./DummyDataType";
-export const optionSelector: SelectOptions[] = [
+export const optionSelect: SelectOptions[] = [
   {
     name: "Period",
     options: [
-      { text: "select option", value: "" },
+      // { text: "select option", value: "" },
       { text: "last 3 Months", value: "3" },
       { text: "last 6 Months", value: "6" },
       { text: "last 12 Months", value: "12" },
+    ],
+  },
+
+  {
+    name: "Type Data",
+    options: [
+      { text: "Trainees", value: "trainees" },
+      { text: "Leads", value: "leads" },
+      { text: "Activities", value: "activities" },
     ],
   },
 ];
@@ -456,27 +465,47 @@ export const optionsChartBar: ChartOptions<"bar"> = {
   maintainAspectRatio: false,
 
   plugins: {
+    datalabels: { color: "black" },
     legend: {
-      display: true,
+      title: {
+        display: true,
+
+        font: { weight: "600", size: 18 },
+        color: "black",
+        text: "Trainees Movement",
+      },
     },
   },
 };
 
 export const chartsBarData: chartDataType<"bar">[] = [
   {
-    name: "Trainees Amount",
+    name: "Trainees Movement",
     data: {
       labels: Months,
       datasets: [
-        { label: "News", data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2] },
-        { label: "Left", data: [2, 1, 0, 2, 1, 3, 2, 1, 2, 2, 1, 2] },
         {
-          label: "Total",
-          data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2].map(
-            (el, i) => el - [2, 1, 0, 2, 1, 3, 2, 1, 2, 2, 1, 2][i]
-          ),
+          label: "Joined",
+          data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2],
+          backgroundColor: Colors.green["A700"],
 
-          backgroundColor: "blue",
+          minBarLength: 15,
+        },
+        {
+          label: "Left",
+          data: [-2, -1, -1, -2, -1, -3, -2, -1, -2, -2, -1, -2],
+          backgroundColor: Colors.red["A400"],
+
+          minBarLength: 15,
+        },
+        {
+          label: "Total Trainees",
+
+          data: [8, 11, 10, 11, 19, 28, 30, 30, 30, 31, 31, 31],
+
+          backgroundColor: Colors.blue["A700"],
+
+          minBarLength: 15,
         },
       ],
     },
@@ -487,21 +516,65 @@ export const chartsBarData: chartDataType<"bar">[] = [
   {
     name: "Leads Amount",
     data: {
-      labels: [],
-      datasets: [],
+      labels: Months,
+      datasets: [
+        {
+          label: "New Leads",
+          data: [5, 7, 6, 7, 9, 3, 3, 5, 9, 8, 5, 6],
+          backgroundColor: Colors.blue["A700"],
+
+          minBarLength: 12,
+        },
+
+        {
+          label: "Handle",
+          data: [3, 2, 2, 5, 6, 2, 1, 1, 7, 8, 1, 2],
+
+          backgroundColor: Colors.green["A700"],
+
+          minBarLength: 12,
+        },
+        {
+          label: "Not Handle",
+          data: [1, 1, 4, 2, 3, 1, 2, 4, 2, 0, 4, 4],
+
+          backgroundColor: Colors.red["A400"],
+          minBarLength: 12,
+        },
+      ],
     },
     options: {
       ...optionsChartBar,
+      plugins: {
+        ...optionsChartBar.plugins,
+        legend: {
+          ...optionsChartBar.plugins?.legend,
+          title: {
+            ...optionsChartBar.plugins?.legend?.title,
+            text: "Leads Movement",
+          },
+        },
+      },
     },
   },
   {
-    name: "Trainees Amount",
+    name: "Activies Movment",
     data: {
       labels: [],
       datasets: [],
     },
     options: {
       ...optionsChartBar,
+      plugins: {
+        ...optionsChartBar.plugins,
+        legend: {
+          ...optionsChartBar.plugins?.legend,
+          title: {
+            ...optionsChartBar.plugins?.legend?.title,
+            text: "Activities Movement",
+          },
+        },
+      },
     },
   },
 ];
@@ -511,15 +584,18 @@ export const dataProvider = {
     table: TraineeTable,
     chartPie: dataPie.slice(0, 3),
     chartBar: chartsBarData[0],
+    chartLine: OverviewLineChartData[0],
   },
   leads: {
     table: LeadsTable,
     chartPie: dataPie.slice(3, 6),
-    chartBar: chartsBarData[0],
+    chartBar: chartsBarData[1],
+    chartLine: OverviewLineChartData[1],
   },
 
   activities: {
     chartPie: dataPie.slice(6, 9),
-    chartBar: chartsBarData[0],
+    chartBar: chartsBarData[2],
+    chartLine: OverviewLineChartData[2],
   },
 };

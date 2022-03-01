@@ -6,20 +6,17 @@
   grid-template-rows: 1fr 2fr;
 }
 
-%section_1 {
-  margin-top: 3rem;
+%oneBlock_section {
   display: flex;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+%blocks_section {
+  @extend %oneBlock_section;
+  margin-top: 3rem;
 
   justify-content: space-evenly;
-}
-
-%section_2 {
-  @extend %section_1;
-  margin-top: 1rem;
-}
-
-%card_block {
-  @include heightAndWidth(11rem, 12rem);
 }
 
 %link {

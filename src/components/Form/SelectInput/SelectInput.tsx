@@ -7,24 +7,29 @@ import { SelectOptions } from "../../../DummyData/DummyDataType";
 function SelectInput({
   className,
   data,
-  fun,
-}: propsType & { data: SelectOptions; fun?: AnyFun }) {
+  SetValueOnChange,
+}: propsType & {
+  data: SelectOptions;
+  SetValueOnChange?: (value: string) => any;
+}) {
   return (
     <select
       id={data.name}
       name={data.name}
       className={classNameMaker(className)}
       onChange={(e) => {
-        fun && fun(e.target.value);
+        SetValueOnChange && SetValueOnChange(e.target.value);
       }}
     >
       {mapEl(data.options, (el) => {
-        <option
-          key={`option-${el.id ?? el.value + "-" + el.text}`}
-          value={el.value}
-        >
-          {el.text}
-        </option>;
+        return (
+          <option
+            key={`option-${el.id ?? el.value + "-" + el.text}`}
+            value={el.value}
+          >
+            {el.text}
+          </option>
+        );
       })}
     </select>
   );

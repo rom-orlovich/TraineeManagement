@@ -7,8 +7,14 @@ import { ChartData, ChartOptions } from "chart.js";
 import Card from "../../../components/UI/Card/Card";
 import LineChart from "../../../components/Charts/LineChart/LineChart";
 
-import { chartDataType } from "../../../DummyData/DummyDataType";
+import {
+  chartDataType,
+  selectOption,
+  SelectOptions,
+} from "../../../DummyData/DummyDataType";
 import ST from "./OverviewLineChart.module.scss";
+import SelectInput from "../../../components/Form/SelectInput/SelectInput";
+import { dataProvider, optionSelect } from "../../../DummyData/DummyData";
 function OverviewLineChart({
   data,
 
@@ -16,29 +22,32 @@ function OverviewLineChart({
   selectOptions,
   className,
 }: propsType & {
-  data: chartDataType<"line">[];
+  data: typeof dataProvider;
 
   select?: boolean;
-  selectOptions?: string[];
+  selectOptions?: SelectOptions;
 }) {
-  const [curChart, setcurChart] = useState(data[0]);
-  const selectLineChart = (e: ChangeEvent<HTMLSelectElement>) => {
-    let curData = data.find((el) => el.name === e.target.value) || data[0];
-    setcurChart(curData);
-  };
+  const [selectState, setSelectState] = useState("");
+
+  let fitData =
+    selectState === "leads"
+      ? data.leads
+      : selectState === "earning"
+      ? data.activities
+      : data.trainees;
+
   return (
     <Card className={classNameMaker(className)}>
-      <select
-        onChange={selectLineChart}
-        name="LineChartDisplay"
-        id="LineChartDisplay"
-      >
-        <option value="none"> Select option </option>
-        <option value={data[0].name}> Trainees </option>
-        <option value={data[1].name}> Leads </option>
-        <option value={data[2].name}> Earning </option>
-      </select>
-      <LineChart data={curChart.data} options={curChart.options}></LineChart>
+      {selectOptions && (
+        <SelectInput
+          data={selectOptions}
+          SetValueOnChange={setSelectState}
+        ></SelectInput>
+      )}
+      <LineChart
+        data={fitData.chartLine.data}
+        options={fitData.chartLine.options}
+      ></LineChart>
     </Card>
   );
 }

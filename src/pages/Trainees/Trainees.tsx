@@ -37,6 +37,7 @@ function Trainees({ className }: propsType) {
           heading="In Active"
           text="2"
           displayIndicator
+          displayIndicatorPositive={false}
           displayPrecentage={false}
         ></CardData>
       </div>
