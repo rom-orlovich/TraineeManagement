@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactNode, useState } from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { propsType } from "../../../helpers/GlobalType";
 import { Bar } from "react-chartjs-2";
@@ -25,10 +25,12 @@ function ChartBar({
   options,
   className,
   selectOptions,
+  headerEl,
 }: propsType & {
   data: ChartData<"bar", number[], unknown>;
   options?: ChartOptions<"bar">;
   selectOptions?: SelectOptions;
+  headerEl?: ReactNode;
 }) {
   ChartJS.register(
     CategoryScale,
@@ -39,18 +41,22 @@ function ChartBar({
     Legend
   );
 
-  const [selectOption, setSelectOption] = useState("");
+  const [selectOption, setSelectOption] = useState(
+    selectOptions ? `${selectOptions.options.length}` : ""
+  );
 
   return (
     <Card className={classNameMaker(className)}>
-      <div className={classNameMaker(ST.heading_card)}>
-        {selectOptions && (
-          <SelectInput
-            data={selectOptions}
-            SetValueOnChange={setSelectOption}
-          ></SelectInput>
-        )}
-      </div>
+      {headerEl || (
+        <div className={classNameMaker(ST.heading_card)}>
+          {selectOptions && (
+            <SelectInput
+              data={selectOptions}
+              SetValueOnChange={setSelectOption}
+            ></SelectInput>
+          )}
+        </div>
+      )}
 
       <div className={classNameMaker(ST.chartBar)}>
         <Bar
@@ -58,7 +64,9 @@ function ChartBar({
           className={classNameMaker(className)}
           data={{
             ...data,
-            labels: data.labels?.slice(0, parseInt(selectOption || "3")),
+            labels: selectOption
+              ? data.labels?.slice(0, parseInt(selectOption))
+              : data.labels,
           }}
           options={options}
         ></Bar>

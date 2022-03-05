@@ -61,5 +61,5 @@ export const Links: SideNavLinksType = [
   },
 
   { name: "Analytics", to: "/analytics", icons: [IoIosStats] },
-  { name: "Setting", to: "/setting", icons: [AiFillSetting], subLinks: [] },
+  // { name: "Setting", to: "/setting", icons: [AiFillSetting], subLinks: [] },
 ];

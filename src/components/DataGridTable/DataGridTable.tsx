@@ -6,7 +6,7 @@ import { propsType } from "../../helpers/GlobalType";
 
 import Card from "../UI/Card/Card";
 
-import { localDate } from "../../helpers/AppVariables";
+// import { localDate } from "../../helpers/AppVariables";
 
 import {
   actionsDataGrid as actionsList,
@@ -15,6 +15,8 @@ import {
 import { SxProps, Theme } from "@mui/material";
 import { ActionsKindsColumns } from "./DataGridTypes";
 import ST from "./DataGridTable.module.scss";
+import { localDate, globalDate } from "../../helpers/DatesHelpers";
+
 function DataGridTable({
   className,
   columns,

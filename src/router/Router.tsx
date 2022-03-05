@@ -21,12 +21,11 @@ function Router() {
         </Route>
 
         <Route path="leads" element={<Leads />}></Route>
-        {/* <Route path="leads/analytics" element={<Analytics />}></Route> */}
-        <Route path="financial" element={<Financial />}>
-          <Route path="activities" element={<Financial />}></Route>
-        </Route>
+
+        <Route path="financial" element={<Financial />}></Route>
+        <Route path="financial/activities" element={<Financial />}></Route>
         <Route path="analytics" element={<Analytics />}></Route>
-        <Route path="setting" element={<Settings />}></Route>
+        {/* <Route path="setting" element={<Settings />}></Route> */}
       </Route>
     </Routes>
   );

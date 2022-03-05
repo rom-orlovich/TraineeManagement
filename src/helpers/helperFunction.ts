@@ -1,3 +1,10 @@
+import { datesValue } from "../DummyData/DummyData";
+import {
+  expenseExample,
+  incomeExample,
+  thisDay,
+  totalExample,
+} from "./AppVariables";
 import { AnyFun, IdType, ObjExtendIDKey } from "./GlobalType";
 
 export const mapEl = <T>(
@@ -10,8 +17,9 @@ export const mapEl = <T>(
 export const classNameMaker = (...className: (string | any)[]) => {
   return `${[...className].join(" ")}`;
 };
-export const checkPositive = (text: string | number) =>
-  text ? isFinite(+text) && parseFloat(`${text}`) > 0 : false;
+export const checkPositive = (text: string | number) => {
+  return text ? isFinite(+text) && parseFloat(`${text}`) > 0 : false;
+};
 
 export const findById = <T>(id: IdType, arr: ObjExtendIDKey<T>[]) =>
   arr.find((el) => el.id === id);
@@ -19,11 +27,22 @@ export const findById = <T>(id: IdType, arr: ObjExtendIDKey<T>[]) =>
 export const filterById = <T>(id: IdType, arr: ObjExtendIDKey<T>[]) =>
   arr.filter((el) => el.id !== id);
 
-let array = (numMin = 0, numMax = 30) => {
+export let arrayRandom = (numMin = 0, numMax = 30, length = 12) => {
   let arr = [];
-  for (let i = 0; i < 12; i++)
-    arr.push(Math.floor(numMin + Math.random() * numMax - numMin));
+  for (let i = 0; i < length; i++)
+    arr.push(Math.floor(numMin + Math.random() * (numMax - numMin)));
 
+  return arr;
+};
+export const sumArray = (arr: number[]) => {
+  return arr.reduce((pre, cur) => {
+    return pre + cur;
+  }, 0);
+};
+// @ts-ignore
+let arrayNumberUntilI = (length) => {
+  let arr = [];
+  for (let i = 1; i <= length; i++) arr.push(i);
   return arr;
 };
 // @ts-ignore

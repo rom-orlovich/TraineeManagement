@@ -2,8 +2,16 @@ import { borderRadius } from "@mui/system";
 import { GridColDef, GridColumns, GridRowsProp } from "@mui/x-data-grid";
 import { ChartData, ChartOptions, PieController } from "chart.js";
 import { Link, NavLink } from "react-router-dom";
-import { Colors, Months } from "../helpers/AppVariables";
+import {
+  Colors,
+  expenseExample,
+  incomeExample,
+  Months,
+  totalExample,
+} from "../helpers/AppVariables";
+import { getWeekPeriodBet2Dates, getThisMonth } from "../helpers/DatesHelpers";
 import { IdType } from "../helpers/GlobalType";
+import {} from "../helpers/helperFunction";
 import {
   createColField,
   createLead,
@@ -18,6 +26,8 @@ import {
   Lead,
   SelectOptions,
 } from "./DummyDataType";
+
+export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
 export const optionSelect: SelectOptions[] = [
   {
     name: "Period",
@@ -37,9 +47,16 @@ export const optionSelect: SelectOptions[] = [
       { text: "Activities", value: "activities" },
     ],
   },
+  {
+    name: "Type Period",
+    options: [
+      { text: "Days", value: "d" },
+      { text: "Weeks", value: "w" },
+      { text: "Months", value: "m" },
+      { text: "Years", value: "y" },
+    ],
+  },
 ];
-export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
-
 export const TaskData = [
   { id: "a", hour: "12:00", topic: "training", status: false },
   { id: "ab", hour: "12:00", topic: "training", status: false },
@@ -511,6 +528,12 @@ export const chartsBarData: chartDataType<"bar">[] = [
     },
     options: {
       ...optionsChartBar,
+
+      scales: {
+        y: {
+          title: { display: true, text: "Trainees" },
+        },
+      },
     },
   },
   {
@@ -545,6 +568,11 @@ export const chartsBarData: chartDataType<"bar">[] = [
     },
     options: {
       ...optionsChartBar,
+      scales: {
+        y: {
+          title: { display: true, text: "Leads" },
+        },
+      },
       plugins: {
         ...optionsChartBar.plugins,
         legend: {
@@ -558,13 +586,18 @@ export const chartsBarData: chartDataType<"bar">[] = [
     },
   },
   {
-    name: "Activies Movment",
+    name: "Activities Movement",
     data: {
       labels: [],
       datasets: [],
     },
     options: {
       ...optionsChartBar,
+      scales: {
+        y: {
+          title: { display: true, text: "Amount" },
+        },
+      },
       plugins: {
         ...optionsChartBar.plugins,
         legend: {
@@ -572,6 +605,48 @@ export const chartsBarData: chartDataType<"bar">[] = [
           title: {
             ...optionsChartBar.plugins?.legend?.title,
             text: "Activities Movement",
+          },
+        },
+      },
+    },
+  },
+
+  {
+    name: "Balance Movement",
+    data: {
+      labels: getThisMonth,
+      datasets: [
+        {
+          label: "Total balance",
+          data: [2672, 4550, 2203, 3175],
+          backgroundColor: Colors.blue["A700"],
+        },
+        {
+          label: "Incomes",
+          data: [1591, 1158, 1088, 1462],
+          backgroundColor: Colors.green["A700"],
+        },
+        {
+          label: "Expenses",
+          data: [159, 158, 788, 662],
+          backgroundColor: Colors.red["A400"],
+        },
+      ],
+    },
+    options: {
+      ...optionsChartBar,
+      scales: {
+        y: {
+          title: { display: true, text: "Balance" },
+        },
+      },
+      plugins: {
+        ...optionsChartBar.plugins,
+        legend: {
+          ...optionsChartBar.plugins?.legend,
+          title: {
+            ...optionsChartBar.plugins?.legend?.title,
+            text: "Balance Movement",
           },
         },
       },
@@ -598,4 +673,18 @@ export const dataProvider = {
     chartBar: chartsBarData[2],
     chartLine: OverviewLineChartData[2],
   },
+
+  Balance: {
+    chartBar: chartsBarData[3],
+  },
 };
+
+export const datesValue = getThisMonth.map((el, i) => {
+  return {
+    id: el,
+    date: el,
+    total: totalExample[i],
+    income: incomeExample[i],
+    expense: expenseExample[i],
+  };
+});

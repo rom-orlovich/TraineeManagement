@@ -15,9 +15,11 @@ function CardData({
   displayIndicator = true,
   displayPrecentage = true,
   displayIndicatorPositive = true,
+  symbolText,
 }: propsType & {
   heading?: string;
   text?: string;
+  symbolText?: string;
   displayIndicator?: boolean;
   displayIndicatorPositive?: boolean;
   displayPrecentage?: boolean;
@@ -45,7 +47,10 @@ function CardData({
       ) : (
         <>
           <h3>{heading} </h3>
-          <span> {text}</span>{" "}
+          <span>
+            {text}
+            {symbolText ? symbolText : ""}
+          </span>
           {displayPrecentage && (
             <span
               style={{
