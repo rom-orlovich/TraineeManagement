@@ -17,5 +17,4 @@ export type MouseEventHook = {
 
 export type IdType = string | number;
 export type ObjExtendIDKey<T> = T & { id: IdType };
-// export type ObjHasOtherObj<T, K> = T extends { [p in keyof K]: any } ? T : never;
-// export type ObjHasKey<T, K> = K extends keyof T ? T : never;
+export type PeriodType = "days" | "weeks" | "months" | "years";

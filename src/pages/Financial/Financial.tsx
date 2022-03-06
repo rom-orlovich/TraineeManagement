@@ -9,7 +9,7 @@ import {
   datesValue,
   optionSelect,
 } from "../../DummyData/DummyData";
-import { propsType } from "../../helpers/GlobalType";
+import { PeriodType, propsType } from "../../helpers/GlobalType";
 import { mapEl, classNameMaker } from "../../helpers/helperFunction";
 
 import ChartBar from "../../components/Charts/ChartBar/ChartBar";
@@ -23,13 +23,12 @@ import {
   totalExample,
 } from "../../helpers/AppVariables";
 import {
-  weeksDisplayLabels,
   getThisMonth,
   localDate,
   globalDate,
   getPointSliceThisWeek,
   getLocalDateFromInput,
-  getWeekPeriodBet2Dates,
+  getPeriodBet2Dates,
 } from "../../helpers/DatesHelpers";
 
 let findData = datesValue.find((el) => el.id === localDate);
@@ -40,7 +39,7 @@ function Financial({ className }: propsType) {
     typeof datesValue[0]
   >(findData!);
 
-  const [typePeriod, setTypePeriod] = useState("d");
+  const [typePeriod, setTypePeriod] = useState<PeriodType>("days");
   const headerEl = (
     <div className={classNameMaker(ST.heading_card)}>
       <span>
@@ -61,24 +60,21 @@ function Financial({ className }: propsType) {
       </span>
     </div>
   );
-  const { labels, total, incomes, expenses } = getWeekPeriodBet2Dates(
+
+  const { labels, total, incomes, expenses } = getPeriodBet2Dates(
     totalExample,
     incomeExample,
     expenseExample,
-    "Weeks",
-    weeksDisplayLabels
+    typePeriod
   );
-  const labelsPoints = getPointSliceThisWeek();
+  const labelsPoints = labels;
 
-  let labelsData =
-    typePeriod === "d" ? getThisMonth.slice(...labelsPoints) : labels;
+  let totalData = total;
 
-  let totalData =
-    typePeriod === "d" ? totalExample.slice(...labelsPoints) : total;
-  let incomesData =
-    typePeriod === "d" ? incomeExample.slice(...labelsPoints) : incomes;
-  let expensesData =
-    typePeriod === "d" ? expenseExample.slice(...labelsPoints) : expenses;
+  let incomesData = incomes;
+
+  let expensesData = expenses;
+
   return (
     <section className={classNameMaker(ST.financial_layout, className)}>
       <div className={classNameMaker(ST.upper_section)}>
@@ -150,7 +146,7 @@ function Financial({ className }: propsType) {
                 data: expensesData,
               },
             ],
-            labels: labelsData,
+            labels: labelsPoints,
           }}
           options={dataProvider["Balance"].chartBar.options}
           headerEl={headerEl}

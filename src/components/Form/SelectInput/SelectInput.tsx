@@ -10,7 +10,7 @@ function SelectInput({
   SetValueOnChange,
 }: propsType & {
   data: SelectOptions;
-  SetValueOnChange?: (value: string) => any;
+  SetValueOnChange?: (value: any) => any;
 }) {
   return (
     <select
