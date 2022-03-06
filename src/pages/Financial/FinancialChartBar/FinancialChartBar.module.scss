@@ -1,0 +1,4 @@
+@use "../../../style/utlites/utilites.scss" as *;
+.heading_card {
+  @include flex_control(space-between, null);
+}

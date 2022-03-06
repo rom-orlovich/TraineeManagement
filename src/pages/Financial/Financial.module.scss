@@ -13,9 +13,6 @@
     .financial_blocks {
       @extend %blocks_section;
       margin-top: 1rem;
-      .stats_block {
-        @include heightAndWidth(10rem, 12rem);
-      }
     }
   }
 
@@ -26,7 +23,4 @@
       @include heightAndWidth(100%, 80%);
     }
   }
-}
-.heading_card {
-  @include flex_control(space-between, null);
 }

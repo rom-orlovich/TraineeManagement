@@ -1,10 +1,4 @@
-import {
-  expenseExample,
-  incomeExample,
-  Months,
-  thisDay,
-  totalExample,
-} from "./AppVariables";
+import { Months, thisDay } from "./AppVariables";
 import { PeriodType } from "./GlobalType";
 import { sumArray } from "./helperFunction";
 
@@ -86,7 +80,7 @@ const datePeriodDataObj = (
   Incomes?: number[],
   Expenses?: number[]
 ) => {
-  const getPointsDays = getPointSliceThisWeek();
+  const getPointsDays = getPointSliceThisWeek(cur);
   const getPointsWeeks = getPointSliceThisWeek(cur);
   const getPointsMonth = [0, getLastDayInMonth(cur)];
   const getPointsYears = [0, undefined];
@@ -95,23 +89,23 @@ const datePeriodDataObj = (
     expenses = Expenses || [];
 
   switch (Display) {
-    case "days":
+    case "daily":
       return {
         label: getThisMonth.slice(...getPointsDays),
-        newDate: cur.setMonth(cur.getMonth() + 1),
+        newDate: new Date().setMonth(cur.getMonth() + 1),
         total: total.slice(...getPointsDays),
         incomes: incomes.slice(...getPointsDays),
         expenses: expenses.slice(...getPointsDays),
       };
 
-    case "weeks":
+    case "weekly":
       return {
         label: [
           `${getPointsWeeks[0] + 1}-${getPointsWeeks[1]}/${
             cur.getMonth() + 1
           }/${cur.getFullYear()}`,
         ],
-        newDate: cur.setDate(
+        newDate: new Date().setDate(
           cur.getDate() + 7 > 28
             ? getLastDayInMonth(cur) + 1
             : cur.getDate() + 7
@@ -121,19 +115,19 @@ const datePeriodDataObj = (
         incomes: [sumArray(incomes.slice(...getPointsWeeks))],
       };
 
-    case "months":
+    case "monthly":
       return {
         label: [`${Months[cur.getMonth()]}`],
-        newDate: cur.setMonth(cur.getMonth() + 1),
+        newDate: new Date().setMonth(cur.getMonth() + 1),
         total: [sumArray(total.slice(...getPointsMonth))],
         expenses: [sumArray(expenses.slice(...getPointsMonth))],
         incomes: [sumArray(incomes.slice(...getPointsMonth))],
       };
 
-    case "years":
+    case "yearly":
       return {
         label: [`${cur.getFullYear()}`],
-        newDate: cur.setFullYear(cur.getFullYear() + 1),
+        newDate: new Date().setFullYear(cur.getFullYear() + 1),
         total: [sumArray(total.slice(...getPointsYears))],
         expenses: [sumArray(expenses.slice(...getPointsYears))],
         incomes: [sumArray(incomes.slice(...getPointsYears))],
@@ -150,22 +144,20 @@ export const getPeriodBet2Dates = (
   end = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
 ) => {
   let cur = start,
-    newDate,
     T = [],
     I = [],
     E = [],
     labels = [];
   let objDate;
-
+  console.log(cur, end);
   while (cur <= end) {
-    console.log(cur.getMonth());
     objDate = datePeriodDataObj(display, cur, total, incomes, expenses);
-
+    console.log(objDate);
     labels.push(...objDate.label);
-    total && T.push(...objDate.total);
-    incomes && I.push(...objDate.incomes);
-    expenses && E.push(...objDate.expenses);
-
+    T.push(...objDate.total);
+    I.push(...objDate.incomes);
+    E.push(...objDate.expenses);
+    // console.log(T);
     cur = new Date(objDate.newDate);
   }
   return { labels, total: T, incomes: I, expenses: E };

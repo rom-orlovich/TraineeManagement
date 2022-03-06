@@ -17,4 +17,4 @@ export type MouseEventHook = {
 
 export type IdType = string | number;
 export type ObjExtendIDKey<T> = T & { id: IdType };
-export type PeriodType = "days" | "weeks" | "months" | "years";
+export type PeriodType = "daily" | "weekly" | "monthly" | "yearly";

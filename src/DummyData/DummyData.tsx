@@ -9,7 +9,7 @@ import {
   Months,
   totalExample,
 } from "../helpers/AppVariables";
-import { getThisMonth } from "../helpers/DatesHelpers";
+import { getPeriodBet2Dates, getThisMonth } from "../helpers/DatesHelpers";
 import { IdType } from "../helpers/GlobalType";
 import {} from "../helpers/helperFunction";
 import {
@@ -50,10 +50,10 @@ export const optionSelect: SelectOptions[] = [
   {
     name: "Type Period",
     options: [
-      { text: "Days", value: "days" },
-      { text: "Weeks", value: "weeks" },
-      { text: "Months", value: "months" },
-      { text: "Years", value: "years" },
+      { text: "Daily", value: "daily" },
+      { text: "Weekly", value: "weekly" },
+      { text: "Monthly", value: "monthly" },
+      { text: "Yearly", value: "yearly" },
     ],
   },
 ];
