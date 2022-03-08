@@ -1,10 +1,21 @@
 import { GridColDef } from "@mui/x-data-grid";
-import { IdType } from "../helpers/GlobalType";
-import { DataGrid, Trainee, Task, Lead } from "./DummyDataType";
-// export type RowDataGrid=Pick<DataGrid<Trainee>,"rows">["rows"]
+import { localDate } from "../helpers/DatesHelpers";
+
+import {
+  Trainee,
+  Task,
+  Lead,
+  typeIncomeExpense,
+  paymentMethod,
+  Income,
+  Expense,
+} from "./DummyDataType";
+
 let idTrainees = 1,
   idTasks = 1,
-  idLeads = 1;
+  idLeads = 1,
+  idIncome = 1,
+  idExpense = 1;
 
 export const createTrainee = (
   name: string,
@@ -20,20 +31,6 @@ export const createTrainee = (
     gender,
     tel,
     email,
-    status,
-  };
-};
-
-export const createTask = (
-  hour: string,
-  topic: string,
-  status: boolean
-): Task => {
-  idTasks++;
-  return {
-    id: idTasks,
-    hour,
-    topic,
     status,
   };
 };
@@ -58,11 +55,71 @@ export const createLead = (
     status,
   };
 };
+export const createTask = (
+  hour: string,
+  topic: string,
+  status: boolean
+): Task => {
+  idTasks++;
+  return {
+    id: idTasks,
+    hour,
+    topic,
+    status,
+  };
+};
 
-export const createColField = (
-  field: string,
+export const createIncome = (
+  nameClient: string,
+  nameProduct: string,
+  type: typeIncomeExpense,
+  describe: string,
+  paymentMethod: paymentMethod,
+  price: number,
+  date = localDate
+): Income => {
+  idIncome++;
+  return {
+    id: idIncome,
+    date,
+    nameClient,
+    nameProduct,
+    type,
+    describe,
+    paymentMethod,
+    price,
+  };
+};
+
+export const createExpense = (
+  nameExpense: string,
+  paymentTo: string,
+  type: typeIncomeExpense,
+  describe: string,
+  paymentMethod: paymentMethod,
+  price: number,
+  quantity: number,
+  date = localDate
+): Expense => {
+  idExpense++;
+  return {
+    id: idExpense,
+    date,
+    nameExpense,
+    paymentTo,
+    type,
+    describe,
+    paymentMethod,
+    price,
+    quantity,
+  };
+};
+
+export const createColField = <T>(
+  field: keyof T extends string ? keyof T : string,
   headerName: string,
-  flex = 1
+  flex = 1,
+  hide = false
 ): GridColDef => {
   return {
     field,
@@ -70,5 +127,15 @@ export const createColField = (
     flex: flex,
     align: "center",
     headerAlign: "center",
+    hide: hide,
   };
 };
+// createIncome<Income>([]);
+
+// export const createObj = <T>(arg: { [p in keyof T]: T[p] }): T => {
+//   idTasks++;
+//   return {
+//     idTasks,
+//     ...arg,
+//   };
+// };

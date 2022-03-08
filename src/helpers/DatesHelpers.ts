@@ -149,10 +149,10 @@ export const getPeriodBet2Dates = (
     E = [],
     labels = [];
   let objDate;
-  console.log(cur, end);
+
   while (cur <= end) {
     objDate = datePeriodDataObj(display, cur, total, incomes, expenses);
-    console.log(objDate);
+
     labels.push(...objDate.label);
     T.push(...objDate.total);
     I.push(...objDate.incomes);

@@ -1,7 +1,5 @@
-import { borderRadius } from "@mui/system";
-import { GridColDef, GridColumns, GridRowsProp } from "@mui/x-data-grid";
-import { ChartData, ChartOptions, PieController } from "chart.js";
-import { Link, NavLink } from "react-router-dom";
+import { ChartOptions } from "chart.js";
+import { Link } from "react-router-dom";
 import {
   Colors,
   expenseExample,
@@ -9,13 +7,13 @@ import {
   Months,
   totalExample,
 } from "../helpers/AppVariables";
-import { getPeriodBet2Dates, getThisMonth } from "../helpers/DatesHelpers";
-import { IdType } from "../helpers/GlobalType";
+import { getThisMonth } from "../helpers/DatesHelpers";
 import {} from "../helpers/helperFunction";
 import {
   createColField,
+  createExpense,
+  createIncome,
   createLead,
-  createTask,
   createTrainee,
 } from "./DummyDataFunction";
 import {
@@ -25,6 +23,8 @@ import {
   Trainee,
   Lead,
   SelectOptions,
+  Income,
+  Expense,
 } from "./DummyDataType";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
@@ -32,7 +32,6 @@ export const optionSelect: SelectOptions[] = [
   {
     name: "Period",
     options: [
-      // { text: "select option", value: "" },
       { text: "last 3 Months", value: "3" },
       { text: "last 6 Months", value: "6" },
       { text: "last 12 Months", value: "12" },
@@ -54,6 +53,13 @@ export const optionSelect: SelectOptions[] = [
       { text: "Weekly", value: "weekly" },
       { text: "Monthly", value: "monthly" },
       { text: "Yearly", value: "yearly" },
+    ],
+  },
+  {
+    name: "Display activities mode",
+    options: [
+      { text: "Incomes", value: "incomes" },
+      { text: "Expenses", value: "expenses" },
     ],
   },
 ];
@@ -162,11 +168,11 @@ export const TraineeTable: DataGrid<Trainee> = {
 export const LeadsTable: DataGrid<Lead> = {
   columns: [
     { field: "id", hide: true },
-    { ...createColField("date", "Date", 1) },
-    { ...createColField("name", "Name", 1) },
-    { ...createColField("tel", "Tel", 1) },
+    createColField("date", "Date", 1),
+    createColField("name", "Name", 1),
+    createColField("tel", "Tel", 1),
     { ...createColField("notes", "Notes", 2), editable: true },
-    { ...createColField("source", "Source", 1) },
+    createColField("source", "Source", 1),
     { ...createColField("status", "Done", 0.5), type: "boolean" },
   ],
   rows: [
@@ -186,6 +192,73 @@ export const LeadsTable: DataGrid<Lead> = {
       "facebook",
       false
     ),
+  ],
+};
+export const IncomesTable: DataGrid<Income> = {
+  columns: [
+    { field: "id", hide: true },
+    { ...createColField<Income>("date", "Date", 1), type: "date" },
+    createColField<Income>("nameClient", "Name", 1),
+    createColField<Income>("nameProduct", "Product", 1),
+    { ...createColField<Income>("type", "Type", 0.5), type: "singleSelect" },
+    {
+      ...createColField<Income>("describe", "Describe", 1.5),
+      editable: true,
+    },
+    createColField<Income>("paymentMethod", "Method", 1.5),
+    {
+      ...createColField<Income>("price", "Price", 0.5),
+      type: "number",
+      valueFormatter: (value) => `${value.value}$`,
+    },
+  ],
+
+  rows: [
+    createIncome("s", "d", "Monthly", "sadasd adasd", "Bank Transfer", 12),
+    createIncome("g", "w", "Monthly", "sdd adasd", "Other", 15),
+  ],
+};
+
+export const ExpensesTable: DataGrid<Expense> = {
+  columns: [
+    { field: "id", hide: true },
+    { ...createColField<Expense>("date", "Date", 1), type: "date" },
+    createColField<Expense>("nameExpense", "Expense", 1),
+    createColField<Expense>("paymentTo", "Payment To", 1.5),
+    { ...createColField<Expense>("type", "Type", 0.5), type: "singleSelect" },
+    {
+      ...createColField<Expense>("describe", "Describe", 1.5),
+      editable: true,
+    },
+    createColField<Expense>("paymentMethod", "Method", 1.5),
+    {
+      ...createColField<Expense>("price", "Price", 0.5),
+      type: "number",
+      valueFormatter: (value) => `${value.value}$`,
+    },
+    { ...createColField<Expense>("quantity", "Quantity", 1.5), type: "number" },
+  ],
+
+  rows: [
+    createExpense(
+      "weights",
+      "sport",
+      "One-Time",
+      "asd asd",
+      "Credit Card",
+      23,
+      2
+    ),
+    createExpense(
+      "weights",
+      "sport",
+      "One-Time",
+      "asd asd",
+      "Credit Card",
+      42,
+      1
+    ),
+    createExpense("csd", "mega", "One-Time", "asd asd", "Credit Card", 12, 4),
   ],
 };
 
@@ -669,6 +742,7 @@ export const dataProvider = {
   },
 
   activities: {
+    table: [IncomesTable, ExpensesTable],
     chartPie: dataPie.slice(6, 9),
     chartBar: chartsBarData[2],
     chartLine: OverviewLineChartData[2],

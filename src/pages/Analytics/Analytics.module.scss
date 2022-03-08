@@ -9,6 +9,9 @@
     .select_input {
       margin-top: 2.5rem;
       margin-left: 7rem;
+      &_activities {
+        margin-left: 0.5rem;
+      }
     }
     .analytics_blocks {
       @extend %blocks_section;
@@ -21,7 +24,7 @@
 
   .lower_section {
     @extend %oneBlock_section;
-    @include heightAndWidth(83%, 100%);
+
     .chart {
       @include heightAndWidth(100%, 80%);
     }

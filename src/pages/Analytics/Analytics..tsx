@@ -1,26 +1,20 @@
-import React from "react";
 import { useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import CardData from "../../components/CardData/CardData";
+
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
 
-import DataGridTable from "../../components/DataGridTable/DataGridTable";
-import {
-  dataPie,
-  dataProvider,
-  optionSelect,
-  TraineeTable,
-} from "../../DummyData/DummyData";
+import { dataProvider, optionSelect } from "../../DummyData/DummyData";
 import { propsType } from "../../helpers/GlobalType";
 import { classNameMaker, mapEl } from "../../helpers/helperFunction";
-import { useLocation } from "react-router";
+
 import ST from "./Analytics.module.scss";
 import ChartBar from "../../components/Charts/ChartBar/ChartBar";
 import SelectInput from "../../components/Form/SelectInput/SelectInput";
 
 function Analytics({ className }: propsType) {
   const [selectState, setSelectState] = useState("");
-
+  const [selectActivities, setSelectActivities] = useState<
+    "incomes" | "expenses"
+  >("incomes");
   let fitData =
     selectState === "leads"
       ? dataProvider.leads
@@ -36,6 +30,13 @@ function Analytics({ className }: propsType) {
             data={optionSelect[1]}
             SetValueOnChange={setSelectState}
           ></SelectInput>
+          {selectState === "activities" && (
+            <SelectInput
+              className={classNameMaker(ST.select_input_activities)}
+              data={optionSelect[3]}
+              SetValueOnChange={setSelectActivities}
+            ></SelectInput>
+          )}
         </div>
         <div className={classNameMaker(ST.analytics_blocks)}>
           {mapEl(fitData.chartPie, ({ name, ...rest }) => {

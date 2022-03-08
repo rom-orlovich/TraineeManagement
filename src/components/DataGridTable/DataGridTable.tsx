@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { DataGrid, GridColumns, GridRowsProp } from "@mui/x-data-grid";
 import { classNameMaker } from "../../helpers/helperFunction";
 import { propsType } from "../../helpers/GlobalType";
 
 import Card from "../UI/Card/Card";
-
-// import { localDate } from "../../helpers/AppVariables";
 
 import {
   actionsDataGrid as actionsList,
@@ -15,7 +13,8 @@ import {
 import { SxProps, Theme } from "@mui/material";
 import { ActionsKindsColumns } from "./DataGridTypes";
 import ST from "./DataGridTable.module.scss";
-import { localDate, globalDate } from "../../helpers/DatesHelpers";
+import { localDate } from "../../helpers/DatesHelpers";
+import ToolBar from "./ToolBar";
 
 function DataGridTable({
   className,
@@ -25,6 +24,7 @@ function DataGridTable({
   rows,
   sx,
   actions,
+  toolBar,
 }: propsType & {
   columns: GridColumns;
   rows: GridRowsProp;
@@ -32,10 +32,14 @@ function DataGridTable({
   displayDate?: true;
   actions?: ActionsKindsColumns[];
   sx?: SxProps<Theme> | undefined;
+  toolBar?: boolean;
 }) {
-  useState();
   const [rowsNew, setRowsNew] = useState(rows);
+  useEffect(() => {
+    setRowsNew(rows);
+  }, [rows]);
   const Actions = actions || [];
+
   return (
     <Card className={classNameMaker(ST.table_card, ST, className)}>
       <div className={classNameMaker(ST.heading_card)}>
@@ -44,9 +48,12 @@ function DataGridTable({
       </div>
 
       <DataGrid
-        sx={sx}
         columns={[...columns, getActions(Actions, rowsNew, setRowsNew)]}
+        disableColumnSelector={true}
         rows={rowsNew}
+        components={{
+          Toolbar: () => (toolBar ? <ToolBar /> : <></>),
+        }}
       />
     </Card>
   );

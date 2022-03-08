@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SelectInput from "../../../components/Form/SelectInput/SelectInput";
 import { optionSelect } from "../../../DummyData/DummyData";
 import { PeriodType, propsType } from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
-
+import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
+import { borderColor } from "@mui/system";
 function HeaderChartBar({
   className,
   setTypePeriod,
@@ -14,9 +15,11 @@ function HeaderChartBar({
   setFromInput: React.Dispatch<React.SetStateAction<Date>>;
   setToInput: React.Dispatch<React.SetStateAction<Date>>;
 }) {
-  const [from, setFrom] = useState("");
-  const [to, setTo] = useState("");
+  const [first] = getFirstAndLastDateMonth();
+  const [from, setFrom] = useState<Date>(first);
+  const [to, setTo] = useState<Date>(first);
   const [bool, setBool] = useState(false);
+
   return (
     <div className={classNameMaker(className)}>
       <span>
@@ -33,7 +36,10 @@ function HeaderChartBar({
         <label htmlFor="from"> From </label>
         <input
           onChange={(e) => {
-            setFromInput(new Date(e.target.value));
+            let date = new Date(e.target.value);
+            setFrom(date);
+            setFromInput(date);
+            setBool(date > to);
           }}
           name="from"
           type="date"
@@ -42,7 +48,17 @@ function HeaderChartBar({
         {bool && <span>*</span>}
         <input
           onChange={(e) => {
-            setToInput(new Date(e.target.value));
+            let date = new Date(e.target.value);
+            setTo(date);
+            setToInput((pre) => {
+              let res = date > from ? date : pre;
+              return res;
+            });
+            setBool(date < from);
+          }}
+          style={{
+            borderColor: `${bool ? "red" : "initial"}`,
+            outlineColor: `${bool ? "red" : "initial"}`,
           }}
           name="to"
           type="date"

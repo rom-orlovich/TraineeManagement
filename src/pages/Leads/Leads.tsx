@@ -42,6 +42,7 @@ function Leads({ className }: propsType) {
           columns={LeadsTable.columns}
           rows={LeadsTable.rows}
           actions={[{ action: "confirm" }]}
+          toolBar
         ></DataGridTable>
       </div>
     </section>

@@ -18,7 +18,7 @@
 
   .lower_section {
     @extend %oneBlock_section;
-    @include heightAndWidth(80%, 100%);
+
     .chart {
       @include heightAndWidth(100%, 80%);
     }

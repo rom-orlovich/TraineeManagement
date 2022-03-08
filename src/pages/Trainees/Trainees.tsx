@@ -48,6 +48,7 @@ function Trainees({ className }: propsType) {
           columns={[...columns]}
           actions={[{ action: "delete" }]}
           rows={rows}
+          toolBar
         ></DataGridTable>
       </div>
     </section>

@@ -10,6 +10,7 @@ import Calender from "../pages/Calender/Calender";
 import Settings from "../pages/Settings/Settings";
 import Leads from "../pages/Leads/Leads";
 import Analytics from "../pages/Analytics/Analytics.";
+import Activities from "../pages/Activities/Activities";
 function Router() {
   return (
     <Routes>
@@ -23,7 +24,7 @@ function Router() {
         <Route path="leads" element={<Leads />}></Route>
 
         <Route path="financial" element={<Financial />}></Route>
-        <Route path="financial/activities" element={<Financial />}></Route>
+        <Route path="financial/activities" element={<Activities />}></Route>
         <Route path="analytics" element={<Analytics />}></Route>
         {/* <Route path="setting" element={<Settings />}></Route> */}
       </Route>

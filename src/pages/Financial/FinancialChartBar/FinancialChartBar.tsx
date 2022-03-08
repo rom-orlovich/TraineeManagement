@@ -24,7 +24,7 @@ function FinancialChartBar({ className }: propsType & {}) {
   const [typePeriod, setTypePeriod] = useState<PeriodType>("daily");
   const [fromInput, setFromInput] = useState(first);
   const [toInput, setToInput] = useState(last);
-  const { labels, total, incomes, expenses } = getPeriodBet2Dates(
+  let funObj = getPeriodBet2Dates(
     totalExample,
     incomeExample,
     expenseExample,
@@ -33,6 +33,7 @@ function FinancialChartBar({ className }: propsType & {}) {
     toInput
   );
 
+  const { labels, total, incomes, expenses } = funObj;
   const dataCharBar = {
     ...dataProvider["Balance"].chartBar.data,
     datasets: [

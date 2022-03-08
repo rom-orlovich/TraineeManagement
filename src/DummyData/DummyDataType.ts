@@ -30,6 +30,27 @@ export interface Lead {
   status: boolean;
 }
 
+export type paymentMethod = "Credit Card" | "Bank Transfer" | "Cash" | "Other";
+export type typeIncomeExpense = "One-Time" | "Monthly";
+export interface IncomeExpense {
+  id: IdType;
+  date: string;
+  type: typeIncomeExpense;
+  describe: string;
+  paymentMethod: paymentMethod;
+  price: number;
+}
+export interface Income extends IncomeExpense {
+  nameClient: string;
+  nameProduct: string;
+}
+
+export interface Expense extends IncomeExpense {
+  paymentTo: string;
+  nameExpense: string;
+  quantity: number;
+}
+
 export interface DataGrid<T> {
   columns: GridColDef[];
 
@@ -42,12 +63,6 @@ export type chartDataType<T extends ChartType> = {
   options?: ChartOptions<T>;
 };
 
-// export type piecChartDataType<T extends ChartType> = {
-//   name: string;
-//   data: ChartData<T, number[], unknown>;
-//   options?: ChartOptions<T>;
-// };
-
 export interface selectOption {
   id?: IdType;
   value: string | number;
@@ -56,4 +71,11 @@ export interface selectOption {
 export interface SelectOptions {
   name: string;
   options: selectOption[];
+}
+
+export interface Task1 {
+  id: IdType;
+  hour: string;
+  topic: string;
+  status: boolean;
 }

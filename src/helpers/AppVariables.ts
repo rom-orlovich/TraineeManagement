@@ -26,7 +26,7 @@ export const weekYear = [
 export const thisDay = new Date();
 
 const localTimeAndDate = new Date().toLocaleString().trim().split(",");
-
+export const localString = window.navigator.language;
 export const totalExample = [
   2844, 2599, 2569, 2039, 2944, 2452, 2034, 2775, 2452, 2700, 2418, 2942, 2395,
   2142, 2870, 2910, 2973, 2857, 2791, 2789, 2950, 2662, 2497, 2435, 2925, 2146,

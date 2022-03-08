@@ -1,0 +1,19 @@
+@use "../../style/utlites/utilites.scss" as *;
+
+.activities_layout {
+  // @extend %layout;
+  @include heightAndWidth(100%, 100%);
+
+  .upper_section {
+    @include heightAndWidth(100%, 100%);
+    @include flex_column();
+
+    .select_input {
+      margin-top: 2.5rem;
+    }
+    .table {
+      margin-top: 0.3rem;
+      @include heightAndWidth(85%, 100%);
+    }
+  }
+}

@@ -10,6 +10,7 @@
   display: flex;
   margin-top: 1rem;
   justify-content: center;
+  @include heightAndWidth(90%, 100%);
 }
 
 %blocks_section {
@@ -32,4 +33,6 @@
   @extend %link;
   padding: 0.2rem 1rem;
   margin-top: 0.3rem;
+}
+%listCard {
 }
