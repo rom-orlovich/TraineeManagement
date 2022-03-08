@@ -11,6 +11,7 @@ import Settings from "../pages/Settings/Settings";
 import Leads from "../pages/Leads/Leads";
 import Analytics from "../pages/Analytics/Analytics.";
 import Activities from "../pages/Activities/Activities";
+import PageNotFound from "../pages/PageNotFound/PageNotFound";
 function Router() {
   return (
     <Routes>
@@ -27,6 +28,7 @@ function Router() {
         <Route path="financial/activities" element={<Activities />}></Route>
         <Route path="analytics" element={<Analytics />}></Route>
         {/* <Route path="setting" element={<Settings />}></Route> */}
+        <Route path="*" element={<PageNotFound />}></Route>
       </Route>
     </Routes>
   );
