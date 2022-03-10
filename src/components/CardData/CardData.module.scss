@@ -3,7 +3,7 @@
 .block {
   position: relative;
   background-color: white;
-  @include heightAndWidth(10rem, 12rem);
+  @extend %Card_Block;
   @include flex_control(center, center, column);
 
   .lineIndicator {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SelectInput from "../../../components/Form/SelectInput/SelectInput";
 import { optionSelect } from "../../../DummyData/DummyData";
-import { PeriodType, propsType } from "../../../helpers/GlobalType";
+import { TimeLinePeriod, propsType } from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
 import { borderColor } from "@mui/system";
@@ -11,7 +11,7 @@ function HeaderChartBar({
   setFromInput,
   setToInput,
 }: propsType & {
-  setTypePeriod: React.Dispatch<React.SetStateAction<PeriodType>>;
+  setTypePeriod: React.Dispatch<React.SetStateAction<TimeLinePeriod>>;
   setFromInput: React.Dispatch<React.SetStateAction<Date>>;
   setToInput: React.Dispatch<React.SetStateAction<Date>>;
 }) {

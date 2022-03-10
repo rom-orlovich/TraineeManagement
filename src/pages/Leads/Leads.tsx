@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import CardData from "../../components/CardData/CardData";
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
-import { dataPie, LeadsTable } from "../../DummyData/DummyData";
+import {} from "../../DummyData/DummyData";
+import { LeadsTable } from "../../DummyData/TablesData";
 import { propsType } from "../../helpers/GlobalType";
 
 import { classNameMaker } from "../../helpers/helperFunction";

@@ -7,7 +7,7 @@
     @extend %blocks_section;
 
     .block_data {
-      @include heightAndWidth(11rem, 12rem);
+      @include heightAndWidth(11rem, 13rem);
     }
   }
 
@@ -19,11 +19,11 @@
 
     .dailyTasks {
       flex: 45%;
-      @include heightAndWidth(16rem, 16rem);
+      @include heightAndWidth(17rem, 16rem);
     }
 
     .charts_display {
-      @include heightAndWidth(16rem, 16rem);
+      @include heightAndWidth(17rem, 16rem);
       flex: 55%;
     }
   }

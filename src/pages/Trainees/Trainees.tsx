@@ -5,7 +5,8 @@ import CardData from "../../components/CardData/CardData";
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
 
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
-import { dataPie, TraineeTable } from "../../DummyData/DummyData";
+import { TraineeTable } from "../../DummyData/TablesData";
+
 import { propsType } from "../../helpers/GlobalType";
 import { classNameMaker } from "../../helpers/helperFunction";
 import ST from "./Trainees.module.scss";

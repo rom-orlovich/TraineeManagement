@@ -7,11 +7,7 @@ import { ChartData, ChartOptions } from "chart.js";
 import Card from "../../../components/UI/Card/Card";
 import LineChart from "../../../components/Charts/LineChart/LineChart";
 
-import {
-  chartDataType,
-  selectOption,
-  SelectOptions,
-} from "../../../DummyData/DummyDataType";
+import { chartDataType, SelectOptions } from "../../../DummyData/DummyDataType";
 import ST from "./OverviewLineChart.module.scss";
 import SelectInput from "../../../components/Form/SelectInput/SelectInput";
 import { dataProvider, optionSelect } from "../../../DummyData/DummyData";

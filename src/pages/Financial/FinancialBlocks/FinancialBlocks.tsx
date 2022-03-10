@@ -1,6 +1,7 @@
 import CardData from "../../../components/CardData/CardData";
 
 import { datesValue } from "../../../DummyData/DummyData";
+import { cardData } from "../../../DummyData/DummyDataType";
 import { propsType } from "../../../helpers/GlobalType";
 import { mapEl, classNameMaker } from "../../../helpers/helperFunction";
 
@@ -28,7 +29,7 @@ function FinancialBlocks({
 
   return (
     <div className={classNameMaker(className)}>
-      {mapEl(financeBlocksObj, ({ id, ...rest }) => (
+      {mapEl(financeBlocksObj, ({ id, ...rest }: cardData) => (
         <CardData
           key={`cardData-${id}`}
           {...rest}

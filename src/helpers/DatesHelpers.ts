@@ -1,5 +1,5 @@
 import { Months, thisDay } from "./AppVariables";
-import { PeriodType } from "./GlobalType";
+import { TimeLinePeriod } from "./GlobalType";
 import { sumArray } from "./helperFunction";
 
 const padStartWithZero = (str: string) => (str.length < 2 ? 0 + str : str);
@@ -74,12 +74,13 @@ export const getPointSliceThisWeek = (d = thisDay) => {
 };
 
 const datePeriodDataObj = (
-  Display: PeriodType,
+  Display: TimeLinePeriod,
   cur: Date,
   Total?: number[],
   Incomes?: number[],
   Expenses?: number[]
 ) => {
+  const getPointToday = cur.getDate();
   const getPointsDays = getPointSliceThisWeek(cur);
   const getPointsWeeks = getPointSliceThisWeek(cur);
   const getPointsMonth = [0, getLastDayInMonth(cur)];
@@ -89,7 +90,17 @@ const datePeriodDataObj = (
     expenses = Expenses || [];
 
   switch (Display) {
-    case "daily":
+    case "daily": {
+      return {
+        label: [getThisMonth[getPointToday]],
+        newDate: new Date().setMonth(cur.getMonth() + 1),
+        total: [total[getPointToday]],
+        incomes: [incomes[getPointToday]],
+        expenses: [expenses[getPointToday]],
+      };
+    }
+
+    case "weekly":
       return {
         label: getThisMonth.slice(...getPointsDays),
         newDate: new Date().setMonth(cur.getMonth() + 1),
@@ -98,7 +109,7 @@ const datePeriodDataObj = (
         expenses: expenses.slice(...getPointsDays),
       };
 
-    case "weekly":
+    case "monthly":
       return {
         label: [
           `${getPointsWeeks[0] + 1}-${getPointsWeeks[1]}/${
@@ -115,7 +126,7 @@ const datePeriodDataObj = (
         incomes: [sumArray(incomes.slice(...getPointsWeeks))],
       };
 
-    case "monthly":
+    case "yearly":
       return {
         label: [`${Months[cur.getMonth()]}`],
         newDate: new Date().setMonth(cur.getMonth() + 1),
@@ -124,7 +135,7 @@ const datePeriodDataObj = (
         incomes: [sumArray(incomes.slice(...getPointsMonth))],
       };
 
-    case "yearly":
+    case "years":
       return {
         label: [`${cur.getFullYear()}`],
         newDate: new Date().setFullYear(cur.getFullYear() + 1),
@@ -138,7 +149,7 @@ export const getPeriodBet2Dates = (
   total: number[],
   incomes: number[],
   expenses: number[],
-  display: PeriodType,
+  display: TimeLinePeriod,
 
   start = new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   end = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
@@ -157,7 +168,7 @@ export const getPeriodBet2Dates = (
     T.push(...objDate.total);
     I.push(...objDate.incomes);
     E.push(...objDate.expenses);
-    // console.log(T);
+
     cur = new Date(objDate.newDate);
   }
   return { labels, total: T, incomes: I, expenses: E };

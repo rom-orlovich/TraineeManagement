@@ -13,7 +13,7 @@ import {
 import Card from "../../UI/Card/Card";
 
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { dataPie } from "../../../DummyData/DummyData";
+
 import ST from "./ChartPie.module.scss";
 function ChartPie({
   data,

@@ -29,7 +29,27 @@ export interface Lead {
   source: string;
   status: boolean;
 }
+export interface ProdutsAndExpanse<T extends string> {
+  name: T;
+  price: number;
+}
 
+export interface ProductInterface
+  extends ProdutsAndExpanse<
+    | "Training plan"
+    | "Nutrition plan"
+    | "Consultation session"
+    | "Personal Training"
+    | "Other"
+  > {}
+
+export interface ExpenseInterface
+  extends ProdutsAndExpanse<
+    "Learning" | "Rent" | "Equipment" | "Insurance" | "Other"
+  > {}
+
+export type ProductNames = ProductInterface["name"];
+export type ExpanseName = ExpenseInterface["name"];
 export type paymentMethod = "Credit Card" | "Bank Transfer" | "Cash" | "Other";
 export type typeIncomeExpense = "One-Time" | "Monthly";
 export interface IncomeExpense {
@@ -42,12 +62,12 @@ export interface IncomeExpense {
 }
 export interface Income extends IncomeExpense {
   nameClient: string;
-  nameProduct: string;
+  nameProduct: ProductNames;
 }
 
 export interface Expense extends IncomeExpense {
   paymentTo: string;
-  nameExpense: string;
+  nameExpense: ExpanseName;
   quantity: number;
 }
 
@@ -63,19 +83,20 @@ export type chartDataType<T extends ChartType> = {
   options?: ChartOptions<T>;
 };
 
-export interface selectOption {
+export interface SelectOption {
   id?: IdType;
   value: string | number;
   text: string;
 }
+export type ValueSelectOption<T> = SelectOption["value"];
+
 export interface SelectOptions {
   name: string;
-  options: selectOption[];
+  options: SelectOption[];
 }
 
-export interface Task1 {
-  id: IdType;
-  hour: string;
-  topic: string;
-  status: boolean;
+export interface cardData {
+  id: number;
+  heading: string;
+  text: string;
 }

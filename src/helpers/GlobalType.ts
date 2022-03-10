@@ -14,7 +14,12 @@ export type MouseEventHook = {
   onMouseLeave?: AnyFun<any>;
   stateBool?: boolean;
 };
-
+export type ReactDispatch<T> = React.Dispatch<React.SetStateAction<T>>;
 export type IdType = string | number;
 export type ObjExtendIDKey<T> = T & { id: IdType };
-export type PeriodType = "daily" | "weekly" | "monthly" | "yearly";
+export type TimeLinePeriod =
+  | "daily"
+  | "weekly"
+  | "monthly"
+  | "yearly"
+  | "years";

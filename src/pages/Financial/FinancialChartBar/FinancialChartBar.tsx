@@ -14,14 +14,14 @@ import {
   getPeriodBet2Dates,
   globalDate,
 } from "../../../helpers/DatesHelpers";
-import { PeriodType, propsType } from "../../../helpers/GlobalType";
+import { TimeLinePeriod, propsType } from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
 
 import ST from "./FinancialChartBar.module.scss";
 import HeaderChartBar from "./HeaderChartBar";
 function FinancialChartBar({ className }: propsType & {}) {
   const [first, last] = getFirstAndLastDateMonth();
-  const [typePeriod, setTypePeriod] = useState<PeriodType>("daily");
+  const [typePeriod, setTypePeriod] = useState<TimeLinePeriod>("daily");
   const [fromInput, setFromInput] = useState(first);
   const [toInput, setToInput] = useState(last);
   let funObj = getPeriodBet2Dates(

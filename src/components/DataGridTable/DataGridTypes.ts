@@ -1,13 +1,10 @@
 import { GridRowParams } from "@mui/x-data-grid";
-import { JSXcomponentType } from "../../helpers/GlobalType";
+import { JSXcomponentType, ReactDispatch } from "../../helpers/GlobalType";
 
-export type ReactDispatchType = React.Dispatch<
-  React.SetStateAction<ReactStateType>
->;
 export type ReactStateType = readonly {
   [key: string]: any;
 }[];
-
+export type ReactDispatchType = ReactDispatch<ReactStateType>;
 export type actionTypeFun = (
   parma: GridRowParams<{
     [key: string]: any;

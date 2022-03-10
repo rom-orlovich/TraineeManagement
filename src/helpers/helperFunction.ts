@@ -39,6 +39,7 @@ export const sumArray = (arr: number[]) => {
     return pre + cur;
   }, 0);
 };
+
 // @ts-ignore
 let arrayNumberUntilI = (length) => {
   let arr = [];
@@ -47,3 +48,11 @@ let arrayNumberUntilI = (length) => {
 };
 // @ts-ignore
 let diffArray = (arr1, arr2) => arr1.map((el, i) => Math.abs(el - arr2[i]));
+
+export const removeCharByPosInString = (str: string, ...indexs: number[]) => {
+  let newStr = str.split("");
+  indexs.forEach((indexRemove) => {
+    newStr = newStr.filter((el, i) => i !== indexRemove);
+  });
+  return newStr.join("");
+};

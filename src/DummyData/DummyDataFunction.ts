@@ -9,6 +9,9 @@ import {
   paymentMethod,
   Income,
   Expense,
+  ProductInterface,
+  ProductNames,
+  ExpanseName,
 } from "./DummyDataType";
 
 let idTrainees = 1,
@@ -71,7 +74,7 @@ export const createTask = (
 
 export const createIncome = (
   nameClient: string,
-  nameProduct: string,
+  nameProduct: ProductNames,
   type: typeIncomeExpense,
   describe: string,
   paymentMethod: paymentMethod,
@@ -92,7 +95,7 @@ export const createIncome = (
 };
 
 export const createExpense = (
-  nameExpense: string,
+  nameExpense: ExpanseName,
   paymentTo: string,
   type: typeIncomeExpense,
   describe: string,
@@ -130,6 +133,7 @@ export const createColField = <T>(
     hide: hide,
   };
 };
+
 // createIncome<Income>([]);
 
 // export const createObj = <T>(arg: { [p in keyof T]: T[p] }): T => {

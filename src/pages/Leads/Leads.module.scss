@@ -5,7 +5,7 @@
   .leads_numbers {
     @extend %blocks_section;
     .stats_block {
-      @include heightAndWidth(10rem, 12rem);
+      @extend %Card_Block;
     }
   }
 

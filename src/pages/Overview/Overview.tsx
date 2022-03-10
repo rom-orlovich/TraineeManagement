@@ -7,16 +7,12 @@ import { propsType } from "../../helpers/GlobalType";
 
 import CardData from "../../components/CardData/CardData";
 
-import {
-  DailyTask,
-  dataProvider,
-  optionSelect,
-  OverviewLineChartData,
-} from "../../DummyData/DummyData";
+import { dataProvider, optionSelect } from "../../DummyData/DummyData";
 
 import OverviewLineChart from "./OverviewLineBar/OverviewLineChart";
 import DataGridTable from "../../components/DataGridTable/DataGridTable";
 import ST from "./Overview.module.scss";
+import { DailyTask } from "../../DummyData/TablesData";
 function Overview({ className }: propsType) {
   const { columns, rows } = DailyTask;
   return (
