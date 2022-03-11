@@ -11,20 +11,24 @@ import {
 import {
   getFirstAndLastDateMonth,
   getGlobalDate,
-  getPeriodBet2Dates,
+  getPeriodDataBet2Dates,
   globalDate,
 } from "../../../helpers/DatesHelpers";
-import { TimeLinePeriod, propsType } from "../../../helpers/GlobalType";
+import {
+  TimeLinePeriodValueType,
+  propsType,
+} from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
 
 import ST from "./FinancialChartBar.module.scss";
 import HeaderChartBar from "./HeaderChartBar";
 function FinancialChartBar({ className }: propsType & {}) {
   const [first, last] = getFirstAndLastDateMonth();
-  const [typePeriod, setTypePeriod] = useState<TimeLinePeriod>("daily");
+  const [typePeriod, setTypePeriod] =
+    useState<TimeLinePeriodValueType>("daily");
   const [fromInput, setFromInput] = useState(first);
   const [toInput, setToInput] = useState(last);
-  let funObj = getPeriodBet2Dates(
+  let funObj = getPeriodDataBet2Dates(
     totalExample,
     incomeExample,
     expenseExample,

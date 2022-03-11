@@ -8,6 +8,7 @@ import {
   totalExample,
 } from "../helpers/AppVariables";
 import { getThisMonth } from "../helpers/DatesHelpers";
+
 import {} from "../helpers/helperFunction";
 import { chartsBarData } from "./ChartBarData";
 import { OverviewLineChartData } from "./ChartLineData";
@@ -28,6 +29,7 @@ import {
   SelectOptions,
   Income,
   Expense,
+  SelectOption,
 } from "./DummyDataType";
 import {
   ExpensesTable,
@@ -37,7 +39,7 @@ import {
 } from "./TablesData";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
-export const optionSelect: SelectOptions[] = [
+export const optionSelect = [
   {
     name: "Period",
     options: [

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { SelectOptions, ValueSelectOption } from "../DummyData/DummyDataType";
+import React, { useCallback, useState } from "react";
+import { SelectOptions } from "../DummyData/DummyDataType";
 import SelectInput from "../components/Form/SelectInput/SelectInput";
 import { propsType } from "./GlobalType";
 import { classNameMaker } from "./helperFunction";
@@ -27,15 +27,20 @@ export const useManageMouseFun = () => {
   return { stateBool, onMouseEnter, onMouseLeave };
 };
 
-export const useGetManageSelectInputState = (options: SelectOptions) => {
+export function useGetManageSelectInputState<T extends string>(
+  options: SelectOptions
+) {
   const [selectState, setSelectState] = useState(options.options[0].value);
 
-  const el = ({ className }: propsType) => (
-    <SelectInput
-      className={classNameMaker(className)}
-      data={options}
-      SetValueOnChange={setSelectState}
-    />
+  const el = useCallback(
+    ({ className }: propsType) => (
+      <SelectInput
+        className={classNameMaker(className)}
+        data={options}
+        SetValueOnChange={setSelectState}
+      />
+    ),
+    []
   );
-  return { state: selectState, setState: setSelectState, el };
-};
+  return { state: selectState as T, setState: setSelectState, el };
+}

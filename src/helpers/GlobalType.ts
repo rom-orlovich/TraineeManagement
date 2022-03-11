@@ -5,6 +5,7 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
+import { optionSelect } from "../DummyData/DummyData";
 
 export type AnyFun<T> = (...args: any[]) => T;
 export type JSXcomponentType = (...args: any[]) => JSX.Element;
@@ -17,9 +18,20 @@ export type MouseEventHook = {
 export type ReactDispatch<T> = React.Dispatch<React.SetStateAction<T>>;
 export type IdType = string | number;
 export type ObjExtendIDKey<T> = T & { id: IdType };
-export type TimeLinePeriod =
+export type TimeLinePeriodValueType =
   | "daily"
   | "weekly"
   | "monthly"
   | "yearly"
   | "years";
+
+export type PageDataValueType = "trainees" | "leads" | "activities";
+export type ActivitiesDataValueType = "incomes" | "expenses";
+export type ChartPeriodValueType = "3" | "6" | "12";
+export type OptionTypesValueType =
+  | TimeLinePeriodValueType
+  | PageDataValueType
+  | ActivitiesDataValueType
+  | ChartPeriodValueType;
+// type getSelectOptionValueType<T extends number> =
+// typeof optionSelect[T]["options"][number]["value"];

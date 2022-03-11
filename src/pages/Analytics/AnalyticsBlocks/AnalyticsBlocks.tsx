@@ -3,7 +3,7 @@ import { useState } from "react";
 // import ChartPie from "../../../components/Charts/ChartPie/ChartPie";
 
 // import { dataProvider, optionSelect } from "../../../DummyData/DummyData";
-// import { TimeLinePeriod, propsType } from "../../../helpers/GlobalType";
+// import { TimeLinePeriodValueType, propsType } from "../../../helpers/GlobalType";
 // import { classNameMaker, mapEl, sumArray } from "../../../helpers/helperFunction";
 
 // import ChartBar from "../../../components/Charts/ChartBar/ChartBar";
@@ -11,14 +11,14 @@ import { useState } from "react";
 // import { cardData, chartDataType } from "../../../DummyData/DummyDataType";
 // import CardData from "../../../components/CardData/CardData";
 // import ST from "./AnalyticsBlocks.module.scss";
-// import { getPeriodBet2Dates } from "../../../helpers/DatesHelpers";
+// import { getPeriodDataBet2Dates } from "../../../helpers/DatesHelpers";
 // import {
 //   expenseExample,
 //   expensesMonthlyExample,
-//   expensesOneTime,
+//   expensesOneTimeExample,
 //   incomeExample,
 //   incomesMonthlyExample,
-//   incomesOneTime,
+//   incomesOneTimeExample,
 //   totalExample,
 // } from "../../../helpers/AppVariables";
 // import { ReactDispatchType } from "../../../components/DataGridTable/DataGridTypes";
@@ -27,7 +27,7 @@ import { useState } from "react";
 //   setSelectActivities:ReactDispatchType
 //   setSelectTimeLine:ReactDispatchType
 // }) {
-//   const [selectTimeLine, setSelectTimeLine] = useState<TimeLinePeriod>("daily");
+//   const [selectTimeLine, setSelectTimeLine] = useState<TimeLinePeriodValueType>("daily");
 //   let fitData =
 //     selectStatePage === "leads"
 //       ? dataProvider.leads
@@ -38,13 +38,13 @@ import { useState } from "react";
 //       : dataProvider.trainees;
 //   let selectActivitiesDisplay =
 //     selectActivities === "incomes"
-//       ? { arr1: incomesMonthlyExample, arr2: incomesOneTime }
-//       : { arr1: expensesMonthlyExample, arr2: expensesOneTime };
+//       ? { arr1: incomesMonthlyExample, arr2: incomesOneTimeExample }
+//       : { arr1: expensesMonthlyExample, arr2: expensesOneTimeExample };
 //   const {
 //     labels,
 //     incomes: monthlyPeriodArr,
 //     expenses: oneTimePeriodArr,
-//   } = getPeriodBet2Dates(
+//   } = getPeriodDataBet2Dates(
 //     [],
 //     selectActivitiesDisplay.arr1,
 //     selectActivitiesDisplay.arr2,

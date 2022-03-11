@@ -1,7 +1,7 @@
 import { GridColDef, GridRowsProp } from "@mui/x-data-grid";
 import { ChartData, ChartOptions, ChartType } from "chart.js";
 import { IdType } from "../helpers/GlobalType";
-import { FieldsLeads } from "./DummyData";
+import { FieldsLeads, optionSelect } from "./DummyData";
 export type FieldsLeadType = typeof FieldsLeads;
 
 export interface Trainee {
@@ -85,10 +85,9 @@ export type chartDataType<T extends ChartType> = {
 
 export interface SelectOption {
   id?: IdType;
-  value: string | number;
+  value: string;
   text: string;
 }
-export type ValueSelectOption<T> = SelectOption["value"];
 
 export interface SelectOptions {
   name: string;

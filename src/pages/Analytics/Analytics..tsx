@@ -3,7 +3,12 @@ import { useState } from "react";
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
 
 import { dataProvider, optionSelect } from "../../DummyData/DummyData";
-import { TimeLinePeriod, propsType } from "../../helpers/GlobalType";
+import {
+  ActivitiesDataValueType,
+  PageDataValueType,
+  propsType,
+  TimeLinePeriodValueType,
+} from "../../helpers/GlobalType";
 import { classNameMaker, mapEl, sumArray } from "../../helpers/helperFunction";
 
 import ChartBar from "../../components/Charts/ChartBar/ChartBar";
@@ -11,14 +16,14 @@ import SelectInput from "../../components/Form/SelectInput/SelectInput";
 import { cardData, chartDataType } from "../../DummyData/DummyDataType";
 import CardData from "../../components/CardData/CardData";
 import ST from "./Analytics.module.scss";
-import { getPeriodBet2Dates } from "../../helpers/DatesHelpers";
+import { getPeriodDataBet2Dates } from "../../helpers/DatesHelpers";
 import {
   expenseExample,
   expensesMonthlyExample,
-  expensesOneTime,
+  expensesOneTimeExample,
   incomeExample,
   incomesMonthlyExample,
-  incomesOneTime,
+  incomesOneTimeExample,
   totalExample,
 } from "../../helpers/AppVariables";
 import { useGetManageSelectInputState } from "../../helpers/HelperHooks";
@@ -28,49 +33,51 @@ function Analytics({ className }: propsType) {
     "incomes" | "expenses"
   >("incomes");
 
-  const [selectTimeLine, setSelectTimeLine] = useState<TimeLinePeriod>("daily");
+  const [selectTimeLine, setSelectTimeLine] =
+    useState<TimeLinePeriodValueType>("daily");
 
-  // const {
-  //   state: stateSelectPage,
-  //   setState: setStateSelectPage,
-  //   el: SelectInputPage,
-  // } = getManageSelectInputState(optionSelect[1]);
-  // const {
-  //   state: stateSelectActivities,
-  //   setState: setStateSelectActivities,
-  //   el: SelectInputActivities,
-  // } = getManageSelectInputState(optionSelect[2]);
-  // const {
-  //   state: stateSelectTimeline,
-  //   setState: setStateSelectTimeline,
-  //   el: SelectInputSelectTimeline,
-  // } = getManageSelectInputState(optionSelect[3]);
+  const {
+    state: stateSelectPage,
+    setState: setStateSelectPage,
+    el: SelectInputPage,
+  } = useGetManageSelectInputState<PageDataValueType>(optionSelect[1]);
+  const {
+    state: stateSelectTimeline,
+    setState: setStateSelectTimeline,
+    el: SelectInputSelectTimeline,
+  } = useGetManageSelectInputState<TimeLinePeriodValueType>(optionSelect[2]);
+  const {
+    state: stateSelectActivities,
+    setState: setStateSelectActivities,
+    el: SelectInputActivities,
+  } = useGetManageSelectInputState<ActivitiesDataValueType>(optionSelect[3]);
+
   let fitData =
-    selectStatePage === "leads"
+    stateSelectPage === "leads"
       ? dataProvider.leads
-      : selectStatePage === "activities"
-      ? selectActivities === "incomes"
+      : stateSelectPage === "activities"
+      ? stateSelectActivities === "incomes"
         ? dataProvider.activities.incomes
         : dataProvider.activities.expenses
       : dataProvider.trainees;
   let selectActivitiesDisplay =
-    selectActivities === "incomes"
-      ? { arr1: incomesMonthlyExample, arr2: incomesOneTime }
-      : { arr1: expensesMonthlyExample, arr2: expensesOneTime };
+    stateSelectActivities === "incomes"
+      ? { arr1: incomesMonthlyExample, arr2: incomesOneTimeExample }
+      : { arr1: expensesMonthlyExample, arr2: expensesOneTimeExample };
 
   const {
     labels,
     incomes: monthlyPeriodArr,
     expenses: oneTimePeriodArr,
-  } = getPeriodBet2Dates(
+  } = getPeriodDataBet2Dates(
     [],
     selectActivitiesDisplay.arr1,
     selectActivitiesDisplay.arr2,
-    selectTimeLine
+    stateSelectTimeline
   );
 
   let timeLine = `${
-    selectTimeLine === "daily"
+    stateSelectTimeline === "daily"
       ? labels[0]
       : labels[0] + "-" + labels[labels.length - 1]
   }`;
@@ -103,27 +110,21 @@ function Analytics({ className }: propsType) {
     <section className={classNameMaker(ST.analytics_layout, className)}>
       <div className={classNameMaker(ST.upper_section)}>
         <div className={classNameMaker(ST.select_input)}>
-          <SelectInput
-            data={optionSelect[1]}
-            SetValueOnChange={setSelectStatePage}
-          ></SelectInput>
-          {selectStatePage === "activities" && (
-            <SelectInput
-              className={classNameMaker(ST.select_input_activities)}
-              data={optionSelect[3]}
-              SetValueOnChange={setSelectActivities}
-            ></SelectInput>
-          )}
-          {selectStatePage === "activities" && (
-            <SelectInput
-              className={classNameMaker(ST.select_input_activities)}
-              data={optionSelect[2]}
-              SetValueOnChange={setSelectTimeLine}
-            ></SelectInput>
+          <SelectInputPage />
+          {stateSelectPage === "activities" ? (
+            <>
+              <SelectInputActivities
+                className={classNameMaker(ST.select_input_activities)}
+              />
+
+              <SelectInputSelectTimeline />
+            </>
+          ) : (
+            <></>
           )}
         </div>
         <div className={classNameMaker(ST.analytics_blocks)}>
-          {selectStatePage === "activities" ? (
+          {stateSelectPage === "activities" ? (
             mapEl(
               [
                 {

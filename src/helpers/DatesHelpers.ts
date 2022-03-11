@@ -1,5 +1,5 @@
 import { Months, thisDay } from "./AppVariables";
-import { TimeLinePeriod } from "./GlobalType";
+import { TimeLinePeriodValueType } from "./GlobalType";
 import { sumArray } from "./helperFunction";
 
 const padStartWithZero = (str: string) => (str.length < 2 ? 0 + str : str);
@@ -74,7 +74,7 @@ export const getPointSliceThisWeek = (d = thisDay) => {
 };
 
 const datePeriodDataObj = (
-  Display: TimeLinePeriod,
+  Display: TimeLinePeriodValueType,
   cur: Date,
   Total?: number[],
   Incomes?: number[],
@@ -145,11 +145,11 @@ const datePeriodDataObj = (
       };
   }
 };
-export const getPeriodBet2Dates = (
+export const getPeriodDataBet2Dates = (
   total: number[],
   incomes: number[],
   expenses: number[],
-  display: TimeLinePeriod,
+  display: TimeLinePeriodValueType,
 
   start = new Date(new Date().getFullYear(), new Date().getMonth(), 1),
   end = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0)
@@ -175,7 +175,7 @@ export const getPeriodBet2Dates = (
 };
 
 // console.log(
-//   getPeriodBet2Dates(
+//   getPeriodDataBet2Dates(
 //     totalExample.concat(totalExample),
 //     incomeExample.concat(incomeExample),
 //     expenseExample.concat(expenseExample),
