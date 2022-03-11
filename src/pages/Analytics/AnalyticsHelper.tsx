@@ -13,13 +13,21 @@ import {
   TimeLinePeriodValueType,
 } from "../../helpers/GlobalType";
 import { sumArray } from "../../helpers/helperFunction";
+/**
+ *
+ * @param stateSelectPage - the state of the select input of the page selector
+ * @param stateSelectActivities  - the state of the select input of the activities selector
+ * @param stateSelectTimeline - the state of the select input of the timeLine selector
+ * @returns -obj data of the analytics page dataProvider-charts or card data, cardInnerData the data of card block if its exist
+ */
 
-const getAnalyticsData = (
+export const getAnalyticsData = (
   stateSelectPage: PageDataValueType,
   stateSelectActivities: ActivitiesDataValueType,
   stateSelectTimeline: TimeLinePeriodValueType
 ) => {
-  const timeLineCardDataMaker = (timeLine: string, labels: string[]) => {
+  //make timeLine text in the select period
+  const timeLineTextMaker = (timeLine: string, labels: string[]) => {
     return `${
       stateSelectTimeline === "daily"
         ? labels[0]
@@ -31,18 +39,16 @@ const getAnalyticsData = (
     case "trainees": {
       return {
         dataProvider: dataProvider.trainees,
-        arrMonthlyPeriod: [],
-        arrOneTimePeriod: [],
-        cardData: {},
+
+        cardInnerData: {},
       };
     }
 
     case "leads": {
       return {
         dataProvider: dataProvider.leads,
-        arrMonthlyPeriod: [],
-        arrOneTimePeriod: [],
-        cardData: {},
+
+        cardInnerData: {},
       };
     }
 
@@ -50,7 +56,7 @@ const getAnalyticsData = (
       let IncomesOrExpensesData =
         stateSelectActivities === "incomes"
           ? {
-              data: dataProvider.activities.incomes,
+              dataProvider: dataProvider.activities.incomes,
               monthly: incomesMonthlyExample,
               oneTime: incomesOneTimeExample,
             }
@@ -59,6 +65,8 @@ const getAnalyticsData = (
               monthly: expensesMonthlyExample,
               oneTime: expensesOneTimeExample,
             };
+
+      //find a data of monthly and one time incomes or expenses between 2 dates
       const {
         labels,
         incomes: monthlyPeriodArr,
@@ -72,18 +80,13 @@ const getAnalyticsData = (
 
       return {
         dataProvider: IncomesOrExpensesData.dataProvider,
-        arrMonthlyPeriod: monthlyPeriodArr,
-        arrOneTimePeriod: oneTimePeriodArr,
 
-        cardData: {
-          timeLineCard: timeLineCardDataMaker(stateSelectTimeline, labels),
-          sumDisplayMonthly: sumArray(monthlyPeriodArr),
-          sumDisplayOneTime: sumArray(oneTimePeriodArr),
+        cardInnerData: {
+          timeLineCardText: timeLineTextMaker(stateSelectTimeline, labels),
+          sumDisplayMonthlyText: sumArray(monthlyPeriodArr),
+          sumDisplayOneTimeText: sumArray(oneTimePeriodArr),
         },
       };
-    }
-    default: {
-      return {};
     }
   }
 };

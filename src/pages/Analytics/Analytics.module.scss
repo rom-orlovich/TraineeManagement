@@ -6,18 +6,14 @@
   .upper_section {
     @include flex_column();
 
-    .select_input {
+    .select_inputs {
       margin-top: 2.5rem;
       margin-left: 7rem;
       &_activities {
         margin-left: 0.5rem;
       }
-    }
-    .analytics_blocks {
-      @extend %blocks_section;
-      margin-top: 0.3rem;
-      .stats_block {
-        @extend %Card_Block;
+      &_timeLine {
+        margin-left: 0.5rem;
       }
     }
   }

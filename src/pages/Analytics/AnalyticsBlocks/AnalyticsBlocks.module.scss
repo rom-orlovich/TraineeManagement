@@ -1,37 +1,8 @@
-@use "../../style/utlites/utilites.scss" as *;
-
-.analytics_layout {
-  @extend %layout;
-
-  .upper_section {
-    @include flex_column();
-
-    .select_input {
-      margin-top: 2.5rem;
-      margin-left: 7rem;
-      &_activities {
-        margin-left: 0.5rem;
-      }
-    }
-    .analytics_blocks {
-      @extend %blocks_section;
-      margin-top: 0.3rem;
-      .stats_block {
-        @extend %Card_Block;
-      }
-    }
-  }
-
-  .lower_section {
-    @extend %oneBlock_section;
-
-    .chart {
-      @include heightAndWidth(100%, 80%);
-    }
+@use "../../../style/utlites/utilites.scss" as *;
+.analytics_blocks {
+  @extend %blocks_section;
+  margin-top: 0.3rem;
+  .stats_block {
+    @extend %Card_Block;
   }
 }
-// .Trainees_Statisic {
-//   .Trainees_ListCard {
-//     @include heightAndWidth(15rem, 90%);
-//   }
-// }
