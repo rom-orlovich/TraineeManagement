@@ -1,0 +1,12 @@
+@use "../../../style/utlites/utilites.scss" as *;
+
+.select_inputs {
+  margin-top: 2.5rem;
+  margin-left: 7rem;
+  &_activities {
+    margin-left: 0.5rem;
+  }
+  &_timeLine {
+    margin-left: 0.5rem;
+  }
+}
