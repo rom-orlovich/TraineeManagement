@@ -89,61 +89,51 @@ const datePeriodDataObj = (
     incomes = Incomes || [],
     expenses = Expenses || [];
 
-  switch (Display) {
-    case "daily": {
-      return {
-        label: [getThisMonth[getPointToday]],
-        newDate: new Date().setMonth(cur.getMonth() + 1),
-        total: [total[getPointToday]],
-        incomes: [incomes[getPointToday]],
-        expenses: [expenses[getPointToday]],
-      };
-    }
+  const objTimeLineData = {
+    daily: {
+      label: [getThisMonth[getPointToday]],
+      newDate: new Date().setMonth(cur.getMonth() + 1),
+      total: [total[getPointToday]],
+      incomes: [incomes[getPointToday]],
+      expenses: [expenses[getPointToday]],
+    },
+    weekly: {
+      label: getThisMonth.slice(...getPointsDays),
+      newDate: new Date().setMonth(cur.getMonth() + 1),
+      total: total.slice(...getPointsDays),
+      incomes: incomes.slice(...getPointsDays),
+      expenses: expenses.slice(...getPointsDays),
+    },
+    monthly: {
+      label: [
+        `${getPointsWeeks[0] + 1}-${getPointsWeeks[1]}/${
+          cur.getMonth() + 1
+        }/${cur.getFullYear()}`,
+      ],
+      newDate: new Date().setDate(
+        cur.getDate() + 7 > 28 ? getLastDayInMonth(cur) + 1 : cur.getDate() + 7
+      ),
+      total: [sumArray(total.slice(...getPointsWeeks))],
+      expenses: [sumArray(expenses.slice(...getPointsWeeks))],
+      incomes: [sumArray(incomes.slice(...getPointsWeeks))],
+    },
+    yearly: {
+      label: [`${Months[cur.getMonth()]}`],
+      newDate: new Date().setMonth(cur.getMonth() + 1),
+      total: [sumArray(total.slice(...getPointsMonth))],
+      expenses: [sumArray(expenses.slice(...getPointsMonth))],
+      incomes: [sumArray(incomes.slice(...getPointsMonth))],
+    },
+    years: {
+      label: [`${cur.getFullYear()}`],
+      newDate: new Date().setFullYear(cur.getFullYear() + 1),
+      total: [sumArray(total.slice(...getPointsYears))],
+      expenses: [sumArray(expenses.slice(...getPointsYears))],
+      incomes: [sumArray(incomes.slice(...getPointsYears))],
+    },
+  };
 
-    case "weekly":
-      return {
-        label: getThisMonth.slice(...getPointsDays),
-        newDate: new Date().setMonth(cur.getMonth() + 1),
-        total: total.slice(...getPointsDays),
-        incomes: incomes.slice(...getPointsDays),
-        expenses: expenses.slice(...getPointsDays),
-      };
-
-    case "monthly":
-      return {
-        label: [
-          `${getPointsWeeks[0] + 1}-${getPointsWeeks[1]}/${
-            cur.getMonth() + 1
-          }/${cur.getFullYear()}`,
-        ],
-        newDate: new Date().setDate(
-          cur.getDate() + 7 > 28
-            ? getLastDayInMonth(cur) + 1
-            : cur.getDate() + 7
-        ),
-        total: [sumArray(total.slice(...getPointsWeeks))],
-        expenses: [sumArray(expenses.slice(...getPointsWeeks))],
-        incomes: [sumArray(incomes.slice(...getPointsWeeks))],
-      };
-
-    case "yearly":
-      return {
-        label: [`${Months[cur.getMonth()]}`],
-        newDate: new Date().setMonth(cur.getMonth() + 1),
-        total: [sumArray(total.slice(...getPointsMonth))],
-        expenses: [sumArray(expenses.slice(...getPointsMonth))],
-        incomes: [sumArray(incomes.slice(...getPointsMonth))],
-      };
-
-    case "years":
-      return {
-        label: [`${cur.getFullYear()}`],
-        newDate: new Date().setFullYear(cur.getFullYear() + 1),
-        total: [sumArray(total.slice(...getPointsYears))],
-        expenses: [sumArray(expenses.slice(...getPointsYears))],
-        incomes: [sumArray(incomes.slice(...getPointsYears))],
-      };
-  }
+  return objTimeLineData[Display];
 };
 export const getPeriodDataBet2Dates = (
   total: number[],
