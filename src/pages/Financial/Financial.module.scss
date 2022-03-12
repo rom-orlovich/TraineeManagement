@@ -7,12 +7,11 @@
     @include flex_column();
 
     .select_input {
-      margin-top: 3rem;
       margin-left: 7rem;
     }
     .financial_blocks {
       @extend %blocks_section;
-      margin-top: 0.6rem;
+      margin-top: 0.3rem;
     }
   }
 

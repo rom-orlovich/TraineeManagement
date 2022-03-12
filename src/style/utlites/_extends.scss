@@ -8,14 +8,13 @@
 
 %oneBlock_section {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.6rem;
   justify-content: center;
-  @include heightAndWidth(92%, 100%);
+  @include heightAndWidth(85%, 100%);
 }
 
 %blocks_section {
   @extend %oneBlock_section;
-  margin-top: 3rem;
 
   justify-content: space-evenly;
 }
