@@ -4,7 +4,7 @@ import { FormComponents } from "../../../../components/Form/SelectInput/MuiForm/
 import { propsType } from "../../../../helpers/GlobalType";
 import { classNameMaker } from "../../../../helpers/helperFunction";
 import { useGetSelectInputMui } from "../../../../helpers/HelperHooks";
-
+import ST from "./FormPersonalDetails.module.scss";
 const { FormControl, TextField, FormGroup, MenuItem } = FormComponents;
 const GenderOption: SelectOption<"male" | "female">[] = [
   { value: "male", label: "Male" },
@@ -13,9 +13,14 @@ const GenderOption: SelectOption<"male" | "female">[] = [
 
 function FormPersonalDetails(className: propsType) {
   const { SelectElement, stateSelect } = useGetSelectInputMui(GenderOption);
+  const props = {
+    color: "primary",
+    variant: "outlined",
+    size: "small",
+  };
   return (
     <form className={classNameMaker()}>
-      <FormGroup row>
+      <FormGroup row className={classNameMaker(ST.FromGroup)}>
         <TextField
           label="First Name"
           color="primary"
@@ -31,13 +36,43 @@ function FormPersonalDetails(className: propsType) {
         <SelectElement label="Gender" size="small"></SelectElement>
       </FormGroup>
 
-      <FormGroup row>
+      <FormGroup row className={classNameMaker(ST.FromGroup)}>
         <TextField
           label="Birthday"
           color="primary"
           variant="outlined"
           size="small"
-          type="date"
+          type="datetime-local"
+        ></TextField>
+        <TextField
+          label="Age"
+          color="primary"
+          variant="outlined"
+          size="small"
+          type="number"
+          style={{ width: "5rem" }}
+        ></TextField>
+        <TextField
+          label="Identifier Number"
+          color="primary"
+          variant="outlined"
+          size="small"
+        ></TextField>
+      </FormGroup>
+      <FormGroup row>
+        <TextField
+          label="Email"
+          color="primary"
+          variant="outlined"
+          size="small"
+          type="email"
+        ></TextField>
+        <TextField
+          label="Phone Number"
+          color="primary"
+          variant="outlined"
+          size="small"
+          type="tel"
         ></TextField>
       </FormGroup>
     </form>

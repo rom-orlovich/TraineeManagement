@@ -1,10 +1,12 @@
 @use "../../style/utlites/utilites" as *;
 
 .navHeader {
-  @include flex_control(space-between, baseline);
+  @include flex_control(space-between, center);
 
   padding: 1rem 4rem;
-
+  &_search {
+    height: 2rem;
+  }
   .userMenu {
     width: 10rem;
     height: 2rem;

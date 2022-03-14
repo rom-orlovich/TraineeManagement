@@ -23,7 +23,7 @@ function UserProfilePage({ className }: propsType) {
           className={classNameMaker(ST.userProfilePage_personalData_address)}
         />
         <div>
-          <Button>Save Changes</Button>
+          <Button style={{ paddingLeft: "1rem" }}>Save Changes</Button>
         </div>
       </Card>
 

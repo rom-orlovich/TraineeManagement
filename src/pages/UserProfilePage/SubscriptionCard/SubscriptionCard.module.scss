@@ -1,37 +1,78 @@
 @use "../../../style/utlites/utilites.scss" as *;
 
-.subscription {
-  flex: 30%;
+%actions {
+  margin-top: 0.5rem;
+  @include flex_control(space-around, center, column);
+  gap: 0.3rem;
+  a {
+    font-size: 1rem;
+    text-decoration: none;
+  }
+}
+%firstChild {
+  & :first-child {
+    margin-right: 0.3rem;
+  }
+}
 
+.actions {
+  @extend %actions;
+}
+
+.subscription {
   @include heightAndWidth(95%, 100%);
   @include flex_control(null, null, column);
-  gap: 1rem;
-  &_userAccountData {
-    @include heightAndWidth(50%, 100%);
-    @include flex_control(center, center, column);
-    &_content {
-      margin-bottom: 2rem;
-      @include flex_control(center, center, column);
-      @include heightAndWidth(50%, 100%);
-      &_picture {
-        @include heightAndWidth(100%, 100%);
-      }
-      &_details {
-        @include flex_control(null, null, column);
-        .userName {
-        }
-      }
-      .actions {
-        @include flex_control(space-between, null, row);
 
-        a {
-          font-size: 0.8rem;
-        }
+  gap: 1rem;
+}
+.subscription_userAccountData {
+  @include heightAndWidth(60%, 100%);
+  @include flex_control(center, null, column);
+  &_content {
+    @include flex_control(center, center, column);
+    @include heightAndWidth(50%, 100%);
+    .user_picture {
+      @include heightAndWidth(100%, 100%);
+    }
+    .user_details {
+      margin-top: 0.5rem;
+      @include flex_control(null, center, column);
+
+      h3.userName {
+        font-size: 1.8rem;
+        font-weight: 500;
       }
     }
   }
-  &_status {
-    flex: 50%;
-    @include heightAndWidth(50%, 100%);
+}
+
+.subscription_status {
+  @include heightAndWidth(40%, 100%);
+  @include flex_control(center, null, column);
+  .userStatus_details {
+    text-align: center;
+    h3 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    @include flex_control(center, null, column);
+    gap: 0.3rem;
+    .status {
+      @extend %firstChild;
+      & :nth-child(2) {
+        color: green;
+      }
+    }
+    .subscription_validity {
+      .startDate {
+      }
+      .endDate {
+      }
+    }
+
+    .actions {
+      gap: 1rem;
+      @include flex_control(center, center, row);
+    }
   }
 }
