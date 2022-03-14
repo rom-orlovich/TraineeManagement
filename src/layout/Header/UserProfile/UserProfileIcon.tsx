@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { iconsLinks } from "../../../style/icons/icons";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { propsType } from "../../../helpers/GlobalType";
-import ST from "./UserProfile.module.scss";
+import ST from "./UserProfileIcon.module.scss";
 const { FaUserCircle } = iconsLinks;
-function UserProfile({ className }: propsType) {
+function UserProfileIcon({ className }: propsType) {
   return (
     <div className={classNameMaker(className)}>
       <span>
@@ -15,4 +15,4 @@ function UserProfile({ className }: propsType) {
   );
 }
 
-export default UserProfile;
+export default UserProfileIcon;

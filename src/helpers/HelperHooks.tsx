@@ -2,7 +2,10 @@ import React, { useCallback, useState } from "react";
 import { SelectOptions } from "../DummyData/DummyDataType";
 import SelectInput from "../components/Form/SelectInput/SelectInput";
 import { propsType } from "./GlobalType";
-import { classNameMaker } from "./helperFunction";
+import { classNameMaker, mapEl } from "./helperFunction";
+import { SelectOption } from "@mui/material/node_modules/@mui/base";
+import { FormComponents } from "../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { TextFieldProps } from "@mui/material";
 /**
  *
  * @param bool default is false
@@ -43,4 +46,35 @@ export function useGetManageSelectInputState<T extends string>(
     []
   );
   return { state: selectState as T, setState: setSelectState, el };
+}
+const { FormControl, TextField, FormGroup, MenuItem } = FormComponents;
+export function useGetSelectInputMui<T extends string>(
+  options: SelectOption<T>[]
+) {
+  const [state, setState] = useState(options[0].value);
+  const el = useCallback(
+    ({ ...rest }: TextFieldProps) => {
+      return (
+        <TextField
+          value={state}
+          select
+          onChange={({ target }) => {
+            setState(target.value as T);
+          }}
+          {...rest}
+        >
+          {mapEl(options, (el) => {
+            return (
+              <MenuItem key={el.value} value={el.value}>
+                {el.label}
+              </MenuItem>
+            );
+          })}
+        </TextField>
+      );
+    },
+    [state]
+  );
+
+  return { stateSelect: state, setStateSelect: setState, SelectElement: el };
 }

@@ -4,9 +4,10 @@ $sizeAlertIcon: 25px;
 $logoApp: 100px;
 
 $widthSideNavBar: 15vw;
-$withHeaderNavBar: 100- ($widthSideNavBar);
-$heightMain: 94vh;
-$heightNavBarHeader: 4rem;
+$widthMain: 100- ($widthSideNavBar);
+$widthHeaderNavBar: 100- ($widthSideNavBar);
+$heightMain: 90vh;
+$heightNavBarHeader: 100-$heightMain;
 
 //Media query
 $smartPhone: 400px;

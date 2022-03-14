@@ -1,0 +1,36 @@
+@use "../../style/utlites/utilites.scss" as *;
+
+.userProfilePage {
+  @include flex_control(null, null, row);
+  @include heightAndWidth(100%, 100%);
+  padding: 1.5rem;
+
+  gap: 1rem;
+  div[class~="css-1u3bzj6-MuiFormControl-root-MuiTextField-root"] {
+    margin: 1rem 1rem;
+  }
+  &_personalData {
+    padding: 0.5rem;
+    @include heightAndWidth(95%, null);
+    @include flex_control(null, null, column);
+    flex: 80%;
+    &_details {
+      flex: 50%;
+    }
+
+    &_address {
+      flex: 50%;
+    }
+    button {
+      // @include heightAndWidth(null, 50%);
+    }
+  }
+
+  &_subscription {
+    flex: 30%;
+
+    @include heightAndWidth(95%, 100%);
+    @include flex_control(null, null, column);
+    gap: 1rem;
+  }
+}

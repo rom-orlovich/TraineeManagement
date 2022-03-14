@@ -1,11 +1,12 @@
 @use "../style//utlites//utilites.scss" as *;
 
 .main_area {
-  grid-area: main;
+  // grid-area: main;
   height: $heightMain;
-  width: 95%;
+  width: $widthMain;
 
-  margin-top: 4rem;
+  margin-top: $heightNavBarHeader + 1vh;
+  margin-left: ($widthSideNavBar);
 }
 
 .sideBar_area {
@@ -16,18 +17,19 @@
   height: 100%;
   display: flex;
   // justify-content: flex-start;
+
   justify-content: center;
   z-index: 1200;
 }
 
 .header_area {
-  grid-area: header;
+  // grid-area: header;
   width: 100%;
   height: 4rem;
   position: fixed;
   height: $heightNavBarHeader;
   right: 0;
-  width: $withHeaderNavBar;
+  width: $widthHeaderNavBar;
   background-color: $HeaderNabBar_color;
   z-index: 1000;
 }
@@ -35,9 +37,5 @@
 .layout_grid {
   display: grid;
 
-  grid-template-areas:
-    ". header header header header header header "
-    ".  .  main  main  main main main"
-    ".  .  main  main  main main main"
-    ".  .  main  main  main  main main";
+  // grid-template-areas: ;
 }

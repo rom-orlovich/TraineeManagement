@@ -3,16 +3,17 @@
 .activities_layout {
   // @extend %layout;
   @include heightAndWidth(100%, 100%);
-
+  display: flex;
+  justify-content: center;
   .upper_section {
-    @include heightAndWidth(100%, 100%);
+    @include heightAndWidth(100%, 85%);
     @include flex_column();
 
     .select_input {
     }
     .table {
-      margin-top: 0.3rem;
-      @include heightAndWidth(85%, 100%);
+      margin-top: 0.7rem;
+      @include heightAndWidth(90%, 100%);
     }
   }
 }

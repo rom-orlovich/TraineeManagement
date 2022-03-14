@@ -4,7 +4,8 @@
   box-shadow: $box-shadow;
   @include heightAndWidth();
   @include minHeightAndWidth(2rem, 3rem);
-  background-color: white;
+  background-color: $backgroundColorCard;
   border: none;
+  border-color: $borderColorCard;
   border-radius: 8px;
 }

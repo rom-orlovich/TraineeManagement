@@ -3,11 +3,13 @@ import { classNameMaker } from "../../helpers/helperFunction";
 import { propsType } from "../../helpers/GlobalType";
 
 import { iconsLinks } from "../../style/icons/icons";
-import UserProfile from "./UserProfile/UserProfile";
+
 import AlertBar from "./AlertBar/AlertBar";
 
 import NavList from "../../components/Nav/NavList/NavList";
 import ST from "./Header.module.scss";
+import UserProfileIcon from "./UserProfile/UserProfileIcon";
+import { Link } from "react-router-dom";
 const { FaUserCircle, IoIosAddCircle } = iconsLinks;
 function Header({ className }: propsType) {
   // const { stateBool, onMouseEnter, onMouseLeave } = useManageMouseFun();
@@ -38,7 +40,12 @@ function Header({ className }: propsType) {
           <NavList
             list={[]}
             className={classNameMaker(ST.posNavUserProfile)}
-            el={<UserProfile />}
+            el={
+              <Link to="/userProfile/Admin">
+                {" "}
+                <UserProfileIcon />
+              </Link>
+            }
           ></NavList>
         </div>
       </div>

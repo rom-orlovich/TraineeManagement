@@ -1,15 +1,9 @@
 import { Tooltip } from "@mui/material";
-import {
-  GridColumnsPanel,
-  GridFilterMenuItem,
-  GridFilterPanel,
-  GridToolbar,
-  GridToolbarContainer,
-  GridToolbarFilterButton,
-} from "@mui/x-data-grid";
-import ST from "./ToolBar.module.scss";
+import { GridToolbar } from "@mui/x-data-grid";
+
 import React from "react";
 import { classNameMaker } from "../../helpers/helperFunction";
+import ST from "./ToolBar.module.scss";
 
 function ToolBar() {
   return (
