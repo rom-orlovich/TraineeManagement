@@ -14,13 +14,7 @@
     @include heightAndWidth(95%, null);
     @include flex_control(null, null, column);
     flex: 80%;
-    &_details {
-      flex: 50%;
-    }
 
-    &_address {
-      flex: 50%;
-    }
     button {
     }
   }

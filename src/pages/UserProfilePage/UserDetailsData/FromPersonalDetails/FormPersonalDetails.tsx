@@ -1,11 +1,11 @@
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
 import React, { useState } from "react";
-import { FormComponents } from "../../../../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { propsType } from "../../../../helpers/GlobalType";
 import { classNameMaker } from "../../../../helpers/helperFunction";
 import { useGetSelectInputMui } from "../../../../helpers/HelperHooks";
 import ST from "./FormPersonalDetails.module.scss";
-const { FormControl, TextField, FormGroup, MenuItem } = FormComponents;
+const { FormControl, TextField, FormGroup, MenuItem } = FormComponetsExportMui;
 const GenderOption: SelectOption<"male" | "female">[] = [
   { value: "male", label: "Male" },
   { value: "female", label: "female" },
@@ -19,7 +19,7 @@ function FormPersonalDetails(className: propsType) {
     size: "small",
   };
   return (
-    <form className={classNameMaker()}>
+    <>
       <FormGroup row className={classNameMaker(ST.FromGroup)}>
         <TextField
           label="First Name"
@@ -75,7 +75,7 @@ function FormPersonalDetails(className: propsType) {
           type="tel"
         ></TextField>
       </FormGroup>
-    </form>
+    </>
   );
 }
 

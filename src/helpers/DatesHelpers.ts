@@ -1,8 +1,16 @@
-import { Months, thisDay } from "./AppVariables";
+import {
+  expenseExample,
+  incomeExample,
+  Months,
+  thisDay,
+  totalExample,
+} from "./AppVariables";
 import { TimeLinePeriodValueType } from "./GlobalType";
 import { sumArray } from "./helperFunction";
 
-const padStartWithZero = (str: string) => (str.length < 2 ? 0 + str : str);
+const padStartWithZero = (str: string) => {
+  return str ? (str.length < 2 ? 0 + str : str) : "";
+};
 
 export const getLocalDate = (date: Date, local = window.navigator.language) => {
   let [d, m, y] = date.toLocaleDateString(local).split(".");
@@ -12,7 +20,13 @@ export const getLocalDate = (date: Date, local = window.navigator.language) => {
   return d + "/" + m + "/" + y;
 };
 export const getLocalDateFromInput = (date: string) => {
-  let [y, m, d] = date.split("-");
+  let [d, m, y] = date.includes(".")
+    ? // let [y, m, d] = date.includes(".")
+      date.split(".")
+    : date.includes("/")
+    ? date.split("/")
+    : date.split("-");
+  // console.log(y, m, d);
   d = padStartWithZero(d);
   m = padStartWithZero(m);
   return d + "/" + m + "/" + y;
@@ -80,7 +94,8 @@ const datePeriodDataObj = (
   Incomes?: number[],
   Expenses?: number[]
 ) => {
-  const getPointToday = cur.getDate();
+  const getPointToday = cur.getDate() - 1;
+  console.log(getPointToday);
   const getPointsDays = getPointSliceThisWeek(cur);
   const getPointsWeeks = getPointSliceThisWeek(cur);
   const getPointsMonth = [0, getLastDayInMonth(cur)];
@@ -150,7 +165,7 @@ export const getPeriodDataBet2Dates = (
     E = [],
     labels = [];
   let objDate;
-
+  // console.log(start, end);
   while (cur <= end) {
     objDate = datePeriodDataObj(display, cur, total, incomes, expenses);
 
@@ -166,12 +181,12 @@ export const getPeriodDataBet2Dates = (
 
 // console.log(
 //   getPeriodDataBet2Dates(
-//     totalExample.concat(totalExample),
-//     incomeExample.concat(incomeExample),
-//     expenseExample.concat(expenseExample),
-//     "months",
+//     totalExample,
+//     incomeExample,
+//     expenseExample,
+//     "weekly",
 
 //     new Date(2022, 0, 1),
-//     new Date(2022, 1, 28)
+//     new Date(2022, 0, 28)
 //   )
 // );

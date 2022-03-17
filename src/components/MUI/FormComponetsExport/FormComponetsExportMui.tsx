@@ -5,8 +5,11 @@ import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
 import FromLabel from "@mui/material/FormLabel";
 import InputLabel from "@mui/material/InputLabel";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocalizationProvider from "@mui/lab/LocalizationProvider";
+import DatePicker from "@mui/lab/DatePicker";
 
-export const FormComponents = {
+export const FormComponetsExportMui = {
   TextField,
   FormControl,
   FormGroup,
@@ -14,4 +17,7 @@ export const FormComponents = {
   FromLabel,
   InputLabel,
   Button,
+  AdapterDateFns,
+  LocalizationProvider,
+  DatePicker,
 };

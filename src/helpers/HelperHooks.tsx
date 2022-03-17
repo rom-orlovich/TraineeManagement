@@ -4,7 +4,7 @@ import SelectInput from "../components/Form/SelectInput/SelectInput";
 import { propsType } from "./GlobalType";
 import { classNameMaker, mapEl } from "./helperFunction";
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
-import { FormComponents } from "../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { FormComponetsExportMui } from "../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { TextFieldProps } from "@mui/material";
 /**
  *
@@ -47,7 +47,7 @@ export function useGetManageSelectInputState<T extends string>(
   );
   return { state: selectState as T, setState: setSelectState, el };
 }
-const { FormControl, TextField, FormGroup, MenuItem } = FormComponents;
+const { TextField, MenuItem } = FormComponetsExportMui;
 export function useGetSelectInputMui<T extends string>(
   options: SelectOption<T>[]
 ) {

@@ -1,10 +1,10 @@
 import React from "react";
-import { FormComponents } from "../../../../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import ST from "./FormAddressDetails.module.scss";
-const { FormControl, TextField, FormGroup } = FormComponents;
+const { FormControl, TextField, FormGroup } = FormComponetsExportMui;
 function FormAddressDetails() {
   return (
-    <form>
+    <>
       <FormGroup row>
         <TextField
           label="Address"
@@ -43,7 +43,7 @@ function FormAddressDetails() {
           style={{ width: "5rem" }}
         ></TextField>
       </FormGroup>
-    </form>
+    </>
   );
 }
 

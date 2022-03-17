@@ -14,8 +14,7 @@ function Trainees({ className }: propsType) {
   const { columns, rows } = TraineeTable;
 
   const location = useLocation();
-  console.log(location.pathname.slice(1).split("/"));
-  // console.log(Outlet);
+
   return (
     <section className={classNameMaker(ST.trainee_layout, className)}>
       <div className={classNameMaker(ST.trainees_numbers)}>

@@ -1,11 +1,11 @@
-import { FormComponents } from "../../../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { FormComponetsExportMui } from "../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 
 import { propsType } from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
 
 import FormAddressDetails from "./FormAddressDetails/FormAddressDetails";
 import ST from "./AddressDetails.module.scss";
-const { FormControl, TextField } = FormComponents;
+const { FormControl, TextField } = FormComponetsExportMui;
 function AddressDetails({ className }: propsType) {
   return (
     <div className={classNameMaker(className)}>

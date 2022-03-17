@@ -10,9 +10,7 @@ import {
 } from "../../../helpers/AppVariables";
 import {
   getFirstAndLastDateMonth,
-  getGlobalDate,
   getPeriodDataBet2Dates,
-  globalDate,
 } from "../../../helpers/DatesHelpers";
 import {
   TimeLinePeriodValueType,
@@ -24,7 +22,7 @@ import ST from "./FinancialChartBar.module.scss";
 import HeaderChartBar from "./HeaderChartBar";
 function FinancialChartBar({ className }: propsType & {}) {
   const [first, last] = getFirstAndLastDateMonth();
-  const [typePeriod, setTypePeriod] =
+  const [timeLineDisplay, settimeLineDisplay] =
     useState<TimeLinePeriodValueType>("daily");
   const [fromInput, setFromInput] = useState(first);
   const [toInput, setToInput] = useState(last);
@@ -32,7 +30,7 @@ function FinancialChartBar({ className }: propsType & {}) {
     totalExample,
     incomeExample,
     expenseExample,
-    typePeriod,
+    timeLineDisplay,
     fromInput,
     toInput
   );
@@ -65,7 +63,8 @@ function FinancialChartBar({ className }: propsType & {}) {
       headerEl={
         <HeaderChartBar
           className={classNameMaker(ST.heading_card)}
-          setTypePeriod={setTypePeriod}
+          timeLineDisplay={timeLineDisplay}
+          setTimeLineDisplay={settimeLineDisplay}
           setFromInput={setFromInput}
           setToInput={setToInput}
         />

@@ -76,11 +76,3 @@ function ChartBar({
 }
 
 export default ChartBar;
-{
-  /* <select id="select_preiod" name="select_preiod" onClick={() => {}}>
-          <option value="">select option </option>
-          <option value="3"> last 3 Month </option>
-          <option value="6"> last 6 Month</option>
-          <option value="12"> last 12 Month</option>
-        </select> */
-}

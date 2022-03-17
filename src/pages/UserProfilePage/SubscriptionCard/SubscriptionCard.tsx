@@ -1,6 +1,6 @@
 import { useLocation } from "react-router";
 
-import { FormComponents } from "../../../components/Form/SelectInput/MuiForm/MuiFormComponets";
+import { FormComponetsExportMui } from "../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import Card from "../../../components/UI/Card/Card";
 
 import { propsType } from "../../../helpers/GlobalType";

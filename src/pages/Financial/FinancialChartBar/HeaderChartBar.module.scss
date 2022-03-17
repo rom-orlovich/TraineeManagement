@@ -1,0 +1,12 @@
+@use "../../../style/utlites/utilites.scss" as *;
+
+div[class~="FinancialChartBar_heading_card__aQotz"] {
+  input[class~="css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"] {
+    padding: 10.5px 14px;
+    border: 3px;
+  }
+}
+
+.toDate {
+  margin-left: 0.5rem;
+}
