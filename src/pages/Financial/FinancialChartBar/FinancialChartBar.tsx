@@ -26,6 +26,7 @@ function FinancialChartBar({ className }: propsType & {}) {
     useState<TimeLinePeriodValueType>("daily");
   const [fromInput, setFromInput] = useState(first);
   const [toInput, setToInput] = useState(last);
+  // Have to fit the length of  the arrays that the function get to the difference of days between the two dates.
   let funObj = getPeriodDataBet2Dates(
     totalExample,
     incomeExample,

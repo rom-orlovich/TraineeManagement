@@ -7,9 +7,10 @@ import {
 } from "../../../helpers/GlobalType";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
-import { borderColor } from "@mui/system";
+
 import DatePickerInput from "../../../components/MUI/FormCompnent/DatePickerInput";
 import ST from "./HeaderChartBar.module.scss";
+import { PaperProps } from "@mui/material";
 function HeaderChartBar({
   className,
   timeLineDisplay,
@@ -24,11 +25,6 @@ function HeaderChartBar({
   setFromInput: React.Dispatch<React.SetStateAction<Date>>;
   setToInput: React.Dispatch<React.SetStateAction<Date>>;
 }) {
-  const [first, last] = getFirstAndLastDateMonth();
-  const [from, setFrom] = useState<Date>(first);
-  const [to, setTo] = useState<Date>(last);
-  const [boolFrom, setBoolFrom] = useState(false);
-  const [boolTo, setBoolTo] = useState(false);
   const timeLineDisplayObj = {
     daily: false,
     weekly: false,
@@ -36,12 +32,25 @@ function HeaderChartBar({
     yearly: true,
     years: true,
   };
-  const labelDisplayFrom = timeLineDisplayObj[timeLineDisplay]
-    ? "From"
-    : "Choose Date";
-  const nameDisplayFrom = timeLineDisplayObj[timeLineDisplay]
-    ? "from"
-    : "chooseDate";
+  const [first, last] = getFirstAndLastDateMonth();
+  const checkToDateActive = timeLineDisplayObj[timeLineDisplay];
+  const [from, setFrom] = useState<Date>(first);
+  const [to, setTo] = useState<Date>(first);
+  const [boolFrom, setBoolFrom] = useState(false);
+  const [boolTo, setBoolTo] = useState(false);
+  useEffect(() => {
+    setTo(timeLineDisplayObj[timeLineDisplay] ? last : from);
+  }, [checkToDateActive]);
+
+  const stylePopper: Partial<PaperProps<"div", {}>> | undefined = {
+    style: {
+      position: "relative",
+      inset: "-325px auto auto 0",
+    },
+  };
+
+  const labelDisplayFrom = checkToDateActive ? "From" : "Choose Date";
+  const nameDisplayFrom = checkToDateActive ? "from" : "chooseDate";
   return (
     <div className={classNameMaker(ST, className)}>
       <span>
@@ -56,93 +65,58 @@ function HeaderChartBar({
       <span>
         <span>
           <DatePickerInput
-            className={classNameMaker()}
             datePickerProps={{
               onChange: (dateFrom) => {
-                console.log(dateFrom);
                 let newDateFrom = new Date(dateFrom ? dateFrom : "");
 
                 setFrom(newDateFrom);
                 setFromInput(newDateFrom);
 
-                setBoolFrom(newDateFrom ? newDateFrom >= to : false);
-                // setBoolTo(newDateFrom ? newDateFrom <= to : false);
+                setBoolFrom(
+                  newDateFrom ? newDateFrom > to && checkToDateActive : false
+                );
+                setBoolTo(
+                  newDateFrom ? newDateFrom > to && checkToDateActive : false
+                );
               },
               value: from,
-              PaperProps: {
-                style: {
-                  position: "relative",
-                  inset: "-343px auto auto 0",
-                },
-              },
+              PaperProps: { ...stylePopper },
             }}
             textFieldProps={{
               label: labelDisplayFrom,
               name: nameDisplayFrom,
-              // helperText: "Please Enter Vaild Date",
+              helperText: `${boolFrom ? "Enter vaild date" : ""}`,
               error: boolFrom,
             }}
           />
         </span>
         <span className={classNameMaker(ST.toDate)}>
-          {timeLineDisplayObj[timeLineDisplay] && (
+          {checkToDateActive && (
             <DatePickerInput
               datePickerProps={{
                 onChange: (dateTo) => {
-                  console.log(dateTo);
                   let newDateTo = new Date(dateTo ? dateTo : "");
                   setTo(newDateTo);
                   setToInput(newDateTo);
-                  setBoolTo(newDateTo ? from >= newDateTo : false);
-                  // setBoolFrom(newDateTo ? newDateTo >= from : false);
+                  setBoolFrom(
+                    newDateTo ? newDateTo < from && checkToDateActive : false
+                  );
+                  setBoolTo(
+                    newDateTo ? newDateTo < from && checkToDateActive : false
+                  );
                 },
                 value: to,
-                PaperProps: {
-                  style: {
-                    position: "relative",
-                    inset: "-343px auto auto 0",
-                  },
-                },
+                PaperProps: { ...stylePopper },
               }}
               textFieldProps={{
                 label: "To",
                 name: "to",
 
-                // errorText: "Please Enter Vaild Date",
+                helperText: `${boolTo ? "Enter vaild date" : ""}`,
                 error: boolTo,
               }}
             />
           )}
-          {/* <label htmlFor="from"> From </label>
-        <input
-          onChange={(e) => {
-            let date = new Date(e.target.value);
-            setFrom(date);
-            setFromInput(date);
-            setBool(date > to);
-          }}
-          name="from"
-          type="date"
-        />
-        <label htmlFor="to"> To </label>
-        {bool && <span>*</span>}
-        <input
-          onChange={(e) => {
-            let date = new Date(e.target.value);
-            setTo(date);
-            setToInput((pre) => {
-              let res = date > from ? date : pre;
-              return res;
-            });
-            setBool(date < from);
-          }}
-          style={{
-            borderColor: `${bool ? "red" : "initial"}`,
-            outlineColor: `${bool ? "red" : "initial"}`,
-          }}
-          name="to"
-          type="date"
-        /> */}
         </span>
       </span>
     </div>

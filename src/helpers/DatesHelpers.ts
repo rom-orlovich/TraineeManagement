@@ -86,6 +86,10 @@ export const getPointSliceThisWeek = (d = thisDay) => {
     ? [14, 21]
     : [21, getLastDayInMonth(d)];
 };
+// years ,months,days
+export const getDateDetails = (cur: Date) => {
+  return [cur.getFullYear(), cur.getMonth(), cur.getDate()] as const;
+};
 
 const datePeriodDataObj = (
   Display: TimeLinePeriodValueType,
@@ -94,54 +98,75 @@ const datePeriodDataObj = (
   Incomes?: number[],
   Expenses?: number[]
 ) => {
+  const dateDetails = getDateDetails(cur);
   const getPointToday = cur.getDate() - 1;
-  console.log(getPointToday);
-  const getPointsDays = getPointSliceThisWeek(cur);
-  const getPointsWeeks = getPointSliceThisWeek(cur);
+  const getPointsForWeeks = getPointSliceThisWeek(cur);
+
   const getPointsMonth = [0, getLastDayInMonth(cur)];
   const getPointsYears = [0, undefined];
   let total = Total || [],
     incomes = Incomes || [],
     expenses = Expenses || [];
 
+  //Change newDateParts prop to 'as const' because I need to create a whole new date each time the while loop is running
   const objTimeLineData = {
     daily: {
       label: [getThisMonth[getPointToday]],
-      newDate: new Date().setMonth(cur.getMonth() + 1),
+      newDateParts: [
+        dateDetails[0],
+        dateDetails[1] + 1,
+        dateDetails[2],
+      ] as const,
+
       total: [total[getPointToday]],
       incomes: [incomes[getPointToday]],
       expenses: [expenses[getPointToday]],
     },
     weekly: {
-      label: getThisMonth.slice(...getPointsDays),
-      newDate: new Date().setMonth(cur.getMonth() + 1),
-      total: total.slice(...getPointsDays),
-      incomes: incomes.slice(...getPointsDays),
-      expenses: expenses.slice(...getPointsDays),
+      label: getThisMonth.slice(...getPointsForWeeks),
+      newDateParts: [
+        dateDetails[0],
+        dateDetails[1] + 1,
+        dateDetails[2],
+      ] as const,
+      total: total.slice(...getPointsForWeeks),
+      incomes: incomes.slice(...getPointsForWeeks),
+      expenses: expenses.slice(...getPointsForWeeks),
     },
     monthly: {
       label: [
-        `${getPointsWeeks[0] + 1}-${getPointsWeeks[1]}/${
+        `${getPointsForWeeks[0] + 1}-${getPointsForWeeks[1]}/${
           cur.getMonth() + 1
         }/${cur.getFullYear()}`,
       ],
-      newDate: new Date().setDate(
-        cur.getDate() + 7 > 28 ? getLastDayInMonth(cur) + 1 : cur.getDate() + 7
-      ),
-      total: [sumArray(total.slice(...getPointsWeeks))],
-      expenses: [sumArray(expenses.slice(...getPointsWeeks))],
-      incomes: [sumArray(incomes.slice(...getPointsWeeks))],
+      newDateParts: [
+        dateDetails[0],
+        dateDetails[1],
+        cur.getDate() + 7 > 28 ? getLastDayInMonth(cur) + 1 : cur.getDate() + 7,
+      ] as const,
+
+      total: [sumArray(total.slice(...getPointsForWeeks))],
+      expenses: [sumArray(expenses.slice(...getPointsForWeeks))],
+      incomes: [sumArray(incomes.slice(...getPointsForWeeks))],
     },
     yearly: {
       label: [`${Months[cur.getMonth()]}`],
-      newDate: new Date().setMonth(cur.getMonth() + 1),
+      newDateParts: [
+        dateDetails[0],
+        dateDetails[1] + 1,
+        dateDetails[2],
+      ] as const,
       total: [sumArray(total.slice(...getPointsMonth))],
       expenses: [sumArray(expenses.slice(...getPointsMonth))],
       incomes: [sumArray(incomes.slice(...getPointsMonth))],
     },
     years: {
       label: [`${cur.getFullYear()}`],
-      newDate: new Date().setFullYear(cur.getFullYear() + 1),
+      newDateParts: [
+        dateDetails[0] + 1,
+        dateDetails[1],
+        dateDetails[2],
+      ] as const,
       total: [sumArray(total.slice(...getPointsYears))],
       expenses: [sumArray(expenses.slice(...getPointsYears))],
       incomes: [sumArray(incomes.slice(...getPointsYears))],
@@ -165,8 +190,8 @@ export const getPeriodDataBet2Dates = (
     E = [],
     labels = [];
   let objDate;
-  // console.log(start, end);
-  while (cur <= end) {
+  let bool = true;
+  while (bool && cur <= end) {
     objDate = datePeriodDataObj(display, cur, total, incomes, expenses);
 
     labels.push(...objDate.label);
@@ -174,7 +199,9 @@ export const getPeriodDataBet2Dates = (
     I.push(...objDate.incomes);
     E.push(...objDate.expenses);
 
-    cur = new Date(objDate.newDate);
+    cur = new Date(...objDate.newDateParts);
+
+    if (end <= cur) bool = false;
   }
   return { labels, total: T, incomes: I, expenses: E };
 };
@@ -184,9 +211,8 @@ export const getPeriodDataBet2Dates = (
 //     totalExample,
 //     incomeExample,
 //     expenseExample,
-//     "weekly",
-
-//     new Date(2022, 0, 1),
-//     new Date(2022, 0, 28)
+//     "monthly",
+//     new Date(2022, 2, 1),
+//     new Date(2022, 3, 4)
 //   )
 // );
