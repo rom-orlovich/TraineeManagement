@@ -16,12 +16,17 @@ function SelectInputMui<T extends FieldValues>({
     <Controller
       name={name}
       defaultValue={defaultValue}
-      render={({ field, fieldState: { error } }) => {
+      render={({
+        field: { onChange, value, ref, ...field },
+        fieldState: { error },
+      }) => {
         return (
           <TextField
             select
             error={!!error}
             helperText={error ? error.message : ""}
+            value={value}
+            onChange={onChange}
             {...field}
             {...rest}
           >

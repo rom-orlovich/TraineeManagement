@@ -38,18 +38,18 @@ function FinancialChartBar({ className }: propsType & {}) {
 
   const { labels, total, incomes, expenses } = funObj;
   const dataCharBar = {
-    ...dataProvider["Balance"].chartBar.data,
+    ...dataProvider["balance"].chartBar.data,
     datasets: [
       {
-        ...dataProvider["Balance"].chartBar.data.datasets[0],
+        ...dataProvider["balance"].chartBar.data.datasets[0],
         data: total,
       },
       {
-        ...dataProvider["Balance"].chartBar.data.datasets[1],
+        ...dataProvider["balance"].chartBar.data.datasets[1],
         data: incomes,
       },
       {
-        ...dataProvider["Balance"].chartBar.data.datasets[2],
+        ...dataProvider["balance"].chartBar.data.datasets[2],
         data: expenses,
       },
     ],
@@ -60,7 +60,7 @@ function FinancialChartBar({ className }: propsType & {}) {
     <ChartBar
       className={classNameMaker(className)}
       data={dataCharBar}
-      options={dataProvider["Balance"].chartBar.options}
+      options={dataProvider["balance"].chartBar.options}
       headerEl={
         <HeaderChartBar
           className={classNameMaker(ST.heading_card)}

@@ -8,9 +8,9 @@ import {
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
 
-import DatePickerInput from "../../../components/MUI/FormCompnent/DatePickerInput";
+import DatePickerInput from "../../../components/MUI/FormCompnents/DatePickerInput/DatePickerInput";
 import ST from "./HeaderChartBar.module.scss";
-import { PaperProps } from "@mui/material";
+import { PaperProps, PopperProps } from "@mui/material";
 function HeaderChartBar({
   className,
   timeLineDisplay,
@@ -42,15 +42,13 @@ function HeaderChartBar({
     setTo(timeLineDisplayObj[timeLineDisplay] ? last : from);
   }, [checkToDateActive]);
 
-  const stylePopper: Partial<PaperProps<"div", {}>> | undefined = {
-    style: {
-      position: "relative",
-      inset: "-325px auto auto 0",
-    },
+  const PopperProps: Partial<PopperProps> | undefined = {
+    popperOptions: { placement: "top" },
   };
 
   const labelDisplayFrom = checkToDateActive ? "From" : "Choose Date";
   const nameDisplayFrom = checkToDateActive ? "from" : "chooseDate";
+
   return (
     <div className={classNameMaker(ST, className)}>
       <span>
@@ -66,6 +64,7 @@ function HeaderChartBar({
         <span>
           <DatePickerInput
             datePickerProps={{
+              PopperProps,
               onChange: (dateFrom) => {
                 let newDateFrom = new Date(dateFrom ? dateFrom : "");
 
@@ -80,7 +79,6 @@ function HeaderChartBar({
                 );
               },
               value: from,
-              PaperProps: { ...stylePopper },
             }}
             textFieldProps={{
               label: labelDisplayFrom,
@@ -94,6 +92,7 @@ function HeaderChartBar({
           {checkToDateActive && (
             <DatePickerInput
               datePickerProps={{
+                PopperProps,
                 onChange: (dateTo) => {
                   let newDateTo = new Date(dateTo ? dateTo : "");
                   setTo(newDateTo);
@@ -106,7 +105,6 @@ function HeaderChartBar({
                   );
                 },
                 value: to,
-                PaperProps: { ...stylePopper },
               }}
               textFieldProps={{
                 label: "To",

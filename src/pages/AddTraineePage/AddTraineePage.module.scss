@@ -1,0 +1,12 @@
+@use "../../style/utlites/utilites.scss" as *;
+.page_form {
+  padding: 1.5rem 3.2rem;
+  @include heightAndWidth(100%, 100%);
+
+  .main_container {
+    @include heightAndWidth(100%, null);
+  }
+  .personalDetails {
+    @include heightAndWidth(100%, null);
+  }
+}

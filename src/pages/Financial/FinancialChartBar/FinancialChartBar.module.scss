@@ -1,4 +1,6 @@
 @use "../../../style/utlites/utilites.scss" as *;
 .heading_card {
+  margin-top: 0.5rem;
+  padding: 0 0.5rem;
   @include flex_control(space-between, null);
 }

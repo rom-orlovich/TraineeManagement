@@ -60,7 +60,7 @@ function ChartBar({
 
       <div className={classNameMaker(ST.chartBar)}>
         <Bar
-          style={{ position: "absolute" }}
+          style={{ position: "absolute", bottom: "3px" }}
           className={classNameMaker(className)}
           data={{
             ...data,

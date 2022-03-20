@@ -44,11 +44,11 @@ function SubscriptionCard({ className }: propsType) {
 
           <div className={classNameMaker(ST.subscription_validity)}>
             <span className={classNameMaker(ST.startDate)}>
-              <span>Start:</span>
+              <span style={{ fontWeight: "600" }}>Start:</span>
               <span>12/03/21</span>
             </span>
             <span className={classNameMaker(ST.endDate)}>
-              <span> End: </span>
+              <span style={{ fontWeight: "600" }}> End: </span>
               <span>12/03/21</span>
             </span>
           </div>

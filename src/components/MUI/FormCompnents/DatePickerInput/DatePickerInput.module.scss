@@ -1,0 +1,24 @@
+@use "../../../../style//utlites//utilites.scss" as *;
+//input Warrper
+div[class~="css-1u3bzj6-MuiFormControl-root-MuiTextField-root"] {
+  width: 10rem;
+
+  //input element
+  input[class~="css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"] {
+    // height: 0.5rem;
+  }
+}
+//warrper of calander
+div[role~="dialog"][class~="css-1ozefeb"] {
+  div[class~="css-epd502"] {
+    div[class~="css-169iwlq-MuiCalendarPicker-root"] {
+      //the window of calander
+      div[class~="css-1wvgxus-MuiCalendarPicker-viewTransitionContainer"] {
+        div[class~="css-dhopo2"] {
+          min-height: initial;
+          height: 200px;
+        }
+      }
+    }
+  }
+}

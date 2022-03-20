@@ -14,6 +14,7 @@
     @include heightAndWidth(95%, null);
     @include flex_control(null, null, column);
     flex: 80%;
+    max-height: fit-content;
 
     button {
     }

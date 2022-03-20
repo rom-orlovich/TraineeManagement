@@ -9,9 +9,9 @@ import Card from "../../components/UI/Card/Card";
 import { propsType } from "../../helpers/GlobalType";
 import { classNameMaker } from "../../helpers/helperFunction";
 import SubscriptionCard from "./SubscriptionCard/SubscriptionCard";
-import AddressDetails from "./UserDetailsData/AddressDetails";
-import FormUserDetails from "./UserDetailsData/FormUserDetails";
-import PersonalDetails from "./UserDetailsData/PersonalDetails";
+import AddressDetails from "./UserDetailsData/FormUserDetails/AddressDetails/AddressDetails";
+import FormUserDetails from "./UserDetailsData/FormUserDetails/FormUserDetails";
+import PersonalDetails from "./UserDetailsData/FormUserDetails/PersonalDetails/PersonalDetails";
 import ST from "./UserProfilePage.module.scss";
 
 const { Button } = FormComponetsExportMui;
@@ -22,16 +22,7 @@ function UserProfilePage({ className }: propsType) {
   return (
     <section className={classNameMaker(ST.userProfilePage, className)}>
       <Card className={classNameMaker(ST.userProfilePage_personalData)}>
-        {/* <PersonalDetails
-          className={classNameMaker(ST.userProfilePage_personalData_details)}
-        />
-        <AddressDetails
-          className={classNameMaker(ST.userProfilePage_personalData_address)}
-        /> */}
-        <FormUserDetails></FormUserDetails>
-        <div>
-          <Button style={{ paddingLeft: "1rem" }}>Save Changes</Button>
-        </div>
+        <FormUserDetails />
       </Card>
 
       <SubscriptionCard

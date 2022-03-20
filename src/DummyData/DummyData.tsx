@@ -91,7 +91,7 @@ export const dataProvider = {
     chartLine: OverviewLineChartData[1],
     cardData: [],
   },
-  Balance: {
+  balance: {
     chartBar: chartsBarData[2],
     cardData: [],
   },

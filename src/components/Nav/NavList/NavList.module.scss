@@ -6,9 +6,26 @@
 .NavList {
   position: absolute;
   // @include changePosAbs(50%, 130%, false, true);
-  @include minHeightAndWidth(4rem, 6rem);
+  @include minHeightAndWidth(8rem, 11rem);
   @include heightAndWidth();
   border-radius: 5px;
   box-shadow: $box-shadow;
   background-color: $HeaderNabBar_color;
+  .NavLinkUi {
+    margin: 0.5rem 0;
+    color: black;
+    list-style: none;
+    font-size: 1rem;
+    text-decoration: none;
+    a {
+      padding: 0.5rem 0;
+      &:hover {
+        text-decoration: underline;
+        background-color: rgb(109, 109, 245);
+      }
+      &.isActive {
+        background-color: none;
+      }
+    }
+  }
 }

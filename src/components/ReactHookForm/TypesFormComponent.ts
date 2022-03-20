@@ -1,5 +1,10 @@
 import { TextFieldProps } from "@mui/material";
-import { ReactElement, ReactNode } from "react";
+import {
+  DetailedHTMLProps,
+  ReactComponentElement,
+  ReactElement,
+  ReactNode,
+} from "react";
 import {
   Control,
   FieldPath,
@@ -8,7 +13,7 @@ import {
   UnpackNestedValue,
   UseFormProps,
 } from "react-hook-form";
-import { AnyFun } from "../../helpers/GlobalType";
+import { AnyFun, propsType } from "../../helpers/GlobalType";
 
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
 
@@ -17,12 +22,13 @@ export type FormProviderMuiType<T> = {
 } & { children: ReactNode };
 
 export type FormType<T> = {
-  children?: ReactNode;
   submitFun: AnyFun<void>;
-};
+} & propsType &
+  DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>;
+
 type ControlInput<T> = {
   name: Path<T>;
-  control: Control<T>;
+  control: Control<T, any>;
   defaultValue?: UnpackNestedValue<FieldPathValue<T, FieldPath<T>>>;
 };
 

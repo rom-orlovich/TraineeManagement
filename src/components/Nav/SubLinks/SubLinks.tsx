@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { classNameMaker, mapEl } from "../../../helpers/helperFunction";
-import { SideNavLinkType } from "../../../layout/SideNavBar/SideNavBarTypes";
+import { LinkType } from "../../../helpers/LinksTypes";
 import NavLinkUI from "../NavLinkUI/NavLinkUI";
 
 import { useChangeBool } from "../../../helpers/HelperHooks";
 import ST from "./SubLinks.module.scss";
-function SubNavBar({ name, to, subLinks, icons }: SideNavLinkType) {
+function SubNavBar({ name, to, subLinks, icons }: LinkType) {
   const { stateBool: isOpen, changeStateBool: openSubNav } = useChangeBool();
 
   const links = subLinks || [];

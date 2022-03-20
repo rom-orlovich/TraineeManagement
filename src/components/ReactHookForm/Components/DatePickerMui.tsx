@@ -20,6 +20,7 @@ function DatePickerMui<T>({
         return (
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              inputFormat="dd/MM/yyyy"
               label={label}
               {...field}
               renderInput={(parmas) => {

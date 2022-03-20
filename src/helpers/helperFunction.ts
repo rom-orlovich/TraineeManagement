@@ -7,6 +7,9 @@ import {
 } from "./AppVariables";
 import { AnyFun, IdType, ObjExtendIDKey } from "./GlobalType";
 
+export const printVariable = (v: any) => {
+  return Object.keys(v)[0];
+};
 export const mapEl = <T>(
   elArr: T[],
   fun: (el: T, i?: number, arr?: T[]) => any
@@ -49,10 +52,13 @@ let arrayNumberUntilI = (length) => {
 // @ts-ignore
 let diffArray = (arr1, arr2) => arr1.map((el, i) => Math.abs(el - arr2[i]));
 
-export const removeCharByPosInString = (str: string, ...indexs: number[]) => {
-  let newStr = str.split("");
-  indexs.forEach((indexRemove) => {
-    newStr = newStr.filter((el, i) => i !== indexRemove);
-  });
-  return newStr.join("");
+export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
+  let newObj = {};
+  for (const p in obj) {
+    {
+      newObj = { ...newObj, [p]: keys.some((el) => el === p) ? true : false };
+    }
+  }
+
+  return newObj;
 };
