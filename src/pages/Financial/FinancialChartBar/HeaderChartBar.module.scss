@@ -2,7 +2,7 @@
 
 div[class*="FinancialChartBar_heading_card"] {
   height: 0.5rem;
-  input[class~="css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"] {
+  input[class*="MuiInputBase-input-MuiOutlinedInput-input"] {
     padding: 10.5px 14px;
     border: 3px;
   }
