@@ -1,5 +1,10 @@
 @use "../../style/utlites/utilites.scss" as *;
-
+section[class*="Financial_financial_layout"] {
+  input[type*="tel"][class*="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd"] {
+    padding: 10.5px 14px;
+    border: 3px;
+  }
+}
 .financial_layout {
   @extend %layout;
 

@@ -46,7 +46,7 @@ function Financial({ className }: propsType) {
             textFieldProps={{
               label: "Choose Date",
               name: "choose date",
-              size: "small",
+              style: { width: "10rem" },
             }}
           ></DatePickerInput>
         </div>
