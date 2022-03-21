@@ -6,7 +6,7 @@
   padding: 1.5rem;
 
   gap: 1rem;
-  div[class~="css-1u3bzj6-MuiFormControl-root-MuiTextField-root"] {
+  div[class*="MuiFormControl-root-MuiTextField-root"] {
     margin: 0 0 1rem 1rem;
   }
   &_personalData {
