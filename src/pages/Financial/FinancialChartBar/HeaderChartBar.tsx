@@ -50,7 +50,7 @@ function HeaderChartBar({
   const nameDisplayFrom = checkToDateActive ? "from" : "chooseDate";
 
   return (
-    <div className={classNameMaker(ST, className)}>
+    <div className={classNameMaker(ST.HeaderChartBar, className)}>
       <span>
         <label htmlFor={optionSelect[2].name}>{optionSelect[2].name} </label>
         <SelectInput
