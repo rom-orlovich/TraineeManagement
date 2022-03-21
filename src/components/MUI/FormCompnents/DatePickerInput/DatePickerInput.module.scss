@@ -1,13 +1,13 @@
 @use "../../../../style//utlites//utilites.scss" as *;
 //input Warrper
-div[class*="MuiFormControl-root-MuiTextField-root"] {
-  width: 10rem;
+// div[class*="MuiFormControl-root MuiTextField-root"] {
+//   width: 10rem;
 
-  //input element
-  input[class*="MuiInputBase-input-MuiOutlinedInput-input"] {
-    // height: 0.5rem;
-  }
-}
+//   //input element
+//   input[class*="MuiInputBase-input-MuiOutlinedInput-input"] {
+//     // height: 0.5rem;
+//   }
+// }
 //warrper of calander
 div[role*="dialog"] {
   div[class*="MuiCalendarPicker-root"] {

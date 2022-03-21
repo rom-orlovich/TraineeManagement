@@ -6,10 +6,11 @@
   padding: 1.5rem;
 
   gap: 1rem;
-  div[class*="MuiFormControl-root-MuiTextField-root"] {
-    margin: 0 0 1rem 1rem;
-  }
+
   &_personalData {
+    // div[class*="MuiFormControl-root MuiTextField-root css"] {
+    //   margin: 0 0 1rem 1rem;
+    // }
     padding: 0.5rem;
     @include heightAndWidth(95%, null);
     @include flex_control(null, null, column);

@@ -45,6 +45,9 @@ function HeaderChartBar({
   const PopperProps: Partial<PopperProps> | undefined = {
     popperOptions: { placement: "top" },
   };
+  const style = {
+    width: "10rem",
+  };
 
   const labelDisplayFrom = checkToDateActive ? "From" : "Choose Date";
   const nameDisplayFrom = checkToDateActive ? "from" : "chooseDate";
@@ -85,6 +88,7 @@ function HeaderChartBar({
               name: nameDisplayFrom,
               helperText: `${boolFrom ? "Enter vaild date" : ""}`,
               error: boolFrom,
+              style: style,
             }}
           />
         </span>
@@ -112,6 +116,7 @@ function HeaderChartBar({
 
                 helperText: `${boolTo ? "Enter vaild date" : ""}`,
                 error: boolTo,
+                style: style,
               }}
             />
           )}
