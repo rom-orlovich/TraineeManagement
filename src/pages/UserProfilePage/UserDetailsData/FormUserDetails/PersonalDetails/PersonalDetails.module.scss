@@ -1,8 +1,7 @@
 @use "../../../../../style/utlites/utilites.scss" as *;
 
-.personalData_details_header {
-  padding: 0 1rem;
-  h2 {
-    font-weight: 500;
-  }
+.form_Header {
+  font-weight: 600;
+  padding: 0 0.5rem;
+  margin-bottom: 0.5rem;
 }

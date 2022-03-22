@@ -1,0 +1,7 @@
+@use "../../../../style//utlites//utilites.scss" as *;
+main[class*="Layout_main_area"]
+  div[class*="MuiFormControl-root MuiTextField-root"] {
+  div[class*="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"] {
+    padding: 11.5px 14px;
+  }
+}

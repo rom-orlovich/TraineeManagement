@@ -1,0 +1,13 @@
+@use "../../../style/utlites/utilites.scss" as *;
+.page_form {
+  padding: 0rem 3.2rem 2rem 3.2rem;
+  @include heightAndWidth(100%, 100%);
+
+  .main_container {
+    @include heightAndWidth(100%, null);
+    h3 {
+      font-size: 2rem;
+      font-weight: 500;
+    }
+  }
+}

@@ -1,10 +1,5 @@
 import { TextFieldProps } from "@mui/material";
-import {
-  DetailedHTMLProps,
-  ReactComponentElement,
-  ReactElement,
-  ReactNode,
-} from "react";
+import { DetailedHTMLProps, ReactNode } from "react";
 import {
   Control,
   FieldPath,
@@ -39,4 +34,5 @@ export type InputMuiType<T> = ControlInput<T> &
 export type SelectInputTypeMui<T> = InputMuiType<T> & {
   options: SelectOption<string | number>[];
 };
+
 export type DataPickerType<T> = InputMuiType<T>;

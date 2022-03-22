@@ -59,6 +59,7 @@ export interface IncomeExpense {
   describe: string;
   paymentMethod: paymentMethod;
   price: number;
+  quantity: number;
 }
 export interface Income extends IncomeExpense {
   nameClient: string;
@@ -68,7 +69,6 @@ export interface Income extends IncomeExpense {
 export interface Expense extends IncomeExpense {
   paymentTo: string;
   nameExpense: ExpanseName;
-  quantity: number;
 }
 
 export interface DataGrid<T> {
@@ -84,9 +84,8 @@ export type chartDataType<T extends ChartType> = {
 };
 
 export interface SelectOption {
-  id?: IdType;
   value: string;
-  text: string;
+  label: string;
 }
 
 export interface SelectOptions {

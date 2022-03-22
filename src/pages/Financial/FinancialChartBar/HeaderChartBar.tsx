@@ -8,7 +8,7 @@ import {
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
 
-import DatePickerInput from "../../../components/MUI/FormCompnents/DatePickerInput/DatePickerInput";
+import DatePickerMui from "../../../components/MUI/FormCompnents/DatePickerMui/DatePickerMui";
 import ST from "./HeaderChartBar.module.scss";
 import { PaperProps, PopperProps } from "@mui/material";
 function HeaderChartBar({
@@ -65,7 +65,7 @@ function HeaderChartBar({
       </span>
       <span>
         <span>
-          <DatePickerInput
+          <DatePickerMui
             datePickerProps={{
               PopperProps,
               onChange: (dateFrom) => {
@@ -94,7 +94,7 @@ function HeaderChartBar({
         </span>
         <span className={classNameMaker(ST.toDate)}>
           {checkToDateActive && (
-            <DatePickerInput
+            <DatePickerMui
               datePickerProps={{
                 PopperProps,
                 onChange: (dateTo) => {

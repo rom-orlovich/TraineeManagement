@@ -1,8 +1,7 @@
 import { classNameMaker } from "../../../helpers/helperFunction";
 
-import ST from "./AnalyticsSelectInputs.module.scss";
 import { AnalyticsSelectInputsType } from "./AnalyticsSelectInputs";
-
+import ST from "./AnalyticsSelectInputs.module.scss";
 function AnalyticsSelectInputs({
   className,
   stateSelectPage,

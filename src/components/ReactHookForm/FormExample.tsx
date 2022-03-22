@@ -3,11 +3,11 @@ import { useForm, UseFormReturn } from "react-hook-form";
 import * as yup from "yup/";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormComponetsExportMui } from "../MUI/FormComponetsExport/FormComponetsExportMui";
-import InputMui from "./Components/InputMui";
-import Form from "./Components/FormMui";
-import FormProviderMui from "./Components/FromProviderMui";
-import SelectInputMui from "./Components/SelectInputMui";
-import DatePickerMui from "./Components/DatePickerMui";
+import InputRHF from "./Components/InputRHF";
+import Form from "./Components/FormRHF";
+import FormProviderRHF from "./Components/FromProviderRHF";
+import SelectInputRHF from "./Components/SelectInputRHF";
+import DatePickerRHF from "./Components/DatePickerRHF";
 interface FormValues {
   name: string;
   lastName: string;
@@ -37,7 +37,7 @@ function FormExample() {
   });
 
   return (
-    <FormProviderMui<FormValues>
+    <FormProviderRHF<FormValues>
       values={{
         resolver: yupResolver(schema),
         mode: "onBlur",
@@ -50,13 +50,13 @@ function FormExample() {
             console.log(data);
           })}
         >
-          <InputMui
+          <InputRHF
             control={values.control}
             label="Name"
             name="name"
             type="text"
           />
-          <SelectInputMui
+          <SelectInputRHF
             control={values.control}
             style={{ width: "10rem" }}
             label="Gender"
@@ -66,15 +66,15 @@ function FormExample() {
               { value: "female", label: "Female" },
             ]}
           />
-          <DatePickerMui
+          <DatePickerRHF
             control={values.control}
             name="birthday"
             label="Birthday"
-          ></DatePickerMui>
+          ></DatePickerRHF>
           <Button type="submit">SUB</Button>
         </Form>
       )}
-    </FormProviderMui>
+    </FormProviderRHF>
   );
 }
 

@@ -1,12 +1,5 @@
 @use "../../../../style/utlites/utilites.scss" as *;
 
-.userProfilePage_personalData_details {
-  flex: 50%;
-}
-
-.userProfilePage_personalData_address {
-  flex: 50%;
-}
 .form {
   @include heightAndWidth(100%, 100%);
 }

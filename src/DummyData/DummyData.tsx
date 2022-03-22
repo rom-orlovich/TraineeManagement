@@ -8,29 +8,13 @@ import {
   totalExample,
 } from "../helpers/AppVariables";
 import { getThisMonth } from "../helpers/DatesHelpers";
+import { OptionObj, OptionObjWithPrice } from "../helpers/GlobalType";
 
-import {} from "../helpers/helperFunction";
+import { createNewSelectOptionsArray } from "../helpers/helperFunction";
 import { chartsBarData } from "./ChartBarData";
 import { OverviewLineChartData } from "./ChartLineData";
 import { dataPie } from "./ChartPieData";
-import {
-  createColField,
-  createExpense,
-  createIncome,
-  createLead,
-  createTrainee,
-} from "./DummyDataFunction";
-import {
-  DataGrid,
-  chartDataType,
-  Task,
-  Trainee,
-  Lead,
-  SelectOptions,
-  Income,
-  Expense,
-  SelectOption,
-} from "./DummyDataType";
+
 import {
   ExpensesTable,
   IncomesTable,
@@ -39,39 +23,119 @@ import {
 } from "./TablesData";
 
 export const FieldsLeads = ["date", "name", "tel", "notes", "source", "status"];
+export const expensesListPrice: OptionObjWithPrice[] = [
+  { id: 1, name: "Weight", value: "weight", price: 200 },
+  { id: 2, name: "Rent", value: "rent", price: 2100 },
+  { id: 3, name: "Task", value: "tasks", price: 500 },
+];
+export const productsListPrice: OptionObjWithPrice[] = [
+  { id: 1, name: "Nutrition", value: "nutrition", price: 200 },
+  { id: 2, name: "Training Plan", value: "trainingPlan", price: 100 },
+  { id: 3, name: "Personal Training", value: "personalTraining", price: 150 },
+];
+export const sourcesList: OptionObj[] = [
+  { id: 1, name: "Facebook", value: "facebook" },
+  { id: 2, name: "Instagram", value: "instagram" },
+  { id: 3, name: "Twitter", value: "twitter" },
+  { id: 4, name: "Google", value: "google" },
+];
+
 export const optionSelect = [
   {
     name: "Period",
     options: [
-      { text: "Last 3 Months", value: "3" },
-      { text: "Last 6 Months", value: "6" },
-      { text: "Last 12 Months", value: "12" },
+      { label: "Last 3 Months", value: "3" },
+      { label: "Last 6 Months", value: "6" },
+      { label: "Last 12 Months", value: "12" },
     ],
   },
 
   {
-    name: "Type Data",
+    name: "Page Data",
     options: [
-      { text: "Trainees", value: "trainees" },
-      { text: "Leads", value: "leads" },
-      { text: "Activities", value: "activities" },
+      { label: "Trainees", value: "trainees" },
+      { label: "Leads", value: "leads" },
+      { label: "Activities", value: "activities" },
     ],
   },
   {
-    name: "Type Period",
+    name: "TimeLine Display",
     options: [
-      { text: "Daily", value: "daily" },
-      { text: "Weekly", value: "weekly" },
-      { text: "Monthly", value: "monthly" },
-      { text: "Yearly", value: "yearly" },
-      { text: "Years", value: "years" },
+      { label: "Daily", value: "daily" },
+      { label: "Weekly", value: "weekly" },
+      { label: "Monthly", value: "monthly" },
+      { label: "Yearly", value: "yearly" },
+      { label: "Years", value: "years" },
     ],
   },
   {
     name: "Display activities mode",
     options: [
-      { text: "Incomes", value: "incomes" },
-      { text: "Expenses", value: "expenses" },
+      { label: "Incomes", value: "incomes" },
+      { label: "Expenses", value: "expenses" },
+    ],
+  },
+  {
+    name: "Gender",
+    options: [
+      { label: "Male", value: "male" },
+      { label: "Female", value: "female" },
+    ],
+  },
+
+  {
+    name: "Products",
+    options: createNewSelectOptionsArray(productsListPrice),
+    // [
+    //   { label: "Nutrition Plan", value: "nutritionPlan" },
+    //   { label: "Training Plan", value: "trainingPlan" },
+    //   { label: "Personal Training", value: "personalTraining" },
+    // ],
+  },
+  {
+    name: "Source",
+
+    options: createNewSelectOptionsArray(sourcesList),
+  },
+
+  {
+    name: "Products",
+
+    options: [
+      { label: "Nutrition", value: "nutrition" },
+      { label: "Training Plan", value: "trainingPlan" },
+      { label: "Personal Training", value: "personalTraining" },
+    ],
+  },
+  {
+    name: "Payment Type",
+
+    options: [
+      { label: "One Time", value: "oneTime" },
+      { label: "Monthly", value: "monthly" },
+    ],
+  },
+  {
+    name: "Payment Methods",
+
+    options: [
+      { label: "Bank Transfer", value: "bankTransfer" },
+      { label: "Bit", value: "bit" },
+      { label: "Cash", value: "cash" },
+      { label: "Other", value: "other" },
+    ],
+  },
+
+  {
+    name: "Expenses",
+
+    options: createNewSelectOptionsArray(expensesListPrice),
+  },
+  {
+    name: "select Form",
+    options: [
+      { label: "Income", value: "income" },
+      { label: "Expense", value: "expense" },
     ],
   },
 ];

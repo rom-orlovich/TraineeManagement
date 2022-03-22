@@ -1,66 +1,74 @@
 import SelectInput from "@mui/material/Select/SelectInput";
 import React, { useEffect } from "react";
 import { UIComponentsExportMui } from "../../../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import DatePickerMui from "../../../../../../components/ReactHookForm/Components/DatePickerMui";
-import InputMui from "../../../../../../components/ReactHookForm/Components/InputMui";
-import SelectInputMui from "../../../../../../components/ReactHookForm/Components/SelectInputMui";
+import DatePickerRHF from "../../../../../../components/ReactHookForm/Components/DatePickerRHF";
+import InputRHF from "../../../../../../components/ReactHookForm/Components/InputRHF";
+import SelectInputRHF from "../../../../../../components/ReactHookForm/Components/SelectInputRHF";
 import { UtilitesRHF } from "../../../../../../components/ReactHookForm/UtilitesRHF";
-import { FormValues } from "../../FormValues";
+import { optionSelect } from "../../../../../../DummyData/DummyData";
+import { FormValuesUserProfileInterface } from "../../FormValuesUserProfile";
 const { useFormContext } = UtilitesRHF;
 const { Grid } = UIComponentsExportMui;
 function FormPerosnalDetails() {
-  const { control, getValues } = useFormContext<FormValues>();
+  const { control } = useFormContext<FormValuesUserProfileInterface>();
 
   return (
-    <Grid container wrap="wrap" spacing={1}>
-      <Grid item>
-        <InputMui name="firstName" label="First Name" control={control} />
+    <Grid container spacing={2} flexDirection="column">
+      <Grid container item md={12} flexDirection="row">
+        <Grid item md={4}>
+          <InputRHF
+            variant="standard"
+            name="firstName"
+            label="First Name"
+            control={control}
+          />
+        </Grid>
+        <Grid item md={4}>
+          <InputRHF
+            variant="standard"
+            name="familyName"
+            label="Family Name"
+            control={control}
+          />
+        </Grid>
+        <Grid item md={4}>
+          <SelectInputRHF
+            variant="standard"
+            defaultValue="male"
+            options={optionSelect[4].options}
+            name="gender"
+            label={optionSelect[4].name}
+            control={control}
+          />
+        </Grid>
       </Grid>
-      <Grid item>
-        <InputMui name="familyName" label="Family Name" control={control} />
-      </Grid>
-      <Grid item>
-        <SelectInputMui
-          defaultValue=""
-          options={[
-            { label: "Male", value: "male" },
-            { label: "Female", value: "female" },
-          ]}
-          name="gender"
-          label="Gender"
-          control={control}
-        />
-      </Grid>
-      <Grid item>
-        <DatePickerMui name="birthday" label="Birthday" control={control} />
-      </Grid>
-      <Grid item>
-        <InputMui
-          focused
-          name="age"
-          label="Age"
-          control={control}
-          type="number"
-          style={{ width: "5rem" }}
-        />
-      </Grid>
-      <Grid item>
-        <InputMui
-          name="identifier"
-          label="Identifier Number"
-          control={control}
-        />
-      </Grid>
-      <Grid item>
-        <InputMui name="email" label="Email" control={control} type="email" />
-      </Grid>
-      <Grid item>
-        <InputMui
-          name="phoneNumber"
-          label="Phone Number"
-          control={control}
-          type="tel"
-        />
+      <Grid container item md={12} flexDirection="row">
+        <Grid item md={4}>
+          <DatePickerRHF
+            variant="standard"
+            name="birthday"
+            label="Birthday"
+            control={control}
+          />
+        </Grid>
+        <Grid item md={4}>
+          <InputRHF
+            variant="standard"
+            focused
+            name="age"
+            label="Age"
+            control={control}
+          />
+        </Grid>
+
+        <Grid item md={4}>
+          <InputRHF
+            variant="standard"
+            name="identifier"
+            label="Identifier Number"
+            control={control}
+          />
+        </Grid>
       </Grid>
     </Grid>
   );

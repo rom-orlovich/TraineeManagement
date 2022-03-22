@@ -1,5 +1,6 @@
 import { GridColDef } from "@mui/x-data-grid";
 import { localDate } from "../helpers/DatesHelpers";
+import { OptionObj } from "../helpers/GlobalType";
 
 import {
   Trainee,
@@ -78,6 +79,7 @@ export const createIncome = (
   type: typeIncomeExpense,
   describe: string,
   paymentMethod: paymentMethod,
+  quantity: number,
   price: number,
   date = localDate
 ): Income => {
@@ -90,6 +92,7 @@ export const createIncome = (
     type,
     describe,
     paymentMethod,
+    quantity,
     price,
   };
 };
@@ -133,13 +136,3 @@ export const createColField = <T>(
     hide: hide,
   };
 };
-
-// createIncome<Income>([]);
-
-// export const createObj = <T>(arg: { [p in keyof T]: T[p] }): T => {
-//   idTasks++;
-//   return {
-//     idTasks,
-//     ...arg,
-//   };
-// };

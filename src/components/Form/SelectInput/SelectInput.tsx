@@ -23,11 +23,8 @@ function SelectInput({
     >
       {mapEl(data.options, (el) => {
         return (
-          <option
-            key={`option-${el.id ?? el.value + "-" + el.text}`}
-            value={el.value}
-          >
-            {el.text}
+          <option key={`option-${el.value + "-" + el.label}`} value={el.value}>
+            {el.label}
           </option>
         );
       })}

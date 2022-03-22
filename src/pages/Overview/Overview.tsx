@@ -54,7 +54,7 @@ function Overview({ className }: propsType) {
             ...optionSelect[1],
             options: [
               ...optionSelect[1].options.slice(0, 2),
-              { text: "Earning", value: "earning" },
+              { label: "Earning", value: "earning" },
             ],
           }}
           className={classNameMaker(ST.charts_display)}

@@ -1,9 +1,5 @@
 @use "../../style/utlites/utilites.scss" as *;
-section[class*="UserProfilePage_userProfilePage"] {
-  div[class*="MuiFormControl-root MuiTextField-root"] {
-    width: 10rem;
-  }
-}
+
 .userProfilePage {
   @include flex_control(null, null, row);
   @include heightAndWidth(100%, 100%);
@@ -12,10 +8,7 @@ section[class*="UserProfilePage_userProfilePage"] {
   gap: 1rem;
 
   &_personalData {
-    // div[class*="MuiFormControl-root MuiTextField-root css"] {
-    //   margin: 0 0 1rem 1rem;
-    // }
-    padding: 0.5rem;
+    padding: 1rem 1.8em;
     @include heightAndWidth(95%, null);
     @include flex_control(null, null, column);
     flex: 80%;

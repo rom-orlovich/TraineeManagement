@@ -6,7 +6,8 @@ import { classNameMaker, mapEl, printVariable } from "./helperFunction";
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
 import { FormComponetsExportMui } from "../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { TextFieldProps } from "@mui/material";
-
+import SelectInputMui from "../components/MUI/FormCompnents/SelectInputMui/SelectInputMui";
+import { SelectInputPropsMui } from "../components/MUI/FormCompnents/FormComponentType";
 //print state
 
 export const useFollowState = (...args: Record<string, any>[]) => {
@@ -49,14 +50,20 @@ export function useGetManageSelectInputState<T extends string>(
   const [selectState, setSelectState] = useState(options.options[0].value);
 
   const el = useCallback(
-    ({ className }: propsType) => (
-      <SelectInput
-        className={classNameMaker(className)}
-        data={options}
-        SetValueOnChange={setSelectState}
-      />
-    ),
-    []
+    ({ className, ...rest }: Omit<SelectInputPropsMui, "options">) => {
+      return (
+        <SelectInputMui
+          value={selectState}
+          options={options.options}
+          onChange={({ target: { value } }) => {
+            setSelectState(value);
+          }}
+          className={className}
+          {...rest}
+        />
+      );
+    },
+    [selectState]
   );
   return { state: selectState as T, setState: setSelectState, el };
 }

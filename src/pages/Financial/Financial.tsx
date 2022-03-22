@@ -14,7 +14,7 @@ import FinancialBlocks from "./FinancialBlocks/FinancialBlocks";
 import FinancialChartBar from "./FinancialChartBar/FinancialChartBar";
 import ST from "./Financial.module.scss";
 
-import DatePickerInput from "../../components/MUI/FormCompnents/DatePickerInput/DatePickerInput";
+import DatePickerMui from "../../components/MUI/FormCompnents/DatePickerMui/DatePickerMui";
 
 let findData = datesValue.find((el) => el.id === localDate);
 function Financial({ className }: propsType) {
@@ -28,7 +28,7 @@ function Financial({ className }: propsType) {
     <section className={classNameMaker(ST.financial_layout, className)}>
       <div className={classNameMaker(ST.upper_section)}>
         <div className={classNameMaker(ST.select_input)}>
-          <DatePickerInput
+          <DatePickerMui
             datePickerProps={{
               value: new Date(curDateValue),
               onChange: (date: Date | null) => {
@@ -48,7 +48,7 @@ function Financial({ className }: propsType) {
               name: "choose date",
               style: { width: "10rem" },
             }}
-          ></DatePickerInput>
+          ></DatePickerMui>
         </div>
 
         <FinancialBlocks

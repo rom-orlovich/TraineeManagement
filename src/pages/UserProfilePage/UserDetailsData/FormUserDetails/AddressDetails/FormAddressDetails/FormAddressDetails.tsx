@@ -1,20 +1,39 @@
 import SelectInput from "@mui/material/Select/SelectInput";
 import React, { useEffect } from "react";
 import { UIComponentsExportMui } from "../../../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import DatePickerMui from "../../../../../../components/ReactHookForm/Components/DatePickerMui";
-import InputMui from "../../../../../../components/ReactHookForm/Components/InputMui";
-import SelectInputMui from "../../../../../../components/ReactHookForm/Components/SelectInputMui";
+import DatePickerRHF from "../../../../../../components/ReactHookForm/Components/DatePickerRHF";
+import InputRHF from "../../../../../../components/ReactHookForm/Components/InputRHF";
+import SelectInputRHF from "../../../../../../components/ReactHookForm/Components/SelectInputRHF";
 import { UtilitesRHF } from "../../../../../../components/ReactHookForm/UtilitesRHF";
-import { FormValues } from "../../FormValues";
+import { FormValuesUserProfileInterface } from "../../FormValuesUserProfile";
 const { useFormContext } = UtilitesRHF;
 const { Grid } = UIComponentsExportMui;
 function FormAddressDetails() {
-  const { control, getValues } = useFormContext<FormValues>();
+  const { control } = useFormContext<FormValuesUserProfileInterface>();
 
   return (
-    <Grid container wrap="wrap">
+    <Grid container spacing={2} flexDirection="row">
       <Grid item>
-        <InputMui
+        <InputRHF
+          variant="standard"
+          name="email"
+          label="Email"
+          control={control}
+          type="email"
+        />
+      </Grid>
+      <Grid item>
+        <InputRHF
+          variant="standard"
+          name="phoneNumber"
+          label="Phone Number"
+          control={control}
+          type="tel"
+        />
+      </Grid>
+      <Grid item>
+        <InputRHF
+          variant="standard"
           name="address"
           label="Address"
           control={control}
@@ -22,23 +41,33 @@ function FormAddressDetails() {
         />
       </Grid>
       <Grid item>
-        <InputMui
+        <InputRHF
+          variant="standard"
           name="numHome"
           label="Number"
-          type="number"
           control={control}
           // style={{ width: "6rem" }}
         />
       </Grid>
 
       <Grid item>
-        <InputMui name="city" label="City" control={control} />
+        <InputRHF
+          variant="standard"
+          name="city"
+          label="City"
+          control={control}
+        />
       </Grid>
       <Grid item>
-        <InputMui name="country" label="Country" control={control} />
+        <InputRHF
+          variant="standard"
+          name="country"
+          label="Country"
+          control={control}
+        />
       </Grid>
       <Grid item>
-        <InputMui name="zip" label="Zip" control={control} />
+        <InputRHF variant="standard" name="zip" label="Zip" control={control} />
       </Grid>
     </Grid>
   );

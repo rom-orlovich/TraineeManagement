@@ -146,7 +146,9 @@ export const IncomesTable: DataGrid<Income> = {
       ...createColField<Income>("describe", "Describe", 1.5),
       editable: true,
     },
+
     createColField<Income>("paymentMethod", "Method", 1.5),
+    { ...createColField<Expense>("quantity", "Quantity", 1.5), type: "number" },
     {
       ...createColField<Income>("price", "Price", 0.5),
       type: "number",
@@ -155,9 +157,25 @@ export const IncomesTable: DataGrid<Income> = {
   ],
 
   rows: [
-    createIncome("s", "Other", "Monthly", "sadasd adasd", "Bank Transfer", 12),
-    createIncome("g", "Nutrition plan", "Monthly", "sdd adasd", "Other", 15),
-    createIncome("g", "Personal Training", "Monthly", "sdd adasd", "Other", 15),
+    createIncome(
+      "s",
+      "Other",
+      "Monthly",
+      "sadasd adasd",
+      "Bank Transfer",
+      1,
+      12
+    ),
+    createIncome("g", "Nutrition plan", "Monthly", "sdd adasd", "Other", 2, 15),
+    createIncome(
+      "g",
+      "Personal Training",
+      "Monthly",
+      "sdd adasd",
+      "Other",
+      3,
+      15
+    ),
   ],
 };
 
@@ -173,12 +191,13 @@ export const ExpensesTable: DataGrid<Expense> = {
       editable: true,
     },
     createColField<Expense>("paymentMethod", "Method", 1.5),
+
+    { ...createColField<Expense>("quantity", "Quantity", 1.5), type: "number" },
     {
       ...createColField<Expense>("price", "Price", 0.5),
       type: "number",
       valueFormatter: (value) => `${value.value}$`,
     },
-    { ...createColField<Expense>("quantity", "Quantity", 1.5), type: "number" },
   ],
 
   rows: [

@@ -8,7 +8,9 @@ import InputLabel from "@mui/material/InputLabel";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
-
+export const mediumWidthStyle = { width: "10rem" };
+export const smallWidthStyle = { width: "7rem" };
+export const extraSmallWidthStyle = { width: "5rem" };
 export const FormComponetsExportMui = {
   TextField,
   FormControl,

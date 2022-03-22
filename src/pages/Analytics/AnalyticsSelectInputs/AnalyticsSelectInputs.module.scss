@@ -1,11 +1,14 @@
 @use "../../../style/utlites/utilites.scss" as *;
 
 .select_inputs {
-  margin-left: 7rem;
-  &_activities {
-    margin-left: 0.5rem;
-  }
-  &_timeLine {
-    margin-left: 0.5rem;
+  margin-left: 6rem;
+  // &_activities {
+  //   margin-left: 1rem;
+  // }
+  // &_timeLine {
+  //   margin-left: 1rem;
+  // }
+  div[class*="MuiFormControl-root MuiTextField-root"] {
+    margin-left: 1rem;
   }
 }

@@ -1,3 +1,4 @@
+import { FaWeight } from "react-icons/fa";
 import { datesValue } from "../DummyData/DummyData";
 import {
   expenseExample,
@@ -5,7 +6,13 @@ import {
   thisDay,
   totalExample,
 } from "./AppVariables";
-import { AnyFun, IdType, ObjExtendIDKey } from "./GlobalType";
+import {
+  AnyFun,
+  IdType,
+  OptionObjWithPrice,
+  ObjExtendIDKey,
+  OptionObj,
+} from "./GlobalType";
 
 export const printVariable = (v: any) => {
   return Object.keys(v)[0];
@@ -62,3 +69,18 @@ export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
 
   return newObj;
 };
+
+export function getExactPriceProductList<T extends OptionObjWithPrice[]>(
+  objArr: T,
+  value: string
+) {
+  return objArr.find((el) => el.value === value)?.price || 0;
+}
+
+export function createNewSelectOptionsArray(
+  obj: (OptionObjWithPrice | OptionObj)[]
+) {
+  return obj.map(({ value, name }) => {
+    return { label: name, value };
+  });
+}

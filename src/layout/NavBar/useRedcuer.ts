@@ -16,7 +16,7 @@ export const initialStateNavBar = {
   alerts: false,
   profileMenu: false,
 };
-const setNewState = (
+const setSomeKeyStateTrue = (
   state: typeof initialStateNavBar,
   ...keys: (keyof typeof initialStateNavBar)[]
 ) => {
@@ -31,11 +31,11 @@ export const reducerNavBar: Reducer<
   ActionTypeReducer
 > = (state, action) => {
   const actionsRes = {
-    displayAddButtonLinks: setNewState(state, "addButton"),
+    displayAddButtonLinks: setSomeKeyStateTrue(state, "addButton"),
     noDisplayAddButtonLinks: { ...initialStateNavBar },
-    displayAlertsList: setNewState(state, "alerts"),
+    displayAlertsList: setSomeKeyStateTrue(state, "alerts"),
     noDisplayAlertList: { ...initialStateNavBar },
-    displayProfileMenuLinks: setNewState(state, "profileMenu"),
+    displayProfileMenuLinks: setSomeKeyStateTrue(state, "profileMenu"),
     noDisplayProfileMenuLinks: { ...initialStateNavBar },
   };
   return actionsRes[action.type];

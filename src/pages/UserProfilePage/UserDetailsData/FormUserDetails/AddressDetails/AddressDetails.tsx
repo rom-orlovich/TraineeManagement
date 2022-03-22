@@ -9,10 +9,9 @@ import ST from "./AddressDetails.module.scss";
 const { FormControl, TextField } = FormComponetsExportMui;
 function AddressDetails({ className }: propsType) {
   return (
-    <div className={classNameMaker(className)}>
-      <div className={classNameMaker(ST.personalData_address_header)}>
-        <h2> Address Details</h2>
-      </div>
+    <div className={classNameMaker(ST, className)}>
+      <h2 className={classNameMaker(ST.form_Header)}> Address Details</h2>
+
       <FormAddressDetails />
     </div>
   );

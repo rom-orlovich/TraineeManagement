@@ -33,5 +33,13 @@ export type OptionTypesValueType =
   | PageDataValueType
   | ActivitiesDataValueType
   | ChartPeriodValueType;
-// type getSelectOptionValueType<T extends number> =
-// typeof optionSelect[T]["options"][number]["value"];
+
+export interface OptionObj {
+  id: IdType;
+  name: string;
+  value: string;
+}
+
+export interface OptionObjWithPrice extends OptionObj {
+  price: number;
+}

@@ -13,11 +13,11 @@ import Analytics from "../pages/Analytics/Analytics.";
 import Activities from "../pages/Activities/Activities";
 import PageNotFound from "../pages/PageNotFound/PageNotFound";
 import UserProfilePage from "../pages/UserProfilePage/UserProfilePage";
-import AddTraineePage from "../pages/AddTraineePage/AddTraineePage";
-import AddLeadPage from "../pages/AddLeadPage/AddLeadPage";
-import AddActivityPage from "../pages/AddActivityPage/AddActivityPage";
-import AddTaskPage from "../pages/AddTaskPage/AddTaskPage";
-import AddProductPage from "../pages/AddProductPage/AddProductPage";
+import AddTraineePage from "../pages/AddFormPages/AddTraineePage/AddTraineePage";
+import AddLeadPage from "../pages/AddFormPages/AddLeadPage/AddLeadPage";
+import AddActivityPage from "../pages/AddFormPages/AddActivityPage/AddActivityPage";
+import AddTaskPage from "../pages/AddFormPages/AddTaskPage/AddTaskPage";
+import AddProductPage from "../pages/AddFormPages/AddProductPage/AddProductPage";
 
 function Router() {
   return (
