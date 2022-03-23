@@ -11,6 +11,8 @@ import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
 import DatePickerMui from "../../../components/MUI/FormCompnents/DatePickerMui/DatePickerMui";
 import ST from "./HeaderChartBar.module.scss";
 import { PaperProps, PopperProps } from "@mui/material";
+import SelectInputMui from "../../../components/MUI/FormCompnents/SelectInputMui/SelectInputMui";
+import { useGetManageSelectInputState } from "../../../helpers/HelperHooks";
 function HeaderChartBar({
   className,
   timeLineDisplay,
@@ -39,7 +41,7 @@ function HeaderChartBar({
   const [boolFrom, setBoolFrom] = useState(false);
   const [boolTo, setBoolTo] = useState(false);
   useEffect(() => {
-    setTo(timeLineDisplayObj[timeLineDisplay] ? last : from);
+    setTo(checkToDateActive ? last : from);
   }, [checkToDateActive]);
 
   const PopperProps: Partial<PopperProps> | undefined = {
@@ -55,13 +57,14 @@ function HeaderChartBar({
   return (
     <div className={classNameMaker(ST.HeaderChartBar, className)}>
       <span>
-        <label htmlFor={optionSelect[2].name}>{optionSelect[2].name} </label>
-        <SelectInput
-          data={optionSelect[2]}
-          SetValueOnChange={(value) => {
-            setTimeLineDisplay(value);
+        <SelectInputMui
+          options={optionSelect[2].options}
+          label="Timeline"
+          value={timeLineDisplay}
+          onChange={({ target: { value } }) => {
+            setTimeLineDisplay(value as TimeLinePeriodValueType);
           }}
-        ></SelectInput>
+        />
       </span>
       <span>
         <span>
