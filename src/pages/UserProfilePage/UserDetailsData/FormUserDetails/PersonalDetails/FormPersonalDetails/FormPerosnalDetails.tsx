@@ -45,9 +45,11 @@ function FormPerosnalDetails() {
       <Grid container item md={12} flexDirection="row">
         <Grid item md={4}>
           <DatePickerRHF
-            variant="standard"
+            datePicker={{
+              label: "Birthday",
+              textFieldProps: { variant: "standard" },
+            }}
             name="birthday"
-            label="Birthday"
             control={control}
           />
         </Grid>

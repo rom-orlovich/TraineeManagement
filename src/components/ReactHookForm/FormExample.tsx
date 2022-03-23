@@ -8,12 +8,15 @@ import Form from "./Components/FormRHF";
 import FormProviderRHF from "./Components/FromProviderRHF";
 import SelectInputRHF from "./Components/SelectInputRHF";
 import DatePickerRHF from "./Components/DatePickerRHF";
+import TimePickerMui from "../MUI/FormCompnents/TimePickerMui/TimePickerMui";
+import TimePickerRHF from "./Components/TimePickerRHF";
 interface FormValues {
   name: string;
   lastName: string;
   email: string;
   gender: string;
   birthday: string;
+  time: string;
 }
 const frominput: FormValues = {
   name: "",
@@ -21,6 +24,7 @@ const frominput: FormValues = {
   email: "",
   gender: "",
   birthday: "",
+  time: "",
 };
 const schema = yup.object({
   name: yup.string().required(),
@@ -69,9 +73,15 @@ function FormExample() {
           <DatePickerRHF
             control={values.control}
             name="birthday"
-            label="Birthday"
+            datePicker={{ label: "Birthday" }}
           ></DatePickerRHF>
           <Button type="submit">SUB</Button>
+
+          <TimePickerRHF
+            control={values.control}
+            name="time"
+            timePicker={{ label: "Time" }}
+          />
         </Form>
       )}
     </FormProviderRHF>

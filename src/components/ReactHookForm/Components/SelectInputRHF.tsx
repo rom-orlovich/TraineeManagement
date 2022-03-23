@@ -2,7 +2,7 @@ import React from "react";
 import { FieldValues } from "react-hook-form";
 import { mapEl } from "../../../helpers/helperFunction";
 import { FormComponetsExportMui } from "../../MUI/FormComponetsExport/FormComponetsExportMui";
-import { SelectInputTypeMui } from "../TypesFormComponent";
+import { SelectInputTypeMui } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
 import SelectInputMui from "../../MUI/FormCompnents/SelectInputMui/SelectInputMui";
 const { TextField, MenuItem } = FormComponetsExportMui;
@@ -23,23 +23,6 @@ function SelectInputRHF<T extends FieldValues>({
         fieldState: { error },
       }) => {
         return (
-          // <TextField
-          //   select
-          // error={!!error}
-          // helperText={error ? error.message : ""}
-          // value={value}
-          // onChange={onChange}
-          // {...field}
-          //   {...rest}
-          // >
-          //   {mapEl(options, ({ value, label }) => {
-          //     return (
-          //       <MenuItem key={value} value={value}>
-          //         {label}
-          //       </MenuItem>
-          //     );
-          //   })}
-          // </TextField>
           <SelectInputMui
             options={options}
             error={!!error}

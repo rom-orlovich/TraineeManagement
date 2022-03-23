@@ -1,14 +1,14 @@
 import React from "react";
 import { classNameMaker, mapEl } from "../../../../helpers/helperFunction";
 import { FormComponetsExportMui } from "../../FormComponetsExport/FormComponetsExportMui";
-import { SelectInputPropsMui } from "../FormComponentType";
+import { SelectInputPropsMui } from "../MUIFormComponentsType";
 import ST from "./SelectInputMui.module.scss";
 const { TextField, MenuItem } = FormComponetsExportMui;
 
 function SelectInputMui({
   options,
   value,
-  name,
+
   className,
   ...rest
 }: SelectInputPropsMui) {

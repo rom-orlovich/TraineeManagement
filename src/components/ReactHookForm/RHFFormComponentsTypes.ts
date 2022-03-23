@@ -1,3 +1,4 @@
+import { ParseableDate } from "@mui/lab/internal/pickers/constants/prop-types";
 import { TextFieldProps } from "@mui/material";
 import { DetailedHTMLProps, ReactNode } from "react";
 import {
@@ -5,12 +6,17 @@ import {
   FieldPath,
   FieldPathValue,
   Path,
+  PathValue,
   UnpackNestedValue,
   UseFormProps,
 } from "react-hook-form";
 import { AnyFun, propsType } from "../../helpers/GlobalType";
 
-import { SelectOption } from "@mui/material/node_modules/@mui/base";
+import {
+  DatePickerPropsType,
+  SelectInputPropsMui,
+  TimePickerPropsType,
+} from "../MUI/FormCompnents/MUIFormComponentsType";
 
 export type FormProviderMuiType<T> = {
   values: UseFormProps<T>;
@@ -27,12 +33,15 @@ type ControlInput<T> = {
   defaultValue?: UnpackNestedValue<FieldPathValue<T, FieldPath<T>>>;
 };
 
-export type InputMuiType<T> = ControlInput<T> &
-  TextFieldProps &
+export type InputRHFprops<T> = ControlInput<T> &
   Omit<TextFieldProps, "defaultValue" | "name">;
 
-export type SelectInputTypeMui<T> = InputMuiType<T> & {
-  options: SelectOption<string | number>[];
+export type SelectInputTypeMui<T> = ControlInput<T> & SelectInputPropsMui;
+
+export type TimePickerPropsRHF<T> = ControlInput<T> & {
+  timePicker?: Omit<TimePickerPropsType, "onChange" | "value">;
 };
 
-export type DataPickerType<T> = InputMuiType<T>;
+export type DatePickerPropsRHF<T> = ControlInput<T> & {
+  datePicker?: Omit<DatePickerPropsType, "onChange" | "value">;
+};

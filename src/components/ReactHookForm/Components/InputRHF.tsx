@@ -3,7 +3,7 @@ import { FieldValues } from "react-hook-form";
 import { classNameMaker } from "../../../helpers/helperFunction";
 
 import { FormComponetsExportMui } from "../../MUI/FormComponetsExport/FormComponetsExportMui";
-import { InputMuiType } from "../TypesFormComponent";
+import { InputRHFprops } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
 import ST from "./InputRHF.module.scss";
 const { Controller } = UtilitesRHF;
@@ -17,7 +17,7 @@ function InputRHF<T extends FieldValues>({
   defaultValue,
   className,
   ...rest
-}: InputMuiType<T>) {
+}: InputRHFprops<T>) {
   return (
     <Controller
       name={name}

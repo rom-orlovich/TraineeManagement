@@ -66,23 +66,22 @@ function HeaderChartBar({
       <span>
         <span>
           <DatePickerMui
-            datePickerProps={{
-              PopperProps,
-              onChange: (dateFrom) => {
-                let newDateFrom = new Date(dateFrom ? dateFrom : "");
+            PopperProps={PopperProps}
+            onChange={(dateFrom) => {
+              let date = dateFrom as Date;
+              let newDateFrom = new Date(date ? date : "");
 
-                setFrom(newDateFrom);
-                setFromInput(newDateFrom);
+              setFrom(newDateFrom);
+              setFromInput(newDateFrom);
 
-                setBoolFrom(
-                  newDateFrom ? newDateFrom > to && checkToDateActive : false
-                );
-                setBoolTo(
-                  newDateFrom ? newDateFrom > to && checkToDateActive : false
-                );
-              },
-              value: from,
+              setBoolFrom(
+                newDateFrom ? newDateFrom > to && checkToDateActive : false
+              );
+              setBoolTo(
+                newDateFrom ? newDateFrom > to && checkToDateActive : false
+              );
             }}
+            value={from}
             textFieldProps={{
               label: labelDisplayFrom,
               name: nameDisplayFrom,
@@ -95,21 +94,20 @@ function HeaderChartBar({
         <span className={classNameMaker(ST.toDate)}>
           {checkToDateActive && (
             <DatePickerMui
-              datePickerProps={{
-                PopperProps,
-                onChange: (dateTo) => {
-                  let newDateTo = new Date(dateTo ? dateTo : "");
-                  setTo(newDateTo);
-                  setToInput(newDateTo);
-                  setBoolFrom(
-                    newDateTo ? newDateTo < from && checkToDateActive : false
-                  );
-                  setBoolTo(
-                    newDateTo ? newDateTo < from && checkToDateActive : false
-                  );
-                },
-                value: to,
+              PopperProps={PopperProps}
+              onChange={(dateTo) => {
+                let date = dateTo as Date;
+                let newDateTo = new Date(date ? date : "");
+                setTo(newDateTo);
+                setToInput(newDateTo);
+                setBoolFrom(
+                  newDateTo ? newDateTo < from && checkToDateActive : false
+                );
+                setBoolTo(
+                  newDateTo ? newDateTo < from && checkToDateActive : false
+                );
               }}
+              value={to}
               textFieldProps={{
                 label: "To",
                 name: "to",

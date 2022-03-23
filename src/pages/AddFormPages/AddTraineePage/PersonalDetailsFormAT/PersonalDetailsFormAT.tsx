@@ -54,10 +54,12 @@ function PersonalDetailsFormAT({ className }: { className?: string }) {
         <Grid container item spacing={2}>
           <Grid item md={4}>
             <DatePickerRHF
-              variant="standard"
+              datePicker={{
+                label: "Birthday",
+                textFieldProps: { variant: "standard" },
+              }}
               control={control}
               name="birthday"
-              label="Birthday"
             />
           </Grid>
 

@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { FieldValues } from "react-hook-form";
 import { propsType } from "../../../helpers/GlobalType";
-import { FormProviderMuiType } from "../TypesFormComponent";
+import { FormProviderMuiType } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
 const { FormProvider, useForm } = UtilitesRHF;
 function FormProviderRHF<T extends FieldValues>({

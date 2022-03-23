@@ -1,42 +1,35 @@
 import React from "react";
+import DatePickerMui from "../../MUI/FormCompnents/DatePickerMui/DatePickerMui";
 import { FormComponetsExportMui } from "../../MUI/FormComponetsExport/FormComponetsExportMui";
-import { DataPickerType } from "../TypesFormComponent";
+import { DatePickerPropsRHF, InputRHFprops } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
-const { Controller } = UtilitesRHF,
-  { AdapterDateFns, LocalizationProvider, DatePicker, TextField } =
-    FormComponetsExportMui;
+const { Controller } = UtilitesRHF;
+// { AdapterDateFns, LocalizationProvider, DatePicker, TextField } =
+//   FormComponetsExportMui;
 function DatePickerRHF<T>({
   control,
   name,
-  label,
+  datePicker,
   ...rest
-}: DataPickerType<T>) {
+}: DatePickerPropsRHF<T>) {
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState: { error } }) => {
-        const { value } = field;
+      render={({ field: { ref, ...field }, fieldState: { error } }) => {
         return (
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              inputFormat="dd/MM/yyyy"
-              label={label}
-              {...field}
-              renderInput={(parmas) => {
-                return (
-                  <TextField
-                    {...rest}
-                    {...parmas}
-                    helperText={
-                      error || value === null ? `${label} is require` : ""
-                    }
-                    error={!!error || value === null}
-                  ></TextField>
-                );
-              }}
-            ></DatePicker>
-          </LocalizationProvider>
+          <DatePickerMui
+            textFieldProps={{
+              error: !!error,
+              helperText: !!error
+                ? error.message
+                : datePicker?.textFieldProps?.helperText,
+              ...datePicker?.textFieldProps,
+            }}
+            {...field}
+            {...datePicker}
+            {...rest}
+          />
         );
       }}
     />

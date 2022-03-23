@@ -38,18 +38,22 @@ function SuscribeDetailsFormAT() {
         <Grid container item spacing={1}>
           <Grid item>
             <DatePickerRHF
-              variant="standard"
+              datePicker={{
+                label: "Start Date",
+                textFieldProps: { variant: "standard" },
+              }}
               control={control}
               name="startingDate"
-              label="Start Date"
             />
           </Grid>
           <Grid item>
             <DatePickerRHF
-              variant="standard"
+              datePicker={{
+                label: "End Date",
+                textFieldProps: { variant: "standard" },
+              }}
               control={control}
               name="endingDate"
-              label="End Date"
             />
           </Grid>
         </Grid>

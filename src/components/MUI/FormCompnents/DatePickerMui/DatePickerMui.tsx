@@ -1,32 +1,20 @@
 import React from "react";
 import { FormComponetsExportMui } from "../../FormComponetsExport/FormComponetsExportMui";
-import { DatePickerProp } from "../FormComponentType";
+import { DatePickerPropsType } from "../MUIFormComponentsType";
 import ST from "./DatePickerMui.module.scss";
 import { classNameMaker } from "../../../../helpers/helperFunction";
 const { AdapterDateFns, DatePicker, LocalizationProvider, TextField } =
   FormComponetsExportMui;
-function DatePickerMui({
-  datePickerProps: { onChange, value, DialogProps, ...restDatePicker },
-  textFieldProps,
-}: DatePickerProp) {
-  const TextFieldProps = textFieldProps ? { ...textFieldProps } : {};
-
+function DatePickerMui({ textFieldProps, ...rest }: DatePickerPropsType) {
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns}>
       <DatePicker
+        className={classNameMaker(ST)}
         inputFormat="dd/MM/yyyy"
-        onChange={onChange}
-        value={value}
-        {...restDatePicker}
         renderInput={(parma) => {
-          return (
-            <TextField
-              {...parma}
-              {...TextFieldProps}
-              className={classNameMaker(ST)}
-            ></TextField>
-          );
+          return <TextField {...parma} {...textFieldProps}></TextField>;
         }}
+        {...rest}
       ></DatePicker>
     </LocalizationProvider>
   );

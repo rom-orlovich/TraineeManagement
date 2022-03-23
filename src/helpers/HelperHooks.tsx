@@ -7,7 +7,9 @@ import { SelectOption } from "@mui/material/node_modules/@mui/base";
 import { FormComponetsExportMui } from "../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { TextFieldProps } from "@mui/material";
 import SelectInputMui from "../components/MUI/FormCompnents/SelectInputMui/SelectInputMui";
-import { SelectInputPropsMui } from "../components/MUI/FormCompnents/FormComponentType";
+import { SelectInputPropsMui } from "../components/MUI/FormCompnents/MUIFormComponentsType";
+import { DialogsMuiTypeProps } from "../components/MUI/UIComponents/DialogTypes";
+import DialogMui from "../components/MUI/UIComponents/Dialog";
 //print state
 
 export const useFollowState = (...args: Record<string, any>[]) => {
@@ -98,3 +100,22 @@ export function useGetSelectInputMui<T extends string>(
 
   return { stateSelect: state, setStateSelect: setState, SelectElement: el };
 }
+
+export const useGetDialogWithOpenState = () => {
+  const [stateIsOpen, setStateIsOpen] = useState(false);
+  const el = useCallback(
+    ({ children, title }: { title?: string } & propsType) => {
+      return (
+        <DialogMui
+          isOpen={stateIsOpen}
+          title={title}
+          onClose={() => setStateIsOpen(false)}
+        >
+          {children}
+        </DialogMui>
+      );
+    },
+    [stateIsOpen]
+  );
+  return { stateIsOpen, setStateIsOpen, DialogMui: el };
+};

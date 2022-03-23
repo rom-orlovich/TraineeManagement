@@ -29,19 +29,18 @@ function Financial({ className }: propsType) {
       <div className={classNameMaker(ST.upper_section)}>
         <div className={classNameMaker(ST.select_input)}>
           <DatePickerMui
-            datePickerProps={{
-              value: new Date(curDateValue),
-              onChange: (date: Date | null) => {
-                let dateLocalString = date?.toLocaleDateString() || "";
+            value={new Date(curDateValue)}
+            onChange={(date: unknown) => {
+              let DateNew = date as Date;
+              let dateLocalString = DateNew?.toLocaleDateString() || "";
 
-                let findDataNew =
-                  datesValue.find(
-                    (el) => el.id === getLocalDateFromInput(dateLocalString)
-                  ) || financeDateState;
+              let findDataNew =
+                datesValue.find(
+                  (el) => el.id === getLocalDateFromInput(dateLocalString)
+                ) || financeDateState;
 
-                setFinanceDateState(findDataNew);
-                setCurDateValue(getGlobalDate(dateLocalString));
-              },
+              setFinanceDateState(findDataNew);
+              setCurDateValue(getGlobalDate(dateLocalString));
             }}
             textFieldProps={{
               label: "Choose Date",

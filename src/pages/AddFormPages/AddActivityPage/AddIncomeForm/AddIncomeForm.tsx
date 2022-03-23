@@ -39,10 +39,12 @@ function AddIncomeForm() {
         <Grid container item>
           <Grid item md={4}>
             <DatePickerRHF
-              variant="standard"
+              datePicker={{
+                label: "Date",
+                textFieldProps: { variant: "standard" },
+              }}
               control={control}
               name="date"
-              label="Date"
             />
           </Grid>
           <Grid item md={4}>

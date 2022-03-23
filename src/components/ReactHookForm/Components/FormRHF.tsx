@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import { FieldValues, useFormContext } from "react-hook-form";
 import { classNameMaker } from "../../../helpers/helperFunction";
-import { FormType } from "../TypesFormComponent";
+import { FormType } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
 
 function Form<T extends FieldValues>({
