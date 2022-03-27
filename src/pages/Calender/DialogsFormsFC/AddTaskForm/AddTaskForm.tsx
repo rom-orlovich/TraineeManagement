@@ -10,21 +10,31 @@ import DatePickerRHF from "../../../../components/ReactHookForm/Components/DateP
 import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
 
 import TimePickerRHF from "../../../../components/ReactHookForm/Components/TimePickerRHF";
-import { EventsTypeValues } from "../DialogFormsTypes";
 import FooterButtonsDialog from "../FooterButtonsDialog/FooterButtonsDialog";
+import CheckBoxRHF from "../../../../components/ReactHookForm/Components/CheckBoxRHF";
+interface taskProps {
+  date: Date;
+  type: string;
+  title: string;
+  id: string;
 
+  time: Date | null;
+  status: boolean;
+  description: string;
+}
 const { Button } = FormComponetsExportMui;
 
 const { Grid } = UIComponentsExportMui;
 function AddTaskForm({
   curDate,
-
+  exsitTask,
   setNewTask,
   setDialogClose,
 }: {
   curDate: Date;
   setDialogClose: React.Dispatch<React.SetStateAction<boolean>>;
   setNewTask: (data: AddTaskFormInterface) => void;
+  exsitTask?: taskProps;
 }) {
   return (
     <>
@@ -37,7 +47,12 @@ function AddTaskForm({
       >
         {({ handleSubmit, control }: UseFormReturn<AddTaskFormInterface>) => {
           return (
-            <Form submitFun={handleSubmit((data) => setNewTask(data))}>
+            <Form
+              submitFun={handleSubmit((data) => {
+                setNewTask({ ...data, type: "task" });
+                setDialogClose(false);
+              })}
+            >
               <Grid container rowSpacing={2}>
                 <Grid container item md={12} spacing={3}>
                   <Grid item md={4}>
@@ -59,44 +74,25 @@ function AddTaskForm({
                     <InputRHF
                       control={control}
                       name="nameTask"
-                      label="Name Event"
+                      label="Name Task"
                       variant="standard"
                     />
                   </Grid>
 
-                  {/* <Grid item md={4}>
-                    <InputRHF
-                      control={control}
-                      name="participants"
-                      label="Participants"
-                      variant="standard"
-                    />
-                  </Grid> */}
-                </Grid>
-
-                <Grid container item md={12} spacing={3}>
                   <Grid item md={4}>
                     <TimePickerRHF
                       control={control}
                       name="time"
                       timePicker={{
-                        label: "Start Event",
+                        label: "Time",
                         PopperProps: { placement: "auto" },
-                        textFieldProps: { variant: "standard" },
+                        textFieldProps: {
+                          variant: "standard",
+                          // error: false,
+                        },
                       }}
                     />
                   </Grid>
-                  {/* <Grid item md={4}>
-                    <TimePickerRHF
-                      control={control}
-                      name="timeEnd"
-                      timePicker={{
-                        label: "End Event",
-                        PopperProps: { placement: "auto" },
-                        textFieldProps: { variant: "standard" },
-                      }}
-                    />
-                  </Grid> */}
                 </Grid>
 
                 <Grid container item md={12} spacing={3}>
@@ -112,6 +108,11 @@ function AddTaskForm({
                   </Grid>
                 </Grid>
 
+                <CheckBoxRHF
+                  control={control}
+                  name="status"
+                  label="Done?"
+                ></CheckBoxRHF>
                 <FooterButtonsDialog setDialogClose={setDialogClose} />
               </Grid>
             </Form>

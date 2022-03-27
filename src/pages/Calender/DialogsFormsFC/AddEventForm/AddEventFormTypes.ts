@@ -3,16 +3,16 @@ export interface AddEventFormInterface {
   id?: string;
   type?: string;
   nameEvent: string;
-  timeStart: string;
-  timeEnd: string;
+  timeStart: Date;
+  timeEnd: Date;
   participants?: string;
   description?: string;
 }
 export const defaultValueAddEvent: AddEventFormInterface = {
   date: new Date(),
   nameEvent: "",
-  timeStart: "",
-  timeEnd: "",
+  timeStart: new Date(),
+  timeEnd: new Date(),
   participants: "",
   description: "",
 };

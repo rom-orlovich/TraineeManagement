@@ -90,6 +90,12 @@ export const getPointSliceThisWeek = (d = thisDay) => {
 export const getDateDetails = (cur: Date) => {
   return [cur.getFullYear(), cur.getMonth(), cur.getDate()] as const;
 };
+// hours,min,sec
+export const getTimeDateDetails = (cur: Date) => {
+  return [cur.getUTCHours(), cur.getUTCMinutes(), cur.getUTCSeconds()] as const;
+};
+export const getLocalTime = (cur: Date) =>
+  cur.toLocaleTimeString().slice(0, -3);
 
 const datePeriodDataObj = (
   Display: TimeLinePeriodValueType,

@@ -2,14 +2,14 @@ import { DateClickArg } from "@fullcalendar/interaction";
 import { DayCellContentArg, EventContentArg } from "@fullcalendar/react";
 import { useCallback } from "react";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
-import { iconsMui } from "../../../../components/MUI/IconsMui/IconsMuiExports";
-import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
 import { ReactDispatch } from "../../../../helpers/GlobalType";
 import { AddEventFormInterface } from "../../DialogsFormsFC/AddEventForm/AddEventFormTypes";
-
+import { AddTaskFormInterface } from "../../DialogsFormsFC/AddTaskForm/AddTaskFormTypes";
+import EventFC from "../ComponentsFC/EventFC/EventFC";
+import TaskFC from "../ComponentsFC/TaskFC/TaskFC";
+export type dataType = "task" | "event";
 const { Button } = FormComponetsExportMui;
-const { Grid } = UIComponentsExportMui;
-const { IconButton, DeleteIcon } = iconsMui;
+
 export const useInjectCellContent = (setState: ReactDispatch<boolean>) => {
   return (args: DayCellContentArg) => (
     <div>
@@ -43,49 +43,59 @@ export const useDateCellClick = (
 
 export const useRenderEventContent = (
   eventManual: AddEventFormInterface[],
-  removeEvent: (id: string) => void
+  tasksManual: AddTaskFormInterface[],
+  removeEvent: (id: string) => void,
+  removeTask: (id: string) => void
 ) => {
   return (eventContent: EventContentArg) => {
-    const manual = eventManual.find(
-      (el) => el.id === eventContent.event._def.publicId
-    );
+    const eventConPublicId = eventContent.event._def.publicId;
+    const [type] = eventConPublicId.split("/");
 
-    const idToRemove = manual?.id ? manual?.id : "";
+    const Type = type as dataType;
+    const objData = {
+      event: eventManual.find((el) => el.id === eventConPublicId),
+      task: tasksManual.find((el) => el.id === eventConPublicId),
+    };
 
-    //text time
-    const timeStartText = eventContent.event.start
-      ?.toLocaleTimeString()
-      .slice(0, -3);
-    const timeEndText = eventContent.event.end
-      ?.toLocaleTimeString()
-      .slice(0, -3);
-    return (
-      <div>
-        {/* <div>
-          Time: {timeStartText}-{timeEndText}
-        </div> */}
-        <Grid container item justifyContent="space-between" alignItems="center">
-          <Grid item>
-            <b>Time: </b>
-            {timeStartText}-{timeEndText}
-          </Grid>
-          <Grid item marginRight="0.5rem">
-            <IconButton
-              style={{ padding: "0" }}
-              onClick={() => {
-                removeEvent(idToRemove);
-              }}
-            >
-              {<DeleteIcon style={{ color: "grey", fontSize: "1rem" }} />}
-            </IconButton>
-          </Grid>
-        </Grid>
-        <div>Title: {eventContent.event.title}</div>
-        <div>
-          Participent: {manual?.participants ? manual?.participants : 0}
-        </div>
-        {manual?.description && <div>Description: {manual.description}</div>}
-      </div>
-    );
+    const resData = objData[Type]
+      ? objData[Type]
+      : { ...objData["event" || "Task"] };
+    const idToRemove = resData?.id ? resData.id : "";
+
+    const sameProps = {
+      title: eventContent.event.title,
+      id: idToRemove,
+      type,
+    };
+
+    const objEventFCProps = {
+      removeEvent,
+      start: eventContent.event.start,
+      end: eventContent.event.end,
+
+      participants: objData["event"]?.participants
+        ? objData["event"]?.participants
+        : "",
+      description: objData["event"]?.description
+        ? objData["event"]?.description
+        : "",
+      ...sameProps,
+    };
+    const objTaskFCProps = {
+      removeEvent: removeTask,
+      time: eventContent.event.start,
+      status: objData["task"]?.status ? objData["task"]?.status : false,
+      description: objData["task"]?.description
+        ? objData["task"]?.description
+        : "",
+      ...sameProps,
+    };
+
+    const ResRturn = {
+      event: <EventFC {...objEventFCProps} />,
+      task: <TaskFC {...objTaskFCProps} />,
+    };
+
+    return ResRturn[Type];
   };
 };

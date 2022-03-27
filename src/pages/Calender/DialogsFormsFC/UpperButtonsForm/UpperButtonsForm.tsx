@@ -5,10 +5,8 @@ import { setSomeKeyStateTrue } from "../../../../helpers/helperFunction";
 import { ActiveForm } from "../DialogsFormsFC";
 
 function UpperButtonsForm({
-  activeForm,
   setActiveForm,
 }: {
-  activeForm: ActiveForm;
   setActiveForm: React.Dispatch<React.SetStateAction<ActiveForm>>;
 }) {
   const { Button } = FormComponetsExportMui;
@@ -26,7 +24,7 @@ function UpperButtonsForm({
   };
   const onClick = (key: ActiveForm) => {
     setActiveForm(key);
-    setActiveButton((pre) => setSomeKeyStateTrue(activeButton, key));
+    setActiveButton(setSomeKeyStateTrue(activeButton, key));
   };
 
   return (

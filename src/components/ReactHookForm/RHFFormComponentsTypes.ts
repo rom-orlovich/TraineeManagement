@@ -13,6 +13,7 @@ import {
 import { AnyFun, propsType } from "../../helpers/GlobalType";
 
 import {
+  CheckBoxInputProps,
   DatePickerPropsType,
   SelectInputPropsMui,
   TimePickerPropsType,
@@ -36,6 +37,9 @@ type ControlInput<T> = {
 export type InputRHFprops<T> = ControlInput<T> &
   Omit<TextFieldProps, "defaultValue" | "name">;
 
+export type CheckboxRHF<T> = ControlInput<T> & {
+  checkboxMuiProps?: Omit<CheckBoxInputProps, "control" | "label">;
+} & { label: string | number | React.ReactElement };
 export type SelectInputTypeMui<T> = ControlInput<T> & SelectInputPropsMui;
 
 export type TimePickerPropsRHF<T> = ControlInput<T> & {

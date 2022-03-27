@@ -3,15 +3,14 @@ export interface AddTaskFormInterface {
   id?: string;
   type?: string;
   nameTask: string;
-  time: string;
+  time: Date;
   status: boolean;
-
   description?: string;
 }
 export const defaultValueAddTask: AddTaskFormInterface = {
   date: new Date(),
   nameTask: "",
-  time: "",
+  time: new Date(),
   status: false,
   description: "",
 };

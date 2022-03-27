@@ -19,11 +19,12 @@ function TimePickerRHF<T>({
         return (
           <TimePickerMui
             textFieldProps={{
-              error: !!error,
+              ...timePicker?.textFieldProps,
+
+              error: error ? true : false,
               helperText: !!error
                 ? error.message
                 : timePicker?.textFieldProps?.helperText,
-              ...timePicker?.textFieldProps,
             }}
             {...field}
             {...timePicker}

@@ -1,14 +1,11 @@
-import { border, width } from "@mui/system";
 import React, { useState } from "react";
-import { FormComponetsExportMui } from "../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import { useGetDialogWithOpenState } from "../../../helpers/HelperHooks";
-import useReducerFCHooks from "../FullCalenderReducer/RedcuerFCHooks";
+import { FullCalenderInitalState } from "../FullCalenderReducer/TypesReducerFC";
+
 import AddEventForm from "./AddEventForm/AddEventForm";
 import { AddEventFormInterface } from "./AddEventForm/AddEventFormTypes";
 import AddTaskForm from "./AddTaskForm/AddTaskForm";
 import { AddTaskFormInterface } from "./AddTaskForm/AddTaskFormTypes";
-import { EventsTypeValues } from "./DialogFormsTypes";
 import UpperButtonsForm from "./UpperButtonsForm/UpperButtonsForm";
 export type ActiveForm = "addEvent" | "addTask";
 function DialogsFormsFC({
@@ -16,32 +13,41 @@ function DialogsFormsFC({
   setEvent,
   setDialogClose,
   setNewTask,
+  stateFullCalender,
 }: {
   curDate: Date;
   setDialogClose: React.Dispatch<React.SetStateAction<boolean>>;
   setEvent: (data: AddEventFormInterface) => void;
   setNewTask: (data: AddTaskFormInterface) => void;
+  stateFullCalender: FullCalenderInitalState;
 }) {
-  const { Button } = FormComponetsExportMui;
-
   const { Grid } = UIComponentsExportMui;
+  const { curEventClick, tasksManual, eventsManual, eventsFC } =
+    stateFullCalender;
+  const publicId = curEventClick?.event?._def.publicId
+    ? curEventClick?.event?._def.publicId
+    : "";
+
+  const [type, id] = publicId.split("/");
+  const objData = {
+    event: eventsManual.find((el) => el.id === publicId),
+    task: tasksManual.find((el) => el.id === publicId),
+  };
+  const dataEventsFC = eventsFC.find((el) => el.id === publicId);
+  const dataEventFCtrue = dataEventsFC ? dataEventsFC : {};
+  const eventProps = {
+    ...objData["event"],
+    dataEventsFC,
+  };
+  const propsForm = {
+    curDate,
+    setDialogClose,
+  };
 
   const FormDisplay: { [keyof in ActiveForm]: JSX.Element } = {
-    addEvent: (
-      <AddEventForm
-        curDate={curDate}
-        setEvent={setEvent}
-        setDialogClose={setDialogClose}
-      />
-    ),
+    addEvent: <AddEventForm setEvent={setEvent} {...propsForm} />,
 
-    addTask: (
-      <AddTaskForm
-        curDate={curDate}
-        setNewTask={setNewTask}
-        setDialogClose={setDialogClose}
-      ></AddTaskForm>
-    ),
+    addTask: <AddTaskForm setNewTask={setNewTask} {...propsForm}></AddTaskForm>,
   };
 
   const [activeForm, setActiveForm] = useState<ActiveForm>("addEvent");
@@ -49,10 +55,7 @@ function DialogsFormsFC({
   return (
     <>
       <Grid container item>
-        <UpperButtonsForm
-          activeForm={activeForm}
-          setActiveForm={setActiveForm}
-        />
+        <UpperButtonsForm setActiveForm={setActiveForm} />
         <Grid container item>
           {FormDisplay[activeForm]}
         </Grid>

@@ -88,3 +88,8 @@ export function setSomeKeyStateTrue<T>(obj: T, ...keys: (keyof T)[]) {
     ...setPropsToTrue(obj, ...keys),
   };
 }
+
+export const captialFirstLetter = (str: string) => {
+  const newStr = str.toLocaleLowerCase();
+  return newStr[0].toUpperCase() + newStr.slice(1);
+};

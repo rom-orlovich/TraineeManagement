@@ -14,20 +14,29 @@ import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
 
 import TimePickerRHF from "../../../../components/ReactHookForm/Components/TimePickerRHF";
 import FooterButtonsDialog from "../FooterButtonsDialog/FooterButtonsDialog";
-import { EventsTypeValues } from "../DialogFormsTypes";
-
+interface eventProps {
+  date: Date;
+  title: string;
+  id: string;
+  type: string;
+  start: Date | null;
+  end: Date | null;
+  participants: string;
+  description: string;
+}
 const { Button } = FormComponetsExportMui;
 
 const { Grid } = UIComponentsExportMui;
 function AddEventForm({
   curDate,
-
   setEvent,
   setDialogClose,
+  existEvent,
 }: {
   curDate: Date;
   setDialogClose: React.Dispatch<React.SetStateAction<boolean>>;
   setEvent: (data: AddEventFormInterface) => void;
+  existEvent?: eventProps;
 }) {
   return (
     <>
@@ -42,7 +51,7 @@ function AddEventForm({
           return (
             <Form
               submitFun={handleSubmit((data) => {
-                setEvent(data);
+                setEvent({ ...data, type: "event" });
                 setDialogClose(false);
               })}
             >
@@ -90,7 +99,10 @@ function AddEventForm({
                       timePicker={{
                         label: "Start Event",
                         PopperProps: { placement: "auto" },
-                        textFieldProps: { variant: "standard" },
+                        textFieldProps: {
+                          variant: "standard",
+                          type: "datetime-local",
+                        },
                       }}
                     />
                   </Grid>
@@ -101,7 +113,10 @@ function AddEventForm({
                       timePicker={{
                         label: "End Event",
                         PopperProps: { placement: "auto" },
-                        textFieldProps: { variant: "standard" },
+                        textFieldProps: {
+                          variant: "standard",
+                          type: "datetime-local",
+                        },
                       }}
                     />
                   </Grid>
