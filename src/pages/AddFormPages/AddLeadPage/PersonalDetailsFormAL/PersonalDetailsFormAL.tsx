@@ -24,12 +24,12 @@ function PersonalDetailsFormAL({ className }: { className?: string }) {
       <Grid container item columns={15} flexDirection="row">
         <Grid item md={3}>
           <DatePickerRHF
+            control={control}
+            name="date"
             datePicker={{
               label: "Date",
               textFieldProps: { variant: "standard" },
             }}
-            control={control}
-            name="date"
           />
         </Grid>
         <Grid item md={3}>

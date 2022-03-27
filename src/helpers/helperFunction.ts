@@ -59,17 +59,6 @@ let arrayNumberUntilI = (length) => {
 // @ts-ignore
 let diffArray = (arr1, arr2) => arr1.map((el, i) => Math.abs(el - arr2[i]));
 
-export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
-  let newObj = {};
-  for (const p in obj) {
-    {
-      newObj = { ...newObj, [p]: keys.some((el) => el === p) ? true : false };
-    }
-  }
-
-  return newObj;
-};
-
 export function getExactPriceProductList<T extends OptionObjWithPrice[]>(
   objArr: T,
   value: string
@@ -83,4 +72,19 @@ export function createNewSelectOptionsArray(
   return obj.map(({ value, name }) => {
     return { label: name, value };
   });
+}
+
+export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
+  let newObj = {};
+  for (const p in obj)
+    newObj = { ...newObj, [p]: keys.some((el) => el === p) ? true : false };
+
+  return newObj;
+};
+
+export function setSomeKeyStateTrue<T>(obj: T, ...keys: (keyof T)[]) {
+  return {
+    ...obj,
+    ...setPropsToTrue(obj, ...keys),
+  };
 }

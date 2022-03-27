@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  FormComponetsExportMui,
-  smallWidthStyle,
-} from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
+
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
 import DatePickerRHF from "../../../../components/ReactHookForm/Components/DatePickerRHF";
 import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
@@ -14,7 +11,7 @@ import { FormValuesAddTraineeInterface } from "../FormValuesAddTrainee";
 import ST from "./PersonalDetailsFormAT.module.scss";
 function PersonalDetailsFormAT({ className }: { className?: string }) {
   const { Grid } = UIComponentsExportMui;
-  const { FormGroup } = FormComponetsExportMui;
+
   const { useFormContext } = UtilitesRHF;
   const { control } = useFormContext<FormValuesAddTraineeInterface>();
   return (

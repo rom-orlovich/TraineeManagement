@@ -4,7 +4,7 @@ import FullCalender from "./FullCalender/FullCalender";
 
 function Calender() {
   return (
-    <section style={{ height: "100%", padding: "0.5rem 2rem 1rem " }}>
+    <section style={{ height: "100%", padding: "0.3rem 2rem 0.8rem " }}>
       <FullCalender />
     </section>
   );

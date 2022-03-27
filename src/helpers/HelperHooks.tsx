@@ -5,11 +5,11 @@ import { propsType } from "./GlobalType";
 import { classNameMaker, mapEl, printVariable } from "./helperFunction";
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
 import { FormComponetsExportMui } from "../components/MUI/FormComponetsExport/FormComponetsExportMui";
-import { TextFieldProps } from "@mui/material";
+import { DialogProps, TextFieldProps } from "@mui/material";
 import SelectInputMui from "../components/MUI/FormCompnents/SelectInputMui/SelectInputMui";
 import { SelectInputPropsMui } from "../components/MUI/FormCompnents/MUIFormComponentsType";
-import { DialogsMuiTypeProps } from "../components/MUI/UIComponents/DialogTypes";
-import DialogMui from "../components/MUI/UIComponents/Dialog";
+import { DialogsMuiTypeProps } from "../components/MUI/UIComponents/DialogMui/DialogMuiTypes";
+import DialogMui from "../components/MUI/UIComponents/DialogMui/DialogMui";
 //print state
 
 export const useFollowState = (...args: Record<string, any>[]) => {
@@ -104,12 +104,17 @@ export function useGetSelectInputMui<T extends string>(
 export const useGetDialogWithOpenState = () => {
   const [stateIsOpen, setStateIsOpen] = useState(false);
   const el = useCallback(
-    ({ children, title }: { title?: string } & propsType) => {
+    ({
+      children,
+      title,
+      ...rest
+    }: { title?: string } & propsType & Omit<DialogProps, "open">) => {
       return (
         <DialogMui
-          isOpen={stateIsOpen}
+          open={stateIsOpen}
           title={title}
           onClose={() => setStateIsOpen(false)}
+          {...rest}
         >
           {children}
         </DialogMui>

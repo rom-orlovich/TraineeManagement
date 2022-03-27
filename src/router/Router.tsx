@@ -16,7 +16,7 @@ import UserProfilePage from "../pages/UserProfilePage/UserProfilePage";
 import AddTraineePage from "../pages/AddFormPages/AddTraineePage/AddTraineePage";
 import AddLeadPage from "../pages/AddFormPages/AddLeadPage/AddLeadPage";
 import AddActivityPage from "../pages/AddFormPages/AddActivityPage/AddActivityPage";
-import AddTaskPage from "../pages/AddFormPages/AddTaskPage/AddTaskPage";
+
 import AddProductPage from "../pages/AddFormPages/AddProductPage/AddProductPage";
 
 function Router() {
@@ -37,7 +37,7 @@ function Router() {
         <Route path="financial/activities" element={<Activities />} />
         <Route path="activities/addActivity" element={<AddActivityPage />} />
         <Route path="analytics" element={<Analytics />} />
-        <Route path="addTask" element={<AddTaskPage />} />
+
         <Route path="addProduct" element={<AddProductPage />} />
         {/* <Route path="setting" element={<Settings />}></Route> */}
         <Route path="*" element={<PageNotFound />} />

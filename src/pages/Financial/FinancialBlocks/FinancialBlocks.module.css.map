@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,IAAI,CAAJ,wCAAI",
+    "sources": [
+        "FinancialBlocks.module.scss"
+    ],
+    "names": [],
+    "file": "FinancialBlocks.module.css"
+}

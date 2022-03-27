@@ -1,0 +1,55 @@
+@use "../../../style/utlites/utilites.scss" as *;
+
+div[class*="fc"][class*="fc-theme-standard"] {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  div[class*="fc-header-toolbar fc-toolbar"] {
+    //header
+    margin-bottom: 0.3rem;
+    //title
+    h2 {
+      font-weight: 500;
+    }
+  }
+  div[class*="fc-daygrid fc-dayGridMonth-view fc-view"] {
+    table[role*="grid"][class*="fc-scrollgrid  fc-scrollgrid-liquid"] {
+      //table border
+      border-radius: 5px;
+      //table head
+      th {
+        font-weight: 500;
+      }
+    }
+
+    table[role*="presentation"][class*="fc-scrollgrid-sync-table"] {
+      //table height
+      height: 410px !important;
+    }
+  }
+
+  th {
+    font-weight: 500 !important;
+  }
+}
+
+//general style
+//padding "all day y-axis"
+span[class*="fc-scrollgrid-sync-inner"] {
+  padding: 0 0 !important;
+}
+//today cell color
+td[role*="gridcell"][class*="fc-day-today "] {
+  background-color: rgba(161, 170, 255, 0.4) !important;
+}
+
+div[class*="fc-scroller-harness fc-scroller-harness-liquid"] {
+  div[class*="fc-timegrid-event-harness fc-timegrid-event-harness-inset"] {
+    min-height: 4rem !important;
+    height: fit-content;
+  }
+}
+//events style
+a[class*="fc-daygrid-dot-event"] {
+  display: block;
+}

@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,IAAI,CAAJ,mCAAI",
+    "sources": [
+        "ListElements.module.scss"
+    ],
+    "names": [],
+    "file": "ListElements.module.css"
+}

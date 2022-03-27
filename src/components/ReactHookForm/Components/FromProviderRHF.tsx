@@ -1,5 +1,5 @@
 import React, { Children } from "react";
-import { FieldValues } from "react-hook-form";
+import { FieldValues, UseFormReturn } from "react-hook-form";
 import { propsType } from "../../../helpers/GlobalType";
 import { FormProviderMuiType } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
@@ -13,10 +13,6 @@ function FormProviderRHF<T extends FieldValues>({
   return (
     <FormProvider {...methods}>
       {typeof children === "function" ? children(methods) : children}
-      {/* {React.Children.map(children, (child) => {
-        console.log(child);
-        return child;
-      })} */}
       {/* {children} */}
     </FormProvider>
   );

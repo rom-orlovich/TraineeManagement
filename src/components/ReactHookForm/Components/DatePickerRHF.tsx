@@ -10,7 +10,8 @@ function DatePickerRHF<T>({
   control,
   name,
   datePicker,
-  ...rest
+
+  ...controllerProps
 }: DatePickerPropsRHF<T>) {
   return (
     <Controller
@@ -28,7 +29,7 @@ function DatePickerRHF<T>({
             }}
             {...field}
             {...datePicker}
-            {...rest}
+            {...controllerProps}
           />
         );
       }}

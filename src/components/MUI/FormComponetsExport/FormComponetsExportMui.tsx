@@ -9,6 +9,10 @@ import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import LocalizationProvider from "@mui/lab/LocalizationProvider";
 import DatePicker from "@mui/lab/DatePicker";
 import TimePicker from "@mui/lab/TimePicker";
+
+import FormControlLabel from "@mui/material/FormControlLabel";
+import Checkbox from "@mui/material/Checkbox";
+
 export const mediumWidthStyle = { width: "10rem" };
 export const smallWidthStyle = { width: "7rem" };
 export const extraSmallWidthStyle = { width: "5rem" };
@@ -25,4 +29,6 @@ export const FormComponetsExportMui = {
   LocalizationProvider,
   DatePicker,
   TimePicker,
+  FormControlLabel,
+  Checkbox,
 };

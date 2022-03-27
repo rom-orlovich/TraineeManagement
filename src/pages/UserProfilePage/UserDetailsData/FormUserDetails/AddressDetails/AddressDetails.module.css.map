@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,IAAI,CAAJ,iDAAI;AACJ,AAAA,YAAY,CAAC;EACX,WAAW,EAAE,GAAG;EAChB,OAAO,EAAE,QAAQ;EACjB,aAAa,EAAE,MAAM;CACtB",
+    "sources": [
+        "AddressDetails.module.scss"
+    ],
+    "names": [],
+    "file": "AddressDetails.module.css"
+}

@@ -14,26 +14,23 @@ import {
 } from "./FormValuesAddActivity";
 import AddExpenseForm from "./AddExpenseForm/AddExpenseForm";
 
-import { FormComponetsExportMui } from "../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import InputRHF from "../../../components/ReactHookForm/Components/InputRHF";
 import FooterFormButtons from "../FooterFormButtons/FooterFormButtons";
 import ST from "./AddActivityPage.module.scss";
 import { optionSelect } from "../../../DummyData/DummyData";
-import SelectInputRHF from "../../../components/ReactHookForm/Components/SelectInputRHF";
-import {
-  useFollowState,
-  useGetManageSelectInputState,
-} from "../../../helpers/HelperHooks";
+
+import { useGetManageSelectInputState } from "../../../helpers/HelperHooks";
 
 function AddActivityPage({ className }: propsType) {
-  const { Grid } = UIComponentsExportMui;
-  const { state, el: SelectInputMui } = useGetManageSelectInputState<
-    "income" | "expense"
-  >(optionSelect[11]);
   const incomeOrExpenseDisplay = {
     income: <AddIncomeForm />,
     expense: <AddExpenseForm />,
   };
+  const { Grid } = UIComponentsExportMui;
+  const { state, el: SelectInputMui } = useGetManageSelectInputState<
+    "income" | "expense"
+  >(optionSelect[11]);
+
   return (
     <section className={classNameMaker(ST.page_form, className)}>
       <FormProviderRHF
