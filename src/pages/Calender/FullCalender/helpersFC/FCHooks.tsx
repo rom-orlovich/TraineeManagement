@@ -1,16 +1,24 @@
 import { DateClickArg } from "@fullcalendar/interaction";
-import { DayCellContentArg, EventContentArg } from "@fullcalendar/react";
-import { useCallback } from "react";
+import {
+  CalendarOptions,
+  DayCellContentArg,
+  EventContentArg,
+} from "@fullcalendar/react";
+import { useCallback, useMemo } from "react";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { ReactDispatch } from "../../../../helpers/GlobalType";
+import { classNameMaker } from "../../../../helpers/helperFunction";
+
 import { AddEventFormInterface } from "../../DialogsFormsFC/AddEventForm/AddEventFormTypes";
 import { AddTaskFormInterface } from "../../DialogsFormsFC/AddTaskForm/AddTaskFormTypes";
+import useReducerFCHooks from "../../ReducerFC/RedcuerFCHooks";
 import EventFC from "../ComponentsFC/EventFC/EventFC";
 import TaskFC from "../ComponentsFC/TaskFC/TaskFC";
+import { ExportComponentsFC } from "./ExportComponentsFC";
 import { getTypeAndIdFromEvent } from "./HelperFunFC";
 export type dataType = "task" | "event";
 const { Button } = FormComponetsExportMui;
-
+//inject the day number element
 export const useInjectCellContent = (setState: ReactDispatch<boolean>) => {
   return (args: DayCellContentArg) => (
     <div>
@@ -31,7 +39,7 @@ export const useInjectCellContent = (setState: ReactDispatch<boolean>) => {
     </div>
   );
 };
-
+//when set the info of date that click
 export const useDateCellClick = (
   setOpenDialog: ReactDispatch<boolean>,
   setInfo: (info: DateClickArg) => void
@@ -98,6 +106,66 @@ export const useRenderEventContent = (
     return ResRturn[Type];
   };
 };
+const { dayGridPlugin, interactionPlugin, timeGridPlugin } = ExportComponentsFC;
+//hook that create the props of full calender component
+export function useFullCalenderProps(
+  className: { [key: string]: string },
+  setDialogOpen: React.Dispatch<React.SetStateAction<boolean>>
+) {
+  //reducer state of the full calander component
+  const useReducerFC = useReducerFCHooks();
 
-// ? objData[Type]
-//       // : { ...objData["event" || "Task"] };
+  const {
+    stateFullCalender,
+    setCurEventClick,
+    setInfo,
+    removeEvent,
+    removeTask,
+  } = useReducerFC;
+  const dateClick = useDateCellClick(setDialogOpen, setInfo);
+  const { eventsFC, eventsManual, tasksManual } = stateFullCalender;
+
+  const contentUserRenderEvent = useRenderEventContent(
+    eventsManual,
+    tasksManual,
+    removeEvent,
+    removeTask
+  );
+
+  //the props of the calenderfc
+  const propsFC: CalendarOptions = useMemo(() => {
+    return {
+      plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
+      eventClick: (event) => {
+        if (event.jsEvent.composedPath().length === 32) return;
+        setCurEventClick(event);
+        setDialogOpen(true);
+      },
+      eventDidMount: (info) => {
+        const { Type } = getTypeAndIdFromEvent(info.event);
+        info.el.style.backgroundColor =
+          Type === "event" ? "#8f8fff" : "#ff2929";
+      },
+      eventContent: contentUserRenderEvent,
+      initialView: "dayGridMonth",
+      height: "100%",
+      dateClick: dateClick,
+      events: eventsFC,
+      viewClassNames: classNameMaker(className),
+      headerToolbar: {
+        left: "prev today next",
+        center: "title",
+        right: "timeGridDay timeGridWeek dayGridMonth",
+      },
+    };
+  }, [
+    eventsManual,
+    tasksManual,
+    eventsFC,
+    className,
+    dayGridPlugin,
+    interactionPlugin,
+    timeGridPlugin,
+  ]);
+  return { propsFC, useReducerFC };
+}

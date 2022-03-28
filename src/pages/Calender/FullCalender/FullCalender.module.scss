@@ -53,3 +53,7 @@ div[class*="fc-scroller-harness fc-scroller-harness-liquid"] {
 a[class*="fc-daygrid-dot-event"] {
   display: block;
 }
+//the day frame of every cell in the table of the calender
+div[class*="fc-daygrid-day-frame"] {
+  cursor: pointer !important;
+}
