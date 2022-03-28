@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
@@ -12,44 +12,45 @@ import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
 import TimePickerRHF from "../../../../components/ReactHookForm/Components/TimePickerRHF";
 import FooterButtonsDialog from "../FooterButtonsDialog/FooterButtonsDialog";
 import CheckBoxRHF from "../../../../components/ReactHookForm/Components/CheckBoxRHF";
-interface taskProps {
-  date: Date;
-  type: string;
-  title: string;
-  id: string;
-
-  time: Date | null;
-  status: boolean;
-  description: string;
-}
-const { Button } = FormComponetsExportMui;
 
 const { Grid } = UIComponentsExportMui;
 function AddTaskForm({
   curDate,
-  exsitTask,
+  existTask,
   setNewTask,
   setDialogClose,
 }: {
   curDate: Date;
   setDialogClose: React.Dispatch<React.SetStateAction<boolean>>;
   setNewTask: (data: AddTaskFormInterface) => void;
-  exsitTask?: taskProps;
+  existTask?: AddTaskFormInterface;
 }) {
+  const [check, setCheck] = useState(
+    existTask?.status ? existTask?.status : defaultValueAddTask.status
+  );
   return (
     <>
       <FormProviderRHF<AddTaskFormInterface>
         values={{
-          defaultValues: { ...defaultValueAddTask, date: curDate },
+          defaultValues: {
+            ...defaultValueAddTask,
+            date: curDate,
+            ...existTask,
+            // status: check,
+          },
 
           mode: "onBlur",
         }}
       >
-        {({ handleSubmit, control }: UseFormReturn<AddTaskFormInterface>) => {
+        {({
+          handleSubmit,
+          control,
+          setValue,
+        }: UseFormReturn<AddTaskFormInterface>) => {
           return (
             <Form
               submitFun={handleSubmit((data) => {
-                setNewTask({ ...data, type: "task" });
+                setNewTask({ ...data, type: "task", status: check });
                 setDialogClose(false);
               })}
             >
@@ -112,6 +113,16 @@ function AddTaskForm({
                   control={control}
                   name="status"
                   label="Done?"
+                  checkboxMuiProps={{
+                    checkboxProps: {
+                      checked: check,
+
+                      onChange: (e) => {
+                        setValue("status", e.target.checked);
+                        setCheck(e.target.checked);
+                      },
+                    },
+                  }}
                 ></CheckBoxRHF>
                 <FooterButtonsDialog setDialogClose={setDialogClose} />
               </Grid>

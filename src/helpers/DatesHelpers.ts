@@ -21,12 +21,11 @@ export const getLocalDate = (date: Date, local = window.navigator.language) => {
 };
 export const getLocalDateFromInput = (date: string) => {
   let [d, m, y] = date.includes(".")
-    ? // let [y, m, d] = date.includes(".")
-      date.split(".")
+    ? date.split(".")
     : date.includes("/")
     ? date.split("/")
     : date.split("-");
-  // console.log(y, m, d);
+
   d = padStartWithZero(d);
   m = padStartWithZero(m);
   return d + "/" + m + "/" + y;
@@ -92,7 +91,7 @@ export const getDateDetails = (cur: Date) => {
 };
 // hours,min,sec
 export const getTimeDateDetails = (cur: Date) => {
-  return [cur.getUTCHours(), cur.getUTCMinutes(), cur.getUTCSeconds()] as const;
+  return [cur.getHours(), cur.getMinutes(), cur.getSeconds()] as const;
 };
 export const getLocalTime = (cur: Date) =>
   cur.toLocaleTimeString().slice(0, -3);

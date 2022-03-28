@@ -12,11 +12,7 @@ function FooterButtonsDialog({
   return (
     <Grid container item md={12} spacing={3} justifyContent="space-around">
       <Grid item>
-        <Button
-          type="submit"
-          variant="contained"
-          onClick={() => setDialogClose(false)}
-        >
+        <Button variant="contained" onClick={() => setDialogClose(false)}>
           Cancel
         </Button>
       </Grid>

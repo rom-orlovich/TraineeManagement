@@ -14,6 +14,7 @@ import DialogMui from "../components/MUI/UIComponents/DialogMui/DialogMui";
 
 export const useFollowState = (...args: Record<string, any>[]) => {
   useEffect(() => {
+    console.log("useFollowState");
     args.forEach((el, i) => {
       const key = printVariable(el);
       console.log(key, el[key]);

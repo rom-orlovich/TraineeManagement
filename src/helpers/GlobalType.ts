@@ -17,7 +17,7 @@ export type MouseEventHook = {
 };
 export type ReactDispatch<T> = React.Dispatch<React.SetStateAction<T>>;
 export type IdType = string | number;
-export type ObjExtendIDKey<T> = T & { id: IdType };
+export type ObjExtendIDKey<T> = T & { id?: string };
 export type TimeLinePeriodValueType =
   | "daily"
   | "weekly"

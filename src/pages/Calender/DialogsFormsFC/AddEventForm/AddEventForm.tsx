@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
@@ -14,17 +14,17 @@ import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
 
 import TimePickerRHF from "../../../../components/ReactHookForm/Components/TimePickerRHF";
 import FooterButtonsDialog from "../FooterButtonsDialog/FooterButtonsDialog";
-interface eventProps {
-  date: Date;
-  title: string;
-  id: string;
-  type: string;
-  start: Date | null;
-  end: Date | null;
-  participants: string;
-  description: string;
-}
-const { Button } = FormComponetsExportMui;
+import { useFollowState } from "../../../../helpers/HelperHooks";
+// interface eventProps {
+//   date: Date;
+//   title: string;
+//   id: string;
+//   type: string;
+//   start: Date | null;
+//   end: Date | null;
+//   participants: string;
+//   description: string;
+// }
 
 const { Grid } = UIComponentsExportMui;
 function AddEventForm({
@@ -36,13 +36,19 @@ function AddEventForm({
   curDate: Date;
   setDialogClose: React.Dispatch<React.SetStateAction<boolean>>;
   setEvent: (data: AddEventFormInterface) => void;
-  existEvent?: eventProps;
+  existEvent?: AddEventFormInterface;
 }) {
+  const [defaultValue, setDefaultValue] = useState({
+    ...defaultValueAddEvent,
+    date: curDate,
+    ...existEvent,
+  });
+
   return (
     <>
       <FormProviderRHF<AddEventFormInterface>
         values={{
-          defaultValues: { ...defaultValueAddEvent, date: curDate },
+          defaultValues: defaultValue,
 
           mode: "onBlur",
         }}
@@ -51,7 +57,11 @@ function AddEventForm({
           return (
             <Form
               submitFun={handleSubmit((data) => {
-                setEvent({ ...data, type: "event" });
+                setEvent({
+                  ...data,
+                  type: "event",
+                  id: existEvent ? existEvent.id : undefined,
+                });
                 setDialogClose(false);
               })}
             >

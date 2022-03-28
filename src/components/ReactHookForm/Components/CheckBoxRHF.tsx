@@ -15,7 +15,7 @@ function CheckBoxRHF<T>({
         <CheckboxMui
           label={label}
           {...checkboxMuiProps}
-          checkboxProps={{ ...field }}
+          checkboxProps={{ ...field, ...checkboxMuiProps?.checkboxProps }}
         />
       )}
       control={control}

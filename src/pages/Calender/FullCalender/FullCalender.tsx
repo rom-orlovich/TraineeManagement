@@ -4,18 +4,16 @@ import {
   useGetDialogWithOpenState,
 } from "../../../helpers/HelperHooks";
 
-import { FullCalenderComponentsUtilites } from "./helpersFullCalenderHooks/FullCalenderComponents";
+import { ExportComponentsFC } from "./helpersFC/ExportComponentsFC";
 
-import {
-  useDateCellClick,
-  useRenderEventContent,
-} from "./helpersFullCalenderHooks/FCHooks";
+import { useDateCellClick, useRenderEventContent } from "./helpersFC/FCHooks";
 
-import useReducerFCHooks from "../FullCalenderReducer/RedcuerFCHooks";
+import useReducerFCHooks from "../ReducerFC/RedcuerFCHooks";
 import ST from "./FullCalender.module.scss";
 import DialogsFormsFC from "../DialogsFormsFC/DialogsFormsFC";
+import { getTypeAndIdFromEvent } from "./helpersFC/HelperFunFC";
 const { FullCalendar, dayGridPlugin, interactionPlugin, timeGridPlugin } =
-  FullCalenderComponentsUtilites;
+  ExportComponentsFC;
 
 function FullCalender() {
   const { setStateIsOpen, DialogMui } = useGetDialogWithOpenState();
@@ -32,28 +30,20 @@ function FullCalender() {
   const dateClick = useDateCellClick(setStateIsOpen, setInfo);
   const { eventsFC, eventsManual, tasksManual, curClickFC, curEventClick } =
     stateFullCalender;
-  useFollowState({ curEventClick: curEventClick });
-
+  // useFollowState({ stateFullCalender: stateFullCalender });
   return (
     <>
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin, timeGridPlugin]}
         eventClick={(event) => {
-          console.log(event);
+          if (event.jsEvent.composedPath().length === 32) return;
           setCurEventClick(event);
+          setStateIsOpen(true);
         }}
         eventDidMount={(info) => {
-          // console.log(info.event._def.publicId);
-          const [type, id] = info.event._def.publicId.split("/");
+          const { Type, id } = getTypeAndIdFromEvent(info.event);
           info.el.style.backgroundColor =
-            type === "event" ? "#8f8fff" : "#ff2929";
-        }}
-        eventChange={(info) => {
-          console.log(info);
-          // console.log(info.event._def.publicId);
-          // const [type, id] = info.event._def.publicId.split("/");
-          // info.el.style.backgroundColor =
-          //   type === "event" ? "#8f8fff" : "#ff2929";
+            Type === "event" ? "#8f8fff" : "#ff2929";
         }}
         eventContent={useRenderEventContent(
           eventsManual,
@@ -62,7 +52,6 @@ function FullCalender() {
           removeTask
         )}
         initialView="dayGridMonth"
-        editable
         height="100%"
         dateClick={dateClick}
         events={eventsFC}

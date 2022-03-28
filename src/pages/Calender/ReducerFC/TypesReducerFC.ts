@@ -9,7 +9,9 @@ export interface FullCalenderInitalState {
   eventsManual: AddEventFormInterface[];
   tasksManual: AddTaskFormInterface[];
   curClickFC?: Partial<DateClickArg>;
-  curEventClick?: Partial<EventClickArg>;
+  curClickEventInfo?: EventClickArg;
+  curEventClick?: AddEventFormInterface;
+  curTaskClick?: AddTaskFormInterface;
 }
 type strTypeFC =
   | "setCurEvent"
@@ -34,7 +36,7 @@ export interface typeActionFC {
     addEvent?: addEventPayload;
     addTask?: addTaskPayload;
     id?: string;
-    curEventClick?: Partial<EventClickArg>;
+    curClickEventInfo?: EventClickArg;
   };
 }
 export type DispatchTypeReducerFC = React.Dispatch<typeActionFC>;
@@ -43,7 +45,9 @@ export const FCInitalState: FullCalenderInitalState = {
   eventsManual: [],
   tasksManual: [],
   curClickFC: {},
-  curEventClick: {},
+  curClickEventInfo: undefined,
+  curEventClick: undefined,
+  curTaskClick: undefined,
 };
 export type ReturnState = {
   [p in typeActionFC["type"]]: FullCalenderInitalState;

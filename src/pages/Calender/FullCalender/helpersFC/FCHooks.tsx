@@ -7,6 +7,7 @@ import { AddEventFormInterface } from "../../DialogsFormsFC/AddEventForm/AddEven
 import { AddTaskFormInterface } from "../../DialogsFormsFC/AddTaskForm/AddTaskFormTypes";
 import EventFC from "../ComponentsFC/EventFC/EventFC";
 import TaskFC from "../ComponentsFC/TaskFC/TaskFC";
+import { getTypeAndIdFromEvent } from "./HelperFunFC";
 export type dataType = "task" | "event";
 const { Button } = FormComponetsExportMui;
 
@@ -41,6 +42,7 @@ export const useDateCellClick = (
   }, []);
 };
 
+//render fit task or event content
 export const useRenderEventContent = (
   eventManual: AddEventFormInterface[],
   tasksManual: AddTaskFormInterface[],
@@ -48,46 +50,43 @@ export const useRenderEventContent = (
   removeTask: (id: string) => void
 ) => {
   return (eventContent: EventContentArg) => {
+    const { Type, id } = getTypeAndIdFromEvent(eventContent.event);
     const eventConPublicId = eventContent.event._def.publicId;
-    const [type] = eventConPublicId.split("/");
+    const eventContentStart = eventContent.event.start;
 
-    const Type = type as dataType;
     const objData = {
       event: eventManual.find((el) => el.id === eventConPublicId),
       task: tasksManual.find((el) => el.id === eventConPublicId),
     };
 
-    const resData = objData[Type]
-      ? objData[Type]
-      : { ...objData["event" || "Task"] };
+    const resData = objData[Type];
+
     const idToRemove = resData?.id ? resData.id : "";
+
+    const participantsEvent = objData["event"]?.participants;
+    const descriptionEvent = objData["event"]?.description;
+    const statusTask = objData["task"]?.status;
+    const descriptionTask = objData["task"]?.description;
 
     const sameProps = {
       title: eventContent.event.title,
       id: idToRemove,
-      type,
+      type: Type,
     };
 
     const objEventFCProps = {
       removeEvent,
-      start: eventContent.event.start,
+      start: eventContentStart,
       end: eventContent.event.end,
-
-      participants: objData["event"]?.participants
-        ? objData["event"]?.participants
-        : "",
-      description: objData["event"]?.description
-        ? objData["event"]?.description
-        : "",
+      participants: participantsEvent ? participantsEvent : "",
+      description: descriptionEvent ? descriptionEvent : "",
       ...sameProps,
     };
     const objTaskFCProps = {
       removeEvent: removeTask,
-      time: eventContent.event.start,
-      status: objData["task"]?.status ? objData["task"]?.status : false,
-      description: objData["task"]?.description
-        ? objData["task"]?.description
-        : "",
+      time: eventContentStart,
+      status: statusTask ? statusTask : false,
+      description: descriptionTask ? descriptionTask : "",
       ...sameProps,
     };
 
@@ -99,3 +98,6 @@ export const useRenderEventContent = (
     return ResRturn[Type];
   };
 };
+
+// ? objData[Type]
+//       // : { ...objData["event" || "Task"] };

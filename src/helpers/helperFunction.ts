@@ -31,11 +31,19 @@ export const checkPositive = (text: string | number) => {
   return text ? isFinite(+text) && parseFloat(`${text}`) > 0 : false;
 };
 
-export const findById = <T>(id: IdType, arr: ObjExtendIDKey<T>[]) =>
-  arr.find((el) => el.id === id);
+export const findByID = <T>(
+  id: string | undefined,
+  arr: ObjExtendIDKey<T>[]
+) => {
+  return id ? arr.find((el) => el.id === id) : false;
+};
 
-export const filterById = <T>(id: IdType, arr: ObjExtendIDKey<T>[]) =>
-  arr.filter((el) => el.id !== id);
+export const filterById = <T>(
+  id: string | undefined,
+  arr: ObjExtendIDKey<T>[]
+) => {
+  return id ? arr.filter((el) => el.id !== id) : arr;
+};
 
 export let arrayRandom = (numMin = 0, numMax = 30, length = 12) => {
   let arr = [];
@@ -93,3 +101,23 @@ export const captialFirstLetter = (str: string) => {
   const newStr = str.toLocaleLowerCase();
   return newStr[0].toUpperCase() + newStr.slice(1);
 };
+
+const objValue = {
+  string: "",
+  number: 0,
+  boolean: false,
+  object: {},
+  bigint: 0,
+  function: (...arg: any[]) => {},
+  symbol: Symbol(""),
+  undefined: undefined,
+};
+
+export function getInitObj<T extends object>(obj: T) {
+  let newObj = {};
+  for (const p in obj) {
+    const typeValue = typeof obj[p];
+    newObj = { ...newObj, [p]: objValue[typeValue] };
+  }
+  return newObj as T;
+}

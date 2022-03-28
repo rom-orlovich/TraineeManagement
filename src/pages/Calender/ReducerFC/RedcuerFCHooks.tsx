@@ -5,48 +5,26 @@ import {
   getDateDetails,
   getTimeDateDetails,
 } from "../../../helpers/DatesHelpers";
+import {
+  filterById,
+  findByID,
+  getInitObj,
+} from "../../../helpers/helperFunction";
 import { AddEventFormInterface } from "../DialogsFormsFC/AddEventForm/AddEventFormTypes";
 import { AddTaskFormInterface } from "../DialogsFormsFC/AddTaskForm/AddTaskFormTypes";
-import { reducerFC } from "./FullCalenderReducer";
-import { FCInitalState } from "./TypesReducerFC";
-
+import { reducerFC } from "./ReducerFC";
+import {
+  addEventPayload,
+  addTaskPayload,
+  FCInitalState,
+  FullCalenderInitalState,
+} from "./TypesReducerFC";
+let countEvent = 0;
+let countTask = 0;
 //build in functions to dispatch action
 function useReducerFCHooks() {
   const [stateFullCalender, dispatchFC] = useReducer(reducerFC, FCInitalState);
 
-  const setNewTask = useCallback((data: AddTaskFormInterface) => {
-    const { nameTask, date, time, status, type, description } = data;
-    const dateFormat = {
-      id: type + "/" + nameTask + ":" + date,
-      date: date,
-    };
-
-    dispatchFC({
-      type: "addTask",
-      payload: {
-        addTask: {
-          eventFC: {
-            ...dateFormat,
-            title: nameTask,
-            start: new Date(
-              ...getDateDetails(date),
-              ...getTimeDateDetails(time)
-            ),
-            backgroundColor: "green",
-          },
-          taskManual: {
-            ...dateFormat,
-            type,
-            nameTask,
-            date,
-            time,
-            status,
-            description,
-          },
-        },
-      },
-    });
-  }, []);
   const setNewEvent = useCallback((data: AddEventFormInterface) => {
     const {
       nameEvent,
@@ -56,9 +34,11 @@ function useReducerFCHooks() {
       participants,
       type,
       description,
+      id,
     } = data;
+    countEvent++;
     const dateFormat = {
-      id: type + "/" + nameEvent + ":" + date,
+      id: id ? id : type + "/" + countEvent,
       date: date,
     };
 
@@ -77,7 +57,6 @@ function useReducerFCHooks() {
               ...getDateDetails(date),
               ...getTimeDateDetails(timeEnd)
             ),
-            backgroundColor: "blue",
           },
           eventManual: {
             ...dateFormat,
@@ -92,12 +71,51 @@ function useReducerFCHooks() {
       },
     });
   }, []);
+
+  const setNewTask = useCallback((data: AddTaskFormInterface) => {
+    const { nameTask, date, time, status, type, description, id } = data;
+    countTask++;
+
+    const dateFormat = {
+      id: id ? id : type + "/" + countTask,
+      date: date,
+    };
+
+    dispatchFC({
+      type: "addTask",
+      payload: {
+        addTask: {
+          eventFC: {
+            ...dateFormat,
+            title: nameTask,
+
+            start: new Date(
+              ...getDateDetails(date),
+              ...getTimeDateDetails(time)
+            ),
+          },
+          taskManual: {
+            ...dateFormat,
+            type,
+            nameTask,
+            date,
+            time,
+            status,
+            description,
+          },
+        },
+      },
+    });
+  }, []);
   const setInfo = useCallback((info: DateClickArg) => {
     dispatchFC({ type: "setCurInfo", payload: { infoDateFC: info } });
   }, []);
 
   const setCurEventClick = useCallback((info: EventClickArg) => {
-    dispatchFC({ type: "setCurEvent", payload: { curEventClick: info } });
+    dispatchFC({
+      type: "setCurEvent",
+      payload: { curClickEventInfo: info },
+    });
   }, []);
 
   const removeEvent = useCallback((id: string) => {
@@ -106,8 +124,10 @@ function useReducerFCHooks() {
   const removeTask = useCallback((id: string) => {
     dispatchFC({ type: "removeTask", payload: { id } });
   }, []);
+
   return {
     stateFullCalender,
+
     setNewEvent,
     setNewTask,
     setCurEventClick,
@@ -116,4 +136,5 @@ function useReducerFCHooks() {
     removeTask,
   };
 }
+
 export default useReducerFCHooks;

@@ -2,19 +2,20 @@ import React, { useState } from "react";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
 import { setSomeKeyStateTrue } from "../../../../helpers/helperFunction";
-import { ActiveForm } from "../DialogsFormsFC";
+import { ActiveForm } from "../DialogFormFCType";
 
 function UpperButtonsForm({
   setActiveForm,
+  activeForm,
 }: {
   setActiveForm: React.Dispatch<React.SetStateAction<ActiveForm>>;
+  activeForm: ActiveForm;
 }) {
   const { Button } = FormComponetsExportMui;
-
-  const [activeButton, setActiveButton] = useState({
+  const activeFormObj = {
     addEvent: true,
     addTask: false,
-  });
+  };
 
   const { Grid } = UIComponentsExportMui;
   const style = {
@@ -24,7 +25,6 @@ function UpperButtonsForm({
   };
   const onClick = (key: ActiveForm) => {
     setActiveForm(key);
-    setActiveButton(setSomeKeyStateTrue(activeButton, key));
   };
 
   return (
@@ -36,7 +36,7 @@ function UpperButtonsForm({
             style={{
               ...style,
               borderBottomColor: `${
-                activeButton["addEvent"] ? "#0865c3" : "grey"
+                activeForm === "addEvent" ? "#0865c3" : "grey"
               }`,
             }}
           >
@@ -49,7 +49,7 @@ function UpperButtonsForm({
             style={{
               ...style,
               borderBottomColor: `${
-                activeButton["addTask"] ? "#0865c3" : "grey"
+                activeForm === "addTask" ? "#0865c3" : "grey"
               }`,
             }}
           >
