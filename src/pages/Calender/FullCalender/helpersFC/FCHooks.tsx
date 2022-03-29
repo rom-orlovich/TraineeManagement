@@ -19,26 +19,7 @@ import { getTypeAndIdFromEvent } from "./HelperFunFC";
 export type dataType = "task" | "event";
 const { Button } = FormComponetsExportMui;
 //inject the day number element
-export const useInjectCellContent = (setState: ReactDispatch<boolean>) => {
-  return (args: DayCellContentArg) => (
-    <div>
-      <Button
-        variant="contained"
-        size="small"
-        style={{
-          minWidth: "20px",
-          padding: "0.2rem 0.3rem",
-          fontSize: "0.65rem",
-        }}
-        onClick={() => {
-          setState(true);
-        }}
-      >
-        {args.dayNumberText}
-      </Button>
-    </div>
-  );
-};
+
 //when set the info of date that click
 export const useDateCellClick = (
   setOpenDialog: ReactDispatch<boolean>,
@@ -58,6 +39,7 @@ export const useRenderEventContent = (
   removeTask: (id: string) => void
 ) => {
   return (eventContent: EventContentArg) => {
+    console.log(eventContent.view.type);
     const { Type, id } = getTypeAndIdFromEvent(eventContent.event);
     const eventConPublicId = eventContent.event._def.publicId;
     const eventContentStart = eventContent.event.start;
@@ -77,6 +59,7 @@ export const useRenderEventContent = (
     const descriptionTask = objData["task"]?.description;
 
     const sameProps = {
+      // displayType: eventContent.view.type,
       title: eventContent.event.title,
       id: idToRemove,
       type: Type,
@@ -97,7 +80,7 @@ export const useRenderEventContent = (
       description: descriptionTask ? descriptionTask : "",
       ...sameProps,
     };
-
+    // pass to the props also the view of the event in order to fit it to the space of the event in the calender
     const ResRturn = {
       event: <EventFC {...objEventFCProps} />,
       task: <TaskFC {...objTaskFCProps} />,
@@ -105,6 +88,27 @@ export const useRenderEventContent = (
 
     return ResRturn[Type];
   };
+};
+
+export const useInjectCellContent = (setState: ReactDispatch<boolean>) => {
+  return (args: DayCellContentArg) => (
+    <div>
+      {/* <Button
+        variant="contained"
+        size="small"
+        style={{
+          minWidth: "20px",
+          padding: "0.2rem 0.3rem",
+          fontSize: "0.65rem",
+        }}
+        onClick={() => {
+          setState(true);
+        }}
+      > */}
+      {args.dayNumberText}
+      {/* </Button> */}
+    </div>
+  );
 };
 const { dayGridPlugin, interactionPlugin, timeGridPlugin } = ExportComponentsFC;
 //hook that create the props of full calender component
@@ -137,18 +141,26 @@ export function useFullCalenderProps(
     return {
       plugins: [dayGridPlugin, interactionPlugin, timeGridPlugin],
       eventClick: (event) => {
-        if (event.jsEvent.composedPath().length === 32) return;
+        const arrComposedPathLength = event.jsEvent.composedPath().length;
+        if (
+          arrComposedPathLength === 32 ||
+          arrComposedPathLength == 33 ||
+          arrComposedPathLength == 34
+        )
+          return;
+        console.log(event.jsEvent.composedPath());
         setCurEventClick(event);
         setDialogOpen(true);
       },
       eventDidMount: (info) => {
         const { Type } = getTypeAndIdFromEvent(info.event);
-        // info.el.style.backgroundColor =
-        //   Type === "event" ? "#8f8fff" : "#ff2929";
+
         console.log(info.event);
       },
       eventContent: contentUserRenderEvent,
+
       initialView: "dayGridMonth",
+
       height: "100%",
       dateClick: dateClick,
       events: eventsFC,

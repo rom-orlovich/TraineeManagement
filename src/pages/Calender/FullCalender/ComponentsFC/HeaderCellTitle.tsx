@@ -23,13 +23,23 @@ function HeaderCellTitle({
           </div>
         </Grid>
         <Grid item marginRight="0.5rem">
-          <IconButton
-            style={{ padding: "0.1rem" }}
+          <IconButton // try to change the size of the icon or make him more clickable -the events dont remove
+            style={{
+              padding: "0.1rem",
+            }}
             onClick={() => {
               removeEvent(id);
             }}
           >
-            {<DeleteIcon style={{ color: "white", fontSize: "1rem" }} />}
+            {
+              <DeleteIcon
+                style={{
+                  color: "white",
+                  fontSize: "1rem",
+                  position: "absolute",
+                }}
+              />
+            }
           </IconButton>
         </Grid>
       </Grid>

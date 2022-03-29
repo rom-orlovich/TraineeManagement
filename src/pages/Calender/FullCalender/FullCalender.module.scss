@@ -57,3 +57,13 @@ a[class*="fc-daygrid-dot-event"] {
 div[class*="fc-daygrid-day-frame"] {
   cursor: pointer !important;
 }
+
+a[class*="fc-v-event"] {
+  border: none !important;
+  background-color: inherit !important;
+}
+
+a[class*="fc-h-event"] {
+  border: none !important;
+  background-color: inherit !important;
+}

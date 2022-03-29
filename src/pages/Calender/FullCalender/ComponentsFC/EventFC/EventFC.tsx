@@ -14,7 +14,9 @@ function EventFC({
   description,
   id,
   removeEvent,
+  displayType,
 }: {
+  displayType?: string;
   type: string;
   start: Date | null;
   end: Date | null;
@@ -36,7 +38,7 @@ function EventFC({
       />
       <b>Time:</b>
       {timeStartText}-{timeEndText}
-      <div>
+      {/* <div>
         <b>Participent:</b> {participants ? participants : 0}
       </div>
       {description ? (
@@ -46,7 +48,7 @@ function EventFC({
         </div>
       ) : (
         ""
-      )}
+      )} */}
     </div>
   );
 }

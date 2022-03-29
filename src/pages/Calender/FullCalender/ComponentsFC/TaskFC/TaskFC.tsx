@@ -11,7 +11,9 @@ function TaskFC({
   time,
   status,
   description,
+  displayType,
 }: {
+  displayType?: string;
   type: string;
   title: string;
   id: string;
@@ -20,6 +22,10 @@ function TaskFC({
   status: boolean;
   description: string;
 }) {
+  const keyDisplayType = displayType as
+    | "timeGridWeek"
+    | "timeGridDay"
+    | "dayGridMonth";
   const TimeLocal = time ? getLocalTime(time) : "";
   return (
     <div
