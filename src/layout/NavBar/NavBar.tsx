@@ -10,9 +10,10 @@ import NavList from "../../components/Nav/NavList/NavList";
 
 import UserProfileIcon from "./UserProfile/UserProfileIcon";
 import { Link } from "react-router-dom";
-import { addButtonlinks } from "./UserProfile/NavBarLinks";
+import { addButtonlinks, profileLinks } from "./UserProfile/NavBarLinks";
 import ST from "./NavBar.module.scss";
 import { reducerNavBar, initialStateNavBar } from "./useRedcuer";
+import { AlertsList } from "./AlertBar/AlertsList";
 const { IoIosAddCircle } = iconsLinks;
 
 function NavBar({ className }: propsType) {
@@ -46,14 +47,19 @@ function NavBar({ className }: propsType) {
             state={stateNavBar.alerts}
             dispatch={dispatchStateNavBar}
             className={classNameMaker(ST.posNavAlert)}
-            listLinks={[]}
-            el={<AlertBar />}
+            AlertsList={AlertsList}
+            el={
+              <AlertBar
+                className={classNameMaker(ST.navAlert)}
+                AlertsList={AlertsList}
+              />
+            }
           ></NavList>
           <NavList
             id="profileMenu"
             state={stateNavBar.profileMenu}
             dispatch={dispatchStateNavBar}
-            listLinks={[]}
+            listLinks={profileLinks}
             className={classNameMaker(ST.posNavUserProfile)}
             el={
               <Link to="/userProfile/Admin">

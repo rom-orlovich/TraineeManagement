@@ -1,0 +1,30 @@
+@use "./../../../../../style/utlites/utilites.scss" as *;
+
+%blockSpan {
+  text-align: center;
+  @include flex_control($space_around, center, $column);
+  @include minHeightAndWidth(4rem, null);
+  @include heightAndWidth($fit_content, $fit_content);
+}
+
+.alertFormat {
+  padding: 0.4rem 1rem;
+  height: 100%;
+  width: 22rem;
+  @include flex_control($space_around, null);
+  font-size: 0.85rem;
+
+  .timeAlert {
+    @extend %blockSpan;
+    flex: 25%;
+  }
+
+  .descriptionAlert {
+    @extend %blockSpan;
+    flex: 50%;
+  }
+  .removeAlertIcon {
+    flex: 25%;
+    @include heightAndWidth(2rem, 4rem);
+  }
+}

@@ -19,13 +19,15 @@
   justify-content: space-evenly;
 }
 
+%li_link {
+  margin-top: 1.2rem;
+}
 %link {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
   padding: 0.5rem 1rem;
-  margin-top: 1.2rem;
 }
 
 %subLink {

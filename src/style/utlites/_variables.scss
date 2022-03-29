@@ -8,7 +8,17 @@ $widthMain: 100- ($widthSideNavBar);
 $widthHeaderNavBar: 100- ($widthSideNavBar);
 $heightMain: 90vh;
 $heightNavBarHeader: 100-$heightMain;
+//sizes
+$fit_content: fit-content;
 
 //Media query
 $smartPhone: 400px;
 $tablet: 800px;
+
+//flex_variables
+$column: column;
+$row: row;
+$justify_content: justify-content;
+$space_around: space-around;
+$space_between: space-between;
+$space_evenly: space-evenly;

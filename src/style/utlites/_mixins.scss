@@ -12,14 +12,14 @@
   justify-content: $JC;
   align-items: $AI;
 }
-@mixin alertNotificaion($color: rgb(121, 206, 121)) {
+@mixin alertNotificaion() {
   position: absolute;
   right: 0;
   top: 0;
   height: 8px;
   width: 8px;
   border-radius: 50%;
-  background-color: $color;
+
   z-index: 5;
 }
 
@@ -36,7 +36,7 @@
   height: $heightSize;
   width: $widthSize;
 }
-
+//center the pos of elemnt if one of the boolean value is true
 @mixin changePosAbs(
   $left: 0,
   $top: 0,

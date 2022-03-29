@@ -11,8 +11,11 @@ import {
   ActionTypeReducer,
   NavBarLinksIds,
 } from "../../../layout/NavBar/NavBarType";
-import ST from "./NavList.module.scss";
 
+import Alerts from "../../../layout/NavBar/AlertBar/Alerts/Alerts";
+
+import NavLinksUI from "../../../layout/NavBar/NavLinksUi/NavLinksUI";
+import ST from "./NavList.module.scss";
 function NavList({
   className,
 
@@ -22,13 +25,15 @@ function NavList({
 
   state,
   dispatch,
+  AlertsList,
 }: propsType &
   MouseEventHook & {
     id: NavBarLinksIds;
-    listLinks: LinksListType;
+    listLinks?: LinksListType;
     el: JSX.Element;
     state: boolean;
     dispatch: Dispatch<ActionTypeReducer>;
+    AlertsList?: any[];
   }) {
   let arrAction = objActions[id];
 
@@ -42,25 +47,22 @@ function NavList({
     >
       {el}
       {state && (
-        <div
+        <ul
           className={classNameMaker(ST.NavList, className)}
           onMouseLeave={() => {
             dispatch({ type: arrAction[1] });
           }}
         >
-          {mapEl(listLinks, (el) => {
-            return (
-              <NavLinkUI
-                isActiveClass={classNameMaker(ST.isActive)}
-                className={classNameMaker(ST.NavLinkUi)}
-                key={el.name}
-                to={el.to}
-              >
-                {el.name}
-              </NavLinkUI>
-            );
-          })}
-        </div>
+          {listLinks ? (
+            <NavLinksUI
+              listLinks={listLinks}
+              isActiveClass={classNameMaker(ST.isActive)}
+              navLinkUiStyle={classNameMaker(ST.NavLinkUi)}
+            />
+          ) : (
+            AlertsList && <Alerts AlertsList={AlertsList} />
+          )}
+        </ul>
       )}
     </div>
   );

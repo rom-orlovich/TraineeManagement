@@ -27,7 +27,7 @@ function EventFC({
   const timeStartText = start ? getLocalTime(start) : "";
   const timeEndText = end ? getLocalTime(end) : "";
   return (
-    <div>
+    <div style={{ backgroundColor: "#8f8fff" }}>
       <HeaderCellTitle
         removeEvent={removeEvent}
         id={id}

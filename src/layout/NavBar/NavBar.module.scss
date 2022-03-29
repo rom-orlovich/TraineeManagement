@@ -8,7 +8,7 @@
     height: 2rem;
   }
   .userMenu {
-    width: 10rem;
+    width: 15rem;
     height: 2rem;
 
     @include flex_control(space-around, center);
@@ -16,8 +16,14 @@
 }
 .navAddButton {
   color: $profileIcon_color;
-  @include heightAndWidth(25px, 25px);
+  @include heightAndWidth(30px, 30px);
 }
+
+.navAlert {
+  color: $alertBarIcon_color;
+  @include heightAndWidth($sizeAlertIcon, $sizeAlertIcon);
+}
+
 .posNavUserProfile {
   @include changePosAbs(50%, 120%, true, false);
 }

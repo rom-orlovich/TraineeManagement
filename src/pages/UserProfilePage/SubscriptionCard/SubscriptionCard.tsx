@@ -52,10 +52,14 @@ function SubscriptionCard({ className }: propsType) {
               <span>12/03/21</span>
             </span>
           </div>
-
-          <div className={classNameMaker(ST.actions)}>
-            <Link to="/userProfile/admin"> Training Plan </Link>
-            <Link to="/userProfile/admin"> Nutrition Plan </Link>
+          <div className={classNameMaker(ST.plans)}>
+            <div className={classNameMaker(ST.actions_plans)}>
+              <Link to="/userProfile/admin"> Training Plan </Link>
+              <Link to="/userProfile/admin"> Nutrition Plan </Link>
+            </div>
+            <div className={classNameMaker(ST.lastPurchases)}>
+              <Link to="/userProfile/admin"> Last Purchases </Link>
+            </div>
           </div>
         </div>
       </Card>

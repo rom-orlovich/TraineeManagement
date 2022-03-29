@@ -39,7 +39,7 @@ function Router() {
         <Route path="analytics" element={<Analytics />} />
 
         <Route path="addProduct" element={<AddProductPage />} />
-        {/* <Route path="setting" element={<Settings />}></Route> */}
+        <Route path="setting" element={<Settings />}></Route>
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

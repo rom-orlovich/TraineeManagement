@@ -24,12 +24,12 @@ function HeaderCellTitle({
         </Grid>
         <Grid item marginRight="0.5rem">
           <IconButton
-            style={{ padding: "0" }}
+            style={{ padding: "0.1rem" }}
             onClick={() => {
               removeEvent(id);
             }}
           >
-            {<DeleteIcon style={{ color: "grey", fontSize: "1rem" }} />}
+            {<DeleteIcon style={{ color: "white", fontSize: "1rem" }} />}
           </IconButton>
         </Grid>
       </Grid>

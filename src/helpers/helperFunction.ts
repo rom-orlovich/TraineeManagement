@@ -31,6 +31,8 @@ export const checkPositive = (text: string | number) => {
   return text ? isFinite(+text) && parseFloat(`${text}`) > 0 : false;
 };
 
+export const arrIsEmpty = (arr: any[]) => arr.length === 0;
+
 export const findByID = <T>(
   id: string | undefined,
   arr: ObjExtendIDKey<T>[]

@@ -143,8 +143,9 @@ export function useFullCalenderProps(
       },
       eventDidMount: (info) => {
         const { Type } = getTypeAndIdFromEvent(info.event);
-        info.el.style.backgroundColor =
-          Type === "event" ? "#8f8fff" : "#ff2929";
+        // info.el.style.backgroundColor =
+        //   Type === "event" ? "#8f8fff" : "#ff2929";
+        console.log(info.event);
       },
       eventContent: contentUserRenderEvent,
       initialView: "dayGridMonth",

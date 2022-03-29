@@ -22,7 +22,12 @@ function TaskFC({
 }) {
   const TimeLocal = time ? getLocalTime(time) : "";
   return (
-    <div>
+    <div
+      style={{
+        backgroundColor: `${status ? "rgb(133 232 100)" : "rgb(245 56 56)"}`,
+        height: "100%",
+      }}
+    >
       <HeaderCellTitle
         removeEvent={removeEvent}
         id={id}
@@ -31,16 +36,18 @@ function TaskFC({
       />
       <b>Time: </b>
       {TimeLocal}
-      <div>
-        <b>Status:</b> {status ? "Finish" : "In Process"}
-      </div>
+
       {description ? (
         <div>
-          <b>Description:</b> {description}
+          <b>Description:</b>
+          <div> {description}</div>
         </div>
       ) : (
         ""
       )}
+      <div>
+        <b>Status:</b> {status ? "Finish" : "In Process"}
+      </div>
     </div>
   );
 }

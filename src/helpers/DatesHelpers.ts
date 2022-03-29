@@ -8,7 +8,44 @@ import {
 import { TimeLinePeriodValueType } from "./GlobalType";
 import { sumArray } from "./helperFunction";
 
-const padStartWithZero = (str: string) => {
+// years ,months,days
+export const getDateDetails = (cur: Date) => {
+  return [cur.getFullYear(), cur.getMonth(), cur.getDate()] as const;
+};
+// hours,min,sec
+export const getTimeDateDetails = (cur: Date) => {
+  return [cur.getHours(), cur.getMinutes(), cur.getSeconds()] as const;
+};
+//get only the hours and the minutes format
+export const getLocalTime = (cur: Date) =>
+  cur.toLocaleTimeString().slice(0, -3);
+
+/**
+ * @param date the relative date
+ * @param  dayInput (negative or positive number)
+ * @returns new update date
+ * @description get the new date relative date by passing
+ * number of day to add or to subtract(negative number)
+ */
+export const getNewDate = (dayInput = 0, date = new Date()) => {
+  const [year, month, days] = getDateDetails(date);
+  return new Date(year, month, days + dayInput);
+};
+
+/**
+ *
+ * @param timeInput (negative or positive number)
+ * @returns new date with update time
+ * @description get the new time to the relative time by passing
+ * number of min to add or to subtract(negative number)
+ */
+export const getNewTime = (timeInput = 0, date = new Date()) => {
+  const [hours, min, sec] = getTimeDateDetails(date);
+  return new Date(...getDateDetails(date), hours, min + timeInput, sec);
+};
+console.log(getNewTime(2));
+
+export const padStartWithZero = (str: string) => {
   return str ? (str.length < 2 ? 0 + str : str) : "";
 };
 
@@ -68,7 +105,6 @@ export const datesArray = (
   }
   return res;
 };
-
 export const getThisMonth = datesArray(
   getFirstAndLastDateMonth()[0],
   getFirstAndLastDateMonth()[1]
@@ -85,19 +121,10 @@ export const getPointSliceThisWeek = (d = thisDay) => {
     ? [14, 21]
     : [21, getLastDayInMonth(d)];
 };
-// years ,months,days
-export const getDateDetails = (cur: Date) => {
-  return [cur.getFullYear(), cur.getMonth(), cur.getDate()] as const;
-};
-// hours,min,sec
-export const getTimeDateDetails = (cur: Date) => {
-  return [cur.getHours(), cur.getMinutes(), cur.getSeconds()] as const;
-};
-export const getLocalTime = (cur: Date) =>
-  cur.toLocaleTimeString().slice(0, -3);
 
+//return the correct data according to the relevant display paramters
 const datePeriodDataObj = (
-  Display: TimeLinePeriodValueType,
+  display: TimeLinePeriodValueType,
   cur: Date,
   Total?: number[],
   Incomes?: number[],
@@ -113,7 +140,9 @@ const datePeriodDataObj = (
     incomes = Incomes || [],
     expenses = Expenses || [];
 
-  //Change newDateParts prop to 'as const' because I need to create a whole new date each time the while loop is running
+  //Change newDateParts prop to 'as const'
+  //  because I need to create a whole new date each time with the
+  //  cur month and year the while loop is running
   const objTimeLineData = {
     daily: {
       label: [getThisMonth[getPointToday]],
@@ -178,8 +207,12 @@ const datePeriodDataObj = (
     },
   };
 
-  return objTimeLineData[Display];
+  return objTimeLineData[display];
 };
+//the while loop that run between two dates
+//  and return relevant  array data of totalSum number,total income , expense
+// and format labels array to according to display period
+// we can use this function to fill array with other data between 2 dates
 export const getPeriodDataBet2Dates = (
   total: number[],
   incomes: number[],
@@ -211,6 +244,7 @@ export const getPeriodDataBet2Dates = (
   return { labels, total: T, incomes: I, expenses: E };
 };
 
+//example:
 // console.log(
 //   getPeriodDataBet2Dates(
 //     totalExample,

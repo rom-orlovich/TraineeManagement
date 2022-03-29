@@ -2,12 +2,17 @@
 .alert {
   .alertIcon {
     color: $alertBarIcon_color;
-    height: $sizeAlertIcon;
-    width: $sizeAlertIcon;
+
     position: relative;
     cursor: pointer;
   }
-  .getAlert {
-    @include alertNotificaion($Truthy_Color);
+  .alertIndicator {
+    @include alertNotificaion();
+  }
+  .hasNoAlerts {
+    background-color: $Truthy_Color;
+  }
+  .hasAlerts {
+    background-color: $Falsy_color;
   }
 }

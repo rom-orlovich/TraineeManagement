@@ -69,10 +69,12 @@
       .endDate {
       }
     }
-
-    .actions {
-      gap: 1rem;
-      @include flex_control(center, center, row);
+    .plans {
+      @extend %actions;
+      .actions_plan {
+        gap: 1rem;
+        @include flex_control(center, center, row);
+      }
     }
   }
 }
