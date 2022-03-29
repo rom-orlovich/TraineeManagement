@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import { classNameMaker } from "../../helpers/helperFunction";
 import { propsType } from "../../helpers/GlobalType";
 
@@ -12,15 +12,16 @@ import UserProfileIcon from "./UserProfile/UserProfileIcon";
 import { Link } from "react-router-dom";
 import { addButtonlinks, profileLinks } from "./UserProfile/NavBarLinks";
 import ST from "./NavBar.module.scss";
-import { reducerNavBar, initialStateNavBar } from "./useRedcuer";
-import { AlertsList } from "./AlertBar/AlertsList";
+import { navBarRedcuer, initialStateNavBar } from "./NavBarRedcuer";
+import { alertsList } from "./AlertBar/AlertsList";
 const { IoIosAddCircle } = iconsLinks;
 
 function NavBar({ className }: propsType) {
   const [stateNavBar, dispatchStateNavBar] = useReducer(
-    reducerNavBar,
+    navBarRedcuer,
     initialStateNavBar
   );
+  const [stateList, setStateList] = useState(alertsList);
   return (
     <header className={classNameMaker(className)}>
       <nav className={classNameMaker(ST.navHeader)}>
@@ -29,6 +30,21 @@ function NavBar({ className }: propsType) {
         </span>
 
         <span className={classNameMaker(ST.userMenu)}>
+          <NavList
+            id="alerts"
+            state={stateNavBar.alerts}
+            dispatch={dispatchStateNavBar}
+            className={classNameMaker(ST.posNavAlert)}
+            alertsList={stateList.slice(0, 3)}
+            setStateList={setStateList}
+            el={
+              <AlertBar
+                className={classNameMaker(ST.navAlert)}
+                alertsList={stateList.slice(0, 3)}
+              />
+            }
+          ></NavList>
+
           <NavList
             id="addButton"
             state={stateNavBar.addButton}
@@ -42,19 +58,6 @@ function NavBar({ className }: propsType) {
             }
           ></NavList>
 
-          <NavList
-            id="alerts"
-            state={stateNavBar.alerts}
-            dispatch={dispatchStateNavBar}
-            className={classNameMaker(ST.posNavAlert)}
-            AlertsList={AlertsList}
-            el={
-              <AlertBar
-                className={classNameMaker(ST.navAlert)}
-                AlertsList={AlertsList}
-              />
-            }
-          ></NavList>
           <NavList
             id="profileMenu"
             state={stateNavBar.profileMenu}

@@ -8,9 +8,7 @@ const { FaUserCircle } = iconsLinks;
 function UserProfileIcon({ className }: propsType) {
   return (
     <div className={classNameMaker(className)}>
-      <span>
-        <FaUserCircle className={classNameMaker(ST.profileIcon)}></FaUserCircle>
-      </span>
+      <FaUserCircle className={classNameMaker(ST.profileIcon)}></FaUserCircle>
     </div>
   );
 }

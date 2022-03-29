@@ -4,6 +4,7 @@ export interface AlertInterface {
   time: Date;
   name: string;
   description: string;
+  active?: boolean;
 }
 
 export type AlertsListType = AlertInterface[];

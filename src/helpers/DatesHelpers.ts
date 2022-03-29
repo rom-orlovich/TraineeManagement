@@ -43,7 +43,6 @@ export const getNewTime = (timeInput = 0, date = new Date()) => {
   const [hours, min, sec] = getTimeDateDetails(date);
   return new Date(...getDateDetails(date), hours, min + timeInput, sec);
 };
-console.log(getNewTime(2));
 
 export const padStartWithZero = (str: string) => {
   return str ? (str.length < 2 ? 0 + str : str) : "";

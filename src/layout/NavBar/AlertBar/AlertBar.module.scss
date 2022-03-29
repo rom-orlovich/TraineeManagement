@@ -9,10 +9,27 @@
   .alertIndicator {
     @include alertNotificaion();
   }
-  .hasNoAlerts {
+
+  .numberAlerts {
+    position: absolute;
+    bottom: 17px;
+    right: 14px;
+    border-radius: 50%;
+    @include heightAndWidth(20px, 20px);
+    // border: 1px solid #443d3d;
+    text-align: center;
+
+    z-index: 5;
+    font-size: 0.8rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .hasNoActiveAlerts {
     background-color: $Truthy_Color;
   }
-  .hasAlerts {
+  .hasActiveAlerts {
     background-color: $Falsy_color;
   }
 }

@@ -1,18 +1,4 @@
-import { FaWeight } from "react-icons/fa";
-import { datesValue } from "../DummyData/DummyData";
-import {
-  expenseExample,
-  incomeExample,
-  thisDay,
-  totalExample,
-} from "./AppVariables";
-import {
-  AnyFun,
-  IdType,
-  OptionObjWithPrice,
-  ObjExtendIDKey,
-  OptionObj,
-} from "./GlobalType";
+import { OptionObjWithPrice, ObjExtendIDKey, OptionObj } from "./GlobalType";
 
 export const printVariable = (v: any) => {
   return Object.keys(v)[0];
@@ -84,10 +70,14 @@ export function createNewSelectOptionsArray(
   });
 }
 
-export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
+export const setPropsToBoolean = <T>(
+  obj: T,
+  bool: boolean,
+  ...keys: (keyof T)[]
+) => {
   let newObj = {};
   for (const p in obj)
-    newObj = { ...newObj, [p]: keys.some((el) => el === p) ? true : false };
+    newObj = { ...newObj, [p]: keys.some((el) => el === p) ? bool : !bool };
 
   return newObj;
 };
@@ -95,7 +85,14 @@ export const setPropsToTrue = <T>(obj: T, ...keys: (keyof T)[]) => {
 export function setSomeKeyStateTrue<T>(obj: T, ...keys: (keyof T)[]) {
   return {
     ...obj,
-    ...setPropsToTrue(obj, ...keys),
+    ...setPropsToBoolean(obj, true, ...keys),
+  };
+}
+
+export function setSomeKeyStateFalse<T>(obj: T, ...keys: (keyof T)[]) {
+  return {
+    ...obj,
+    ...setPropsToBoolean(obj, false, ...keys),
   };
 }
 

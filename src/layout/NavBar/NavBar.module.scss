@@ -16,7 +16,7 @@
 }
 .navAddButton {
   color: $profileIcon_color;
-  @include heightAndWidth(30px, 30px);
+  @include heightAndWidth(35px, 35px);
 }
 
 .navAlert {
@@ -33,5 +33,5 @@
 }
 
 .posAddButton {
-  @include changePosAbs(50%, 140%, true, false);
+  @include changePosAbs(50%, 120%, true, false);
 }

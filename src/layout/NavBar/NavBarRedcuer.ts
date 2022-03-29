@@ -1,8 +1,5 @@
 import { Reducer } from "react";
-import {
-  setPropsToTrue,
-  setSomeKeyStateTrue,
-} from "../../helpers/helperFunction";
+import { setSomeKeyStateTrue } from "../../helpers/helperFunction";
 import { ActionTypeReducer } from "./NavBarType";
 
 export const objActions = {
@@ -20,17 +17,23 @@ export const initialStateNavBar = {
   profileMenu: false,
 };
 
-export const reducerNavBar: Reducer<
+export const navBarRedcuer: Reducer<
   typeof initialStateNavBar,
   ActionTypeReducer
 > = (state, action) => {
   const actionsRes = {
     displayAddButtonLinks: setSomeKeyStateTrue(state, "addButton"),
     noDisplayAddButtonLinks: { ...initialStateNavBar },
-    displayAlertsList: setSomeKeyStateTrue(state, "alerts"),
-    noDisplayAlertList: { ...initialStateNavBar },
+    displayAlertsList: {
+      ...setSomeKeyStateTrue(state, "alerts"),
+    },
+    noDisplayAlertList: {
+      ...initialStateNavBar,
+    },
     displayProfileMenuLinks: setSomeKeyStateTrue(state, "profileMenu"),
     noDisplayProfileMenuLinks: { ...initialStateNavBar },
   };
   return actionsRes[action.type];
 };
+
+// setSomeKeyStateTrue(state, "alerts")
