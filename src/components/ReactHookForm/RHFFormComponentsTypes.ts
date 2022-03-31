@@ -1,10 +1,10 @@
-import { ParseableDate } from "@mui/lab/internal/pickers/constants/prop-types";
 import { TextFieldProps } from "@mui/material";
 import { DetailedHTMLProps, ReactNode } from "react";
 import {
   Control,
   FieldPath,
   FieldPathValue,
+  NestedValue,
   Path,
   PathValue,
   UnpackNestedValue,
@@ -13,6 +13,7 @@ import {
 import { AnyFun, propsType } from "../../helpers/GlobalType";
 
 import {
+  AutocompletePropsMui,
   CheckBoxInputProps,
   DatePickerPropsType,
   SelectInputPropsMui,
@@ -48,4 +49,8 @@ export type TimePickerPropsRHF<T> = ControlInput<T> & {
 
 export type DatePickerPropsRHF<T> = ControlInput<T> & {
   datePicker?: Omit<DatePickerPropsType, "onChange" | "value">;
+};
+
+export type AutocompletePropsRHF<T, O> = ControlInput<T> & {
+  autoCompletePropsMui: Omit<AutocompletePropsMui<O>, "onChange" | "value">;
 };

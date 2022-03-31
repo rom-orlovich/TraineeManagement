@@ -1,6 +1,6 @@
 import { UseFormReturn } from "react-hook-form";
 import { UIComponentsExportMui } from "../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import Form from "../../../components/ReactHookForm/Components/FormRHF";
+import FormRHF from "../../../components/ReactHookForm/Components/FormRHF";
 import FormProviderRHF from "../../../components/ReactHookForm/Components/FromProviderRHF";
 
 import { propsType } from "../../../helpers/GlobalType";
@@ -31,7 +31,7 @@ function AddTraineePage({ className }: propsType) {
       >
         {({ handleSubmit }: UseFormReturn<FormValuesAddTraineeInterface>) => {
           return (
-            <Form
+            <FormRHF
               style={{ height: "100%" }}
               submitFun={handleSubmit((data) => {
                 console.log(data);
@@ -51,7 +51,7 @@ function AddTraineePage({ className }: propsType) {
                 </Grid>
                 <FooterFormButtons />
               </Grid>
-            </Form>
+            </FormRHF>
           );
         }}
       </FormProviderRHF>

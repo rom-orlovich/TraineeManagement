@@ -64,7 +64,10 @@ export function getExactPriceProductList<T extends OptionObjWithPrice[]>(
 
 export function createNewSelectOptionsArray(
   obj: (OptionObjWithPrice | OptionObj)[]
-) {
+): {
+  label: string;
+  value: string;
+}[] {
   return obj.map(({ value, name }) => {
     return { label: name, value };
   });
@@ -120,3 +123,8 @@ export function getInitObj<T extends object>(obj: T) {
   }
   return newObj as T;
 }
+
+export const idGenertor = () =>
+  Math.floor(Date.now() * Math.random() * 100) +
+  "" +
+  Math.round(1 + Math.random() * 100);

@@ -12,7 +12,7 @@ import {
   FormValuesUserProfile,
   yupResolverSchema,
 } from "./FormValuesUserProfile";
-import Form from "../../../../components/ReactHookForm/Components/FormRHF";
+import FormRHF from "../../../../components/ReactHookForm/Components/FormRHF";
 import { UseFormReturn } from "react-hook-form";
 import ST from "./FormUserDetails.module.scss";
 const { Button } = FormComponetsExportMui;
@@ -29,7 +29,7 @@ function FormUserDetails() {
     >
       {(values: UseFormReturn<FormValuesUserProfileInterface>) => {
         return (
-          <Form
+          <FormRHF
             className={classNameMaker(ST.form)}
             submitFun={values.handleSubmit((data) => {
               let age =
@@ -70,7 +70,7 @@ function FormUserDetails() {
                 </Grid>
               </Grid>
             </Grid>
-          </Form>
+          </FormRHF>
         );
       }}
     </FormProviderRHF>

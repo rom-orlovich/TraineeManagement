@@ -14,6 +14,7 @@ import { createNewSelectOptionsArray } from "../helpers/helperFunction";
 import { chartsBarData } from "./ChartBarData";
 import { OverviewLineChartData } from "./ChartLineData";
 import { dataPie } from "./ChartPieData";
+import { SelectOptions } from "./DummyDataType";
 
 import {
   ExpensesTable,
@@ -40,7 +41,7 @@ export const sourcesList: OptionObj[] = [
   { id: 4, name: "Google", value: "google" },
 ];
 
-export const optionSelect = [
+export const optionSelect: SelectOptions[] = [
   {
     name: "Period",
     options: [
@@ -86,11 +87,6 @@ export const optionSelect = [
   {
     name: "Products",
     options: createNewSelectOptionsArray(productsListPrice),
-    // [
-    //   { label: "Nutrition Plan", value: "nutritionPlan" },
-    //   { label: "Training Plan", value: "trainingPlan" },
-    //   { label: "Personal Training", value: "personalTraining" },
-    // ],
   },
   {
     name: "Source",
@@ -138,7 +134,16 @@ export const optionSelect = [
       { label: "Expense", value: "expense" },
     ],
   },
-];
+  {
+    name: "Option Edit",
+    options: [
+      { label: "Products", value: "products" },
+      { label: "Expenses", value: "expenses" },
+      { label: "Sources", value: "sources" },
+    ],
+  },
+  ,
+] as SelectOptions[];
 
 export const dataProvider = {
   trainees: {

@@ -1,0 +1,17 @@
+@use "../../../style//utlites//utilites.scss";
+.Header_link {
+  height: 2rem;
+  text-align: center;
+  a {
+    text-decoration: none;
+    color: #0b0bff;
+    font-weight: 400;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    border-bottom: #a1a1a199 4px solid;
+    border-radius: 5px;
+  }
+  .activeLink {
+    border-bottom-color: #5c5cfc;
+  }
+}

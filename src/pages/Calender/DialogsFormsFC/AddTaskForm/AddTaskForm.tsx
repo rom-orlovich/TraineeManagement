@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import Form from "../../../../components/ReactHookForm/Components/FormRHF";
+import FormRHF from "../../../../components/ReactHookForm/Components/FormRHF";
 import FormProviderRHF from "../../../../components/ReactHookForm/Components/FromProviderRHF";
 import { UtilitesRHF } from "../../../../components/ReactHookForm/UtilitesRHF";
 import { defaultValueAddTask, AddTaskFormInterface } from "./AddTaskFormTypes";
@@ -48,7 +48,7 @@ function AddTaskForm({
           setValue,
         }: UseFormReturn<AddTaskFormInterface>) => {
           return (
-            <Form
+            <FormRHF
               submitFun={handleSubmit((data) => {
                 setNewTask({ ...data, type: "task", status: check });
                 setDialogClose(false);
@@ -126,7 +126,7 @@ function AddTaskForm({
                 ></CheckBoxRHF>
                 <FooterButtonsDialog setDialogClose={setDialogClose} />
               </Grid>
-            </Form>
+            </FormRHF>
           );
         }}
       </FormProviderRHF>

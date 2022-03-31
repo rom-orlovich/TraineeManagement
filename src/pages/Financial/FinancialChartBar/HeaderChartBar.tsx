@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import SelectInput from "../../../components/Form/SelectInput/SelectInput";
+
 import { optionSelect } from "../../../DummyData/DummyData";
 import {
   TimeLinePeriodValueType,
@@ -10,9 +10,9 @@ import { getFirstAndLastDateMonth } from "../../../helpers/DatesHelpers";
 
 import DatePickerMui from "../../../components/MUI/FormCompnents/DatePickerMui/DatePickerMui";
 import ST from "./HeaderChartBar.module.scss";
-import { PaperProps, PopperProps } from "@mui/material";
+import { PopperProps } from "@mui/material";
 import SelectInputMui from "../../../components/MUI/FormCompnents/SelectInputMui/SelectInputMui";
-import { useGetManageSelectInputState } from "../../../helpers/HelperHooks";
+
 function HeaderChartBar({
   className,
   timeLineDisplay,

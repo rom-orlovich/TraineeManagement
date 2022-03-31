@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { optionSelect } from "../../DummyData/DummyData";
 import {
   ActivitiesDataValueType,

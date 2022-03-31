@@ -27,9 +27,13 @@
     justify-content: space-around;
   }
   .hasNoActiveAlerts {
-    background-color: $Truthy_Color;
+    background-color: #acadac;
   }
   .hasActiveAlerts {
     background-color: $Falsy_color;
+  }
+
+  .noAlerts {
+    background-color: $Truthy_Color;
   }
 }

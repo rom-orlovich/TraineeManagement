@@ -1,88 +1,84 @@
-import React from "react";
-import { useForm, UseFormReturn } from "react-hook-form";
+import React, { useState } from "react";
+import { NestedValue, useForm, UseFormReturn } from "react-hook-form";
 import * as yup from "yup/";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { FormComponetsExportMui } from "../MUI/FormComponetsExport/FormComponetsExportMui";
 import InputRHF from "./Components/InputRHF";
-import Form from "./Components/FormRHF";
+import FormRHF from "./Components/FormRHF";
 import FormProviderRHF from "./Components/FromProviderRHF";
-import SelectInputRHF from "./Components/SelectInputRHF";
-import DatePickerRHF from "./Components/DatePickerRHF";
-import TimePickerMui from "../MUI/FormCompnents/TimePickerMui/TimePickerMui";
-import TimePickerRHF from "./Components/TimePickerRHF";
+
+import { Autocomplete, TextField } from "@mui/material";
+import AutocompleteRHF from "./Components/AutocompleteRHF";
+interface Option {
+  label: string;
+  value: string;
+}
+// const options = ["ssd", "Asdasd"];
+const options: Option[] = [
+  { label: "s", value: "t" },
+  { label: "g", value: "r" },
+  { label: "b", value: "f" },
+];
 interface FormValues {
-  name: string;
-  lastName: string;
-  email: string;
-  gender: string;
-  birthday: string;
-  time: string;
+  autoCom: Option[];
 }
 const frominput: FormValues = {
-  name: "",
-  lastName: "",
-  email: "",
-  gender: "",
-  birthday: "",
-  time: "",
+  autoCom: [],
 };
-const schema = yup.object({
-  name: yup.string().required(),
-  lastName: yup.string(),
-  email: yup.string().email(),
-  gender: yup.string().required(),
-  birthday: yup.string().nullable().required("Please Enter Birthday"),
-});
+
 const { Button } = FormComponetsExportMui;
 function FormExample() {
   const m = useForm<FormValues>({
-    resolver: yupResolver(schema),
     mode: "onBlur",
+    resolver: yupResolver(yup.object({ autoCom: yup.array() })),
   });
-
+  const rhf = {
+    options: options,
+    freeSolo: true,
+  };
   return (
     <FormProviderRHF<FormValues>
       values={{
-        resolver: yupResolver(schema),
+        // resolver: yupResolver(schema),
         mode: "onBlur",
         defaultValues: frominput,
       }}
     >
-      {(values: UseFormReturn<FormValues>) => (
-        <Form
-          submitFun={values.handleSubmit((data) => {
-            console.log(data);
+      {({ control, handleSubmit, setValue }: UseFormReturn<FormValues>) => (
+        <FormRHF
+          submitFun={handleSubmit((data) => {
+            if (rhf.freeSolo) {
+              const Data: Option =
+                typeof data.autoCom === "string"
+                  ? { label: data.autoCom, value: data.autoCom }
+                  : { label: "", value: "" };
+              console.log(Data);
+            }
           })}
         >
-          <InputRHF
-            control={values.control}
-            label="Name"
-            name="name"
-            type="text"
+          {/* <Autocomplete
+            options={options}
+            renderInput={(parma) => {
+              return <TextField {...parma} />;
+            }}
+            multiple
+            freeSolo
+            getOptionLabel={(o)=>{return o}}
+          
+            value={state||""}
+         
+          /> */}
+          <AutocompleteRHF
+            control={control}
+            name="autoCom"
+            autoCompletePropsMui={{
+              options: options,
+              freeSolo: true,
+            }}
           />
-          <SelectInputRHF
-            control={values.control}
-            style={{ width: "10rem" }}
-            label="Gender"
-            name="gender"
-            options={[
-              { value: "male", label: "Male" },
-              { value: "female", label: "Female" },
-            ]}
-          />
-          <DatePickerRHF
-            control={values.control}
-            name="birthday"
-            datePicker={{ label: "Birthday" }}
-          ></DatePickerRHF>
-          <Button type="submit">SUB</Button>
 
-          <TimePickerRHF
-            control={values.control}
-            name="time"
-            timePicker={{ label: "Time" }}
-          />
-        </Form>
+          <Button type="submit">submit</Button>
+        </FormRHF>
       )}
     </FormProviderRHF>
   );

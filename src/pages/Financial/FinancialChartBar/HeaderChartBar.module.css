@@ -1,9 +1,0 @@
-@use "../../../style/utlites/utilites.scss" as *;
-div[class*="FinancialChartBar_heading_card"] {
-  height: 0.5rem;
-}
-
-div[class*="FinancialChartBar_heading_card"] .toDate {
-  margin-left: 0.5rem;
-}
-/*# sourceMappingURL=HeaderChartBar.module.css.map */

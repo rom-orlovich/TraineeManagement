@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
 import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import Form from "../../../../components/ReactHookForm/Components/FormRHF";
+import FormRHF from "../../../../components/ReactHookForm/Components/FormRHF";
 import FormProviderRHF from "../../../../components/ReactHookForm/Components/FromProviderRHF";
 import { UtilitesRHF } from "../../../../components/ReactHookForm/UtilitesRHF";
 import {
@@ -55,7 +55,7 @@ function AddEventForm({
       >
         {({ handleSubmit, control }: UseFormReturn<AddEventFormInterface>) => {
           return (
-            <Form
+            <FormRHF
               submitFun={handleSubmit((data) => {
                 setEvent({
                   ...data,
@@ -146,7 +146,7 @@ function AddEventForm({
                 </Grid>
                 <FooterButtonsDialog setDialogClose={setDialogClose} />
               </Grid>
-            </Form>
+            </FormRHF>
           );
         }}
       </FormProviderRHF>

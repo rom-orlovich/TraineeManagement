@@ -4,7 +4,7 @@ import { classNameMaker } from "../../../helpers/helperFunction";
 import { FormType } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
 
-function Form<T extends FieldValues>({
+function FormRHF<T extends FieldValues>({
   children,
   submitFun,
   className,
@@ -17,4 +17,4 @@ function Form<T extends FieldValues>({
   );
 }
 
-export default Form;
+export default FormRHF;

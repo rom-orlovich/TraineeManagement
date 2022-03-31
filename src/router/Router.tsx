@@ -1,8 +1,7 @@
-import React from "react";
 import { Routes } from "react-router-dom";
 import { Route } from "react-router";
 import App from "../App";
-import Layout from "../layout/Layout";
+
 import Overview from "../pages/Overview/Overview";
 import Financial from "../pages/Financial/Financial";
 import Trainees from "../pages/Trainees/Trainees";
@@ -18,6 +17,9 @@ import AddLeadPage from "../pages/AddFormPages/AddLeadPage/AddLeadPage";
 import AddActivityPage from "../pages/AddFormPages/AddActivityPage/AddActivityPage";
 
 import AddProductPage from "../pages/AddFormPages/AddProductPage/AddProductPage";
+import SitePreferences from "../pages/Settings/SitePreferences/SitePreferences";
+import UserSettings from "../pages/Settings/UserSettings/UserSettings";
+import AdvanceOptions from "../pages/Settings/AdvanceOptions/AdvanceOptions";
 
 function Router() {
   return (
@@ -38,8 +40,11 @@ function Router() {
         <Route path="activities/addActivity" element={<AddActivityPage />} />
         <Route path="analytics" element={<Analytics />} />
 
-        <Route path="addProduct" element={<AddProductPage />} />
-        <Route path="setting" element={<Settings />}></Route>
+        <Route path="settings" element={<Settings />}>
+          <Route path="sitePreferences" element={<SitePreferences />}></Route>
+          <Route path="userSettings" element={<UserSettings />}></Route>
+          <Route path="advanceOptions" element={<AdvanceOptions />}></Route>
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Route>
     </Routes>

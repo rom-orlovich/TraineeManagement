@@ -12,7 +12,7 @@ import TimePicker from "@mui/lab/TimePicker";
 
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-
+import Autocomplete from "@mui/material/Autocomplete";
 export const mediumWidthStyle = { width: "10rem" };
 export const smallWidthStyle = { width: "7rem" };
 export const extraSmallWidthStyle = { width: "5rem" };
@@ -31,4 +31,5 @@ export const FormComponetsExportMui = {
   TimePicker,
   FormControlLabel,
   Checkbox,
+  Autocomplete,
 };

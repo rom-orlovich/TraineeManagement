@@ -5,7 +5,6 @@ import React, {
   ReactElement,
   ReactNode,
 } from "react";
-import { optionSelect } from "../DummyData/DummyData";
 
 export type AnyFun<T> = (...args: any[]) => T;
 export type JSXcomponentType = (...args: any[]) => JSX.Element;

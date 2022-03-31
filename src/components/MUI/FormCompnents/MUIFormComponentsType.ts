@@ -3,7 +3,11 @@ import { TextFieldProps } from "@mui/material/TextField";
 
 import { SelectOption } from "@mui/material/node_modules/@mui/base";
 import { TimePickerProps } from "@mui/lab";
-import { CheckboxProps, FormControlLabelProps } from "@mui/material";
+import {
+  AutocompleteProps,
+  CheckboxProps,
+  FormControlLabelProps,
+} from "@mui/material";
 
 export type SelectInputPropsMui = Omit<
   TextFieldProps,
@@ -19,4 +23,14 @@ export type TimePickerPropsType = Omit<TimePickerProps, "renderInput"> & {
 };
 export type DatePickerPropsType = Omit<DatePickerProps, "renderInput"> & {
   textFieldProps?: TextFieldProps;
+};
+
+export type AutocompletePropsMui<
+  T
+  // Multiple extends boolean | undefined = undefined,
+  // DisableClearable extends boolean | undefined = undefined,
+  // FreeSolo extends boolean | undefined = undefined
+> = Omit<AutocompleteProps<T, boolean, boolean, boolean>, "renderInput"> & {
+  textFieldProps?: TextFieldProps;
+  setValueOnOptions?: (v: any) => void;
 };

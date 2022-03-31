@@ -17,9 +17,7 @@ function AlertBar({
       <div
         className={classNameMaker(
           ST.alertIndicator,
-          `${
-            arrIsEmpty(alertsList) ? ST.hasNoActiveAlerts : ST.hasActiveAlerts
-          }`
+          `${arrIsEmpty(alertsList) ? ST.noAlerts : ST.hasActiveAlerts}`
         )}
       ></div>
       {!arrIsEmpty(activeAlertArr) ? (
