@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { FormComponetsExportMui } from "../../FormComponetsExport/FormComponetsExportMui";
 import { AutocompletePropsMui } from "../MUIFormComponentsType";
 
@@ -6,9 +6,10 @@ const { Autocomplete, TextField } = FormComponetsExportMui;
 function AutocompleteMui<T>({
   options,
   textFieldProps,
-  value,
+
   onChange,
   setValueOnOptions,
+
   ...AutoCompleteProps
 }: AutocompletePropsMui<T>) {
   return (
@@ -25,6 +26,7 @@ function AutocompleteMui<T>({
               const onChange = textFieldProps?.onChange;
               if (!AutoCompleteProps.freeSolo) return;
               onChange && onChange(e);
+
               //set the value of the text input in the options proprty when press enter
               setValueOnOptions && setValueOnOptions(e.target.value);
             }}

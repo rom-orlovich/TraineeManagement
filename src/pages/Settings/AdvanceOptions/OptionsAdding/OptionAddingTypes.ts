@@ -2,37 +2,36 @@ import { date } from "yup/lib/locale";
 import { idGenertor } from "../../../../helpers/helperFunction";
 
 export type EditOptionsType = "sources" | "products" | "expenses";
-
+export type stateFormType = "add" | "edit";
 export interface OptionInterface {
   id?: string;
   nameOption: string;
 }
 export interface ExpensesInterface extends OptionInterface {
   price: string;
-}
-export interface ProductsInterface extends ExpensesInterface {
   quantity?: number;
 }
+export interface ProductsInterface extends ExpensesInterface {}
 export interface SourcesInterface extends OptionInterface {}
 
 export type OptionTypeData<T> = T[];
 
-export interface FormValuesExpensesInterface<T>
+export interface FormValueAddingOption<T>
   extends Omit<ExpensesInterface, "nameOption"> {
   mode: boolean;
   options: T | string;
-}
-
-export interface FormValuesProductsInterface<T>
-  extends FormValuesExpensesInterface<T> {
   quantity?: number;
 }
 
-export interface FormValuesSourcesInterface<T> {
-  options: OptionTypeData<T>;
+export interface FormValuesSourcesInterface<T>
+  extends Omit<OptionInterface, "nameOption"> {
+  mode: boolean;
+  id?: string;
+
+  options: T | string;
 }
-export type FormValuesProducts = FormValuesProductsInterface<ProductsInterface>;
-export type FormValuesExpenses = FormValuesExpensesInterface<ExpensesInterface>;
+export type FormValuesProducts = FormValueAddingOption<ProductsInterface>;
+export type FormValuesExpenses = FormValueAddingOption<ExpensesInterface>;
 export type FormValuesSources = FormValuesSourcesInterface<SourcesInterface>;
 
 export const producsOptions: OptionTypeData<ProductsInterface> = [
@@ -56,11 +55,41 @@ export const producsOptions: OptionTypeData<ProductsInterface> = [
   },
 ];
 
-// export const defaultProducsValuesForm = {
-//   nameOption: "",
-//   price: "",
-//   quantity: undefined,
-// };
+export const expenseOptions: OptionTypeData<ExpensesInterface> = [
+  {
+    id: idGenertor(),
+    nameOption: "Rent",
+    price: "2000",
+    quantity: undefined,
+  },
+  {
+    id: idGenertor(),
+    nameOption: "Taxes",
+    price: "500",
+    quantity: undefined,
+  },
+  {
+    id: idGenertor(),
+    nameOption: "Weights",
+    price: "1500",
+    quantity: undefined,
+  },
+];
+
+export const sourceOptions: OptionTypeData<SourcesInterface> = [
+  {
+    id: idGenertor(),
+    nameOption: "Instagram",
+  },
+  {
+    id: idGenertor(),
+    nameOption: "Facebook",
+  },
+  {
+    id: idGenertor(),
+    nameOption: "Google",
+  },
+];
 
 export const defaultProductsValuesForm: FormValuesProducts = {
   mode: false,
@@ -75,5 +104,11 @@ export const defaultExpensesValuesForm: FormValuesExpenses = {
 };
 
 export const defaultSourcesValuesForm: FormValuesSources = {
-  options: [{ id: "", nameOption: "" }],
+  mode: false,
+  id: "",
+
+  options: { id: "", nameOption: "" },
 };
+
+// export type HookOptionAddType<O extends OptionInterface>=
+//   {optionsValue: OptionTypeData<O>}

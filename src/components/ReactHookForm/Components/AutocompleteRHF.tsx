@@ -1,6 +1,5 @@
 import { AutocompleteValue } from "@mui/material";
-import React, { useState } from "react";
-import { FieldValue } from "react-hook-form";
+
 import AutocompleteMui from "../../MUI/FormCompnents/AutocompleteMui/AutocompleteMui";
 import { AutocompletePropsRHF } from "../RHFFormComponentsTypes";
 import { UtilitesRHF } from "../UtilitesRHF";
@@ -15,7 +14,6 @@ function AutocompleteRHF<T, O>({
     value: AutocompleteValue<O, boolean, boolean, boolean>
   ) => void;
 }) {
-  const [values, setValue] = useState<any>();
   return (
     <Controller
       name={name}
@@ -28,12 +26,14 @@ function AutocompleteRHF<T, O>({
             onChange,
             ...field,
           }}
-          onChange={(_, value, r) => {
+          onChange={(e, value, r) => {
             onChange(value);
+
             //handle the setting of value on other field according to the options select data
             setValueOnField && setValueOnField(value);
           }}
           {...autoCompletePropsMui}
+          inputValue={autoCompletePropsMui.inputValue}
         />
       )}
     />
