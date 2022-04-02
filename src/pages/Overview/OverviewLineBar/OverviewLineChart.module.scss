@@ -4,10 +4,12 @@
 div[class*="Overview_charts_display"]
   div[class*="MuiFormControl-root MuiTextField-root"] {
   margin: 0.5rem 0 0 0.5rem;
-  //select input
+}
+//select input
+div[class*="Overview_charts_display"]
+  div[class*="MuiFormControl-root MuiTextField-root"]
   div[class*="MuiSelect-select"] {
-    padding: 7px 14px;
-  }
+  padding: 7px 14px;
 }
 //chart
 div[class*="Overview_charts_display"] canvas[role*="img"] {
