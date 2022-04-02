@@ -98,11 +98,12 @@ function FormSourcesAdding() {
 
               <CheckBoxButtons
                 control={control}
-                onChange={onChangeCheckBoxOASources(
-                  setValue,
-                  reset,
-                  setStateForm
-                )}
+                onChange={(_, c) => {
+                  setValue("mode", c);
+                  setStateForm(c ? "edit" : "add");
+                  setInputValue("");
+                  reset();
+                }}
                 checkBoxName="mode"
               />
             </Grid>

@@ -116,11 +116,12 @@ function FormExpensesAdding() {
 
               <CheckBoxButtons
                 control={control}
-                onChange={onChangeCheckBoxOAExpenses(
-                  setValue,
-                  reset,
-                  setStateForm
-                )}
+                onChange={(_, c) => {
+                  setValue("mode", c);
+                  setStateForm(c ? "edit" : "add");
+                  setInputValue("");
+                  reset();
+                }}
                 checkBoxName="mode"
               />
             </Grid>

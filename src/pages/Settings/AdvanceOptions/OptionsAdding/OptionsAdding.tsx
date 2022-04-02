@@ -7,10 +7,11 @@ import FormProductsAdding from "./FormsOA/FormProductsAdding";
 import FormSourcesAdding from "./FormsOA/FormSourcesAdding";
 
 import { EditOrAddOptionsFormsType } from "./FormsOA/FormsOATypes";
+import { captialFirstLetter } from "../../../../helpers/helperFunction";
 const { Grid } = UIComponentsExportMui;
 
 function OptionsAdding() {
-  const { stateSelect, setStateSelect, SelectElement } = useGetSelectInputMui(
+  const { stateSelect, SelectElement } = useGetSelectInputMui(
     optionSelect[12].options
   );
 
@@ -31,7 +32,7 @@ function OptionsAdding() {
                 fontSize: "1.5rem",
               }}
             >
-              Options Edit
+              {captialFirstLetter(stateSelect)} Edit
             </h3>
           </Grid>
           <Grid

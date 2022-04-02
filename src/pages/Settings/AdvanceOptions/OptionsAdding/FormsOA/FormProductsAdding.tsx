@@ -113,11 +113,12 @@ function FormProductsAdding() {
 
               <CheckBoxButtons
                 control={control}
-                onChange={onChangeCheckProductsOA(
-                  setValue,
-                  reset,
-                  setStateForm
-                )}
+                onChange={(_, c) => {
+                  setValue("mode", c);
+                  setStateForm(c ? "edit" : "add");
+                  setInputValue("");
+                  reset();
+                }}
                 checkBoxName="mode"
               />
             </Grid>
