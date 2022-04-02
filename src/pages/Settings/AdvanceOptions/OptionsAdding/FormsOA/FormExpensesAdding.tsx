@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
-import InputAdormentMui from "../../../../components/MUI/FormCompnents/InputAdormentMui/InputAdormentMui";
+import InputAdormentMui from "../../../../../components/MUI/FormCompnents/InputAdormentMui/InputAdormentMui";
 
-import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import AutocompleteRHF from "../../../../components/ReactHookForm/Components/AutocompleteRHF";
+import { UIComponentsExportMui } from "../../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
+import AutocompleteRHF from "../../../../../components/ReactHookForm/Components/AutocompleteRHF";
 
-import FormRHF from "../../../../components/ReactHookForm/Components/FormRHF";
-import FormProviderRHF from "../../../../components/ReactHookForm/Components/FromProviderRHF";
-import InputRHF from "../../../../components/ReactHookForm/Components/InputRHF";
+import FormRHF from "../../../../../components/ReactHookForm/Components/FormRHF";
+import FormProviderRHF from "../../../../../components/ReactHookForm/Components/FromProviderRHF";
+import InputRHF from "../../../../../components/ReactHookForm/Components/InputRHF";
 
 import {
   getOptionLabel,
@@ -15,15 +15,18 @@ import {
   renderOption,
 } from "./AutoCompleteProps";
 
-import { setDataNotSource } from "./helperFunOA";
-import { useGetCheckBoxEditOrAdd } from "./HelperHooksOA";
+import {
+  onChangeCheckBoxOAExpenses,
+  setDataNotSource,
+} from "../helpersOA/helperFunOA";
+import { useGetCheckBoxEditOrAdd } from "../helpersOA/helperHooksOA";
 
 import {
   expenseOptions,
   defaultExpensesValuesForm,
   FormValuesExpenses,
   ExpensesInterface,
-} from "./OptionAddingTypes";
+} from "./FormsOATypes";
 
 const { Grid } = UIComponentsExportMui;
 const ObjForm: UseFormProps = {
@@ -113,11 +116,11 @@ function FormExpensesAdding() {
 
               <CheckBoxButtons
                 control={control}
-                onChange={(_, check) => {
-                  setValue("mode", check);
-                  setStateForm(check ? "edit" : "add");
-                  reset();
-                }}
+                onChange={onChangeCheckBoxOAExpenses(
+                  setValue,
+                  reset,
+                  setStateForm
+                )}
                 checkBoxName="mode"
               />
             </Grid>

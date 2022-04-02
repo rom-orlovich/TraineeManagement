@@ -52,7 +52,7 @@ export function useGetManageSelectInputState<T extends string>(
 ) {
   const [selectState, setSelectState] = useState(options.options[0].value);
 
-  const el = useCallback(
+  const SelectInputEL = useCallback(
     ({ className, ...rest }: Omit<SelectInputPropsMui, "options">) => {
       return (
         <SelectInputMui
@@ -68,7 +68,7 @@ export function useGetManageSelectInputState<T extends string>(
     },
     [selectState]
   );
-  return { state: selectState as T, setState: setSelectState, el };
+  return { selectState: selectState as T, setSelectState, SelectInputEL };
 }
 const { TextField, MenuItem } = FormComponetsExportMui;
 export function useGetSelectInputMui<T extends string>(

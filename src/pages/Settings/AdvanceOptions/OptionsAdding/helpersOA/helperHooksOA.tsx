@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Control, Path } from "react-hook-form";
-import { FormComponetsExportMui } from "../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
-import { ReactDispatch } from "../../../../helpers/GlobalType";
-import { arrIsEmpty } from "../../../../helpers/helperFunction";
-import { getOptionDisable } from "./AutoCompleteProps";
-import ButtonsEditOrAdd from "./ButtonsEditOrAdd";
+import { FormComponetsExportMui } from "../../../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
+import { ReactDispatch } from "../../../../../helpers/GlobalType";
+import { arrIsEmpty } from "../../../../../helpers/helperFunction";
+import { getOptionDisable } from "../FormsOA/AutoCompleteProps";
+import ButtonsEditOrAdd from "../FormsOA/ButtonsEditOrAdd";
 import {
-  FormValueAddingOption,
   OptionInterface,
   OptionTypeData,
-  stateFormType,
-} from "./OptionAddingTypes";
+  stateButtonsFormsOAType,
+} from "../FormsOA/FormsOATypes";
+import { CheckBoxButtonsProps } from "./helperHooksOATypes";
+const { Button } = FormComponetsExportMui;
 
 export const useChangeToAddState = (
   optionsValue: any[],
-  setStateForm: ReactDispatch<stateFormType>
+  setStateForm: ReactDispatch<stateButtonsFormsOAType>
 ) => {
   return useEffect(() => {
     if (arrIsEmpty(optionsValue)) setStateForm("add");
@@ -22,9 +23,9 @@ export const useChangeToAddState = (
 };
 
 //prepre the state of the buttons and the checkbox of the adding form
-const { Button } = FormComponetsExportMui;
+
 export const useGetButtonsState = () => {
-  const [stateForm, setStateForm] = useState<stateFormType>("add");
+  const [stateForm, setStateForm] = useState<stateButtonsFormsOAType>("add");
   const stateFormObj = useMemo(() => {
     return {
       edit: {
@@ -66,14 +67,7 @@ export function useGetCheckBoxEditOrAdd<O extends OptionInterface>(
       onChange,
       control,
       checkBoxName,
-    }: {
-      onChange: (
-        event: React.ChangeEvent<HTMLInputElement>,
-        checked: boolean
-      ) => void;
-      control: Control<FormValues, any>;
-      checkBoxName: Path<FormValues>;
-    }) => (
+    }: CheckBoxButtonsProps<FormValues>) => (
       <ButtonsEditOrAdd
         control={control}
         onChange={onChange}

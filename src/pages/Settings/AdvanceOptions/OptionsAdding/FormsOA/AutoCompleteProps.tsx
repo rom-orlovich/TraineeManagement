@@ -1,18 +1,10 @@
 import { AutocompleteRenderOptionState } from "@mui/material";
-import { useCallback, useState } from "react";
-import { Control, FieldValues, Path, UseFormSetValue } from "react-hook-form";
-import { AutocompletePropsMui } from "../../../../components/MUI/FormCompnents/MUIFormComponentsType";
-import { iconsMui } from "../../../../components/MUI/IconsMui/IconsMuiExports";
-import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import AutocompleteRHF from "../../../../components/ReactHookForm/Components/AutocompleteRHF";
-import { ReactDispatch } from "../../../../helpers/GlobalType";
-import { filterById } from "../../../../helpers/helperFunction";
-import {
-  FormValueAddingOption,
-  OptionInterface,
-  OptionTypeData,
-  ProductsInterface,
-} from "./OptionAddingTypes";
+import { iconsMui } from "../../../../../components/MUI/IconsMui/IconsMuiExports";
+import { UIComponentsExportMui } from "../../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
+
+import { ReactDispatch } from "../../../../../helpers/GlobalType";
+import { filterById } from "../../../../../helpers/helperFunction";
+import { OptionInterface, OptionTypeData } from "./FormsOATypes";
 const { Grid } = UIComponentsExportMui;
 const { IconButton, RemoveCircleOutlineIcon } = iconsMui;
 

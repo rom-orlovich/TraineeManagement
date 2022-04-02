@@ -1,18 +1,29 @@
-import { date } from "yup/lib/locale";
-import { idGenertor } from "../../../../helpers/helperFunction";
+import {
+  Control,
+  FieldValues,
+  Path,
+  UseFormReset,
+  UseFormSetValue,
+} from "react-hook-form";
+import { ReactDispatch } from "../../../../../helpers/GlobalType";
 
-export type EditOptionsType = "sources" | "products" | "expenses";
-export type stateFormType = "add" | "edit";
+import { idGenertor } from "../../../../../helpers/helperFunction";
+import { ReturnButtonsHookStateOAType } from "../helpersOA/helperHooksOATypes";
+
+export type EditOrAddOptionsFormsType = "sources" | "products" | "expenses";
+export type stateButtonsFormsOAType = "add" | "edit";
+
 export interface OptionInterface {
   id?: string;
   nameOption: string;
 }
-export interface ExpensesInterface extends OptionInterface {
+interface ExpenseOrProductsInterface extends OptionInterface {
   price: string;
   quantity?: number;
 }
-export interface ProductsInterface extends ExpensesInterface {}
 export interface SourcesInterface extends OptionInterface {}
+export interface ExpensesInterface extends ExpenseOrProductsInterface {}
+export interface ProductsInterface extends ExpenseOrProductsInterface {}
 
 export type OptionTypeData<T> = T[];
 
@@ -110,5 +121,31 @@ export const defaultSourcesValuesForm: FormValuesSources = {
   options: { id: "", nameOption: "" },
 };
 
-// export type HookOptionAddType<O extends OptionInterface>=
-//   {optionsValue: OptionTypeData<O>}
+export type ButtonsEditOrAddProps<
+  O extends OptionInterface,
+  FormValues extends { mode: boolean }
+> = {
+  onChange: (
+    event: React.ChangeEvent<HTMLInputElement>,
+    checked: boolean
+  ) => void;
+  optionsValue: OptionTypeData<O>;
+  control: Control<FormValues, any>;
+  checkBoxName: Path<FormValues>;
+  state: {
+    stateForm: Omit<ReturnButtonsHookStateOAType, "getOptionDisabled">;
+    setStateForm: ReactDispatch<stateButtonsFormsOAType>;
+  };
+};
+
+export type OnChangeCheckBoxOAType<T extends FieldValues = { mode: boolean }> =
+  (
+    setValue: UseFormSetValue<T>,
+    reset: UseFormReset<T>,
+    setStateForm: ReactDispatch<stateButtonsFormsOAType>
+  ) => OnChangeCheckBoxMuiType;
+
+type OnChangeCheckBoxMuiType = (
+  event: React.ChangeEvent<HTMLInputElement>,
+  checked: boolean
+) => void;

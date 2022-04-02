@@ -1,44 +1,45 @@
 import React, { useEffect, useState } from "react";
 import { UseFormProps, UseFormReturn } from "react-hook-form";
+import InputAdormentMui from "../../../../../components/MUI/FormCompnents/InputAdormentMui/InputAdormentMui";
 
-import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
-import AutocompleteRHF from "../../../../components/ReactHookForm/Components/AutocompleteRHF";
+import { UIComponentsExportMui } from "../../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
+import AutocompleteRHF from "../../../../../components/ReactHookForm/Components/AutocompleteRHF";
 
-import FormRHF from "../../../../components/ReactHookForm/Components/FormRHF";
-import FormProviderRHF from "../../../../components/ReactHookForm/Components/FromProviderRHF";
+import FormRHF from "../../../../../components/ReactHookForm/Components/FormRHF";
+import FormProviderRHF from "../../../../../components/ReactHookForm/Components/FromProviderRHF";
+import InputRHF from "../../../../../components/ReactHookForm/Components/InputRHF";
 
-import { useFollowState } from "../../../../helpers/HelperHooks";
+import {
+  onChangeCheckProductsOA,
+  setDataNotSource,
+} from "./../helpersOA/helperFunOA";
+import { useGetCheckBoxEditOrAdd } from "./../helpersOA/helperHooksOA";
 
+import {
+  FormValuesProducts,
+  ProductsInterface,
+  defaultProductsValuesForm,
+  producsOptions,
+} from "./FormsOATypes";
 import {
   getOptionLabel,
   isOptionEqualToValue,
   renderOption,
 } from "./AutoCompleteProps";
 
-import { setDataSource } from "./helperFunOA";
-import { useGetCheckBoxEditOrAdd } from "./HelperHooksOA";
-
-import {
-  ProductsInterface,
-  sourceOptions,
-  defaultSourcesValuesForm,
-  FormValuesSources,
-} from "./OptionAddingTypes";
-
 const { Grid } = UIComponentsExportMui;
 const ObjForm: UseFormProps = {
-  defaultValues: defaultSourcesValuesForm,
+  defaultValues: defaultProductsValuesForm,
   mode: "onBlur",
 };
-function FormSourcesAdding() {
-  const [optionsValue, setOptionValue] = useState(sourceOptions);
+function FormProductsAdding() {
+  const [optionsValue, setOptionValue] = useState(producsOptions);
 
   const [inputValue, setInputValue] = useState("");
 
   const { propsAutoComplete, CheckBoxButtons, setStateForm } =
     useGetCheckBoxEditOrAdd(optionsValue);
 
-  useFollowState({ optionsValue });
   return (
     <>
       <FormProviderRHF values={ObjForm}>
@@ -47,11 +48,11 @@ function FormSourcesAdding() {
           control,
           setValue,
           reset,
-        }: UseFormReturn<FormValuesSources>) => (
+        }: UseFormReturn<FormValuesProducts>) => (
           <FormRHF
             style={{ width: "100%" }}
             submitFun={handleSubmit((data) => {
-              setDataSource(data, setOptionValue);
+              setDataNotSource(data, setOptionValue);
               setInputValue("");
               reset();
             })}
@@ -73,17 +74,16 @@ function FormSourcesAdding() {
                   setValueOnField={(v) => {
                     if (!v) return;
                     const Value = v as ProductsInterface;
-
+                    setValue("price", Value.price);
                     setValue("id", Value.id);
                   }}
                   autoCompletePropsMui={{
                     onInputChange: (_, v) => setInputValue(v),
-
+                    //set the  input the user enter to the field
+                    setValueOnOptions: (v) => setValue("options", v),
                     renderOption: renderOption(setOptionValue),
 
                     isOptionEqualToValue: isOptionEqualToValue,
-                    //set the  input the user enter to the field
-                    setValueOnOptions: (v) => setValue("options", v),
                     getOptionLabel: getOptionLabel,
 
                     inputValue: inputValue,
@@ -99,14 +99,25 @@ function FormSourcesAdding() {
                   }}
                 />
               </Grid>
+              <Grid item md={3}>
+                <InputRHF
+                  control={control}
+                  name="price"
+                  label="Price"
+                  variant="standard"
+                  InputProps={{
+                    endAdornment: <InputAdormentMui position="end" text="$" />,
+                  }}
+                />
+              </Grid>
 
               <CheckBoxButtons
                 control={control}
-                onChange={(_, check) => {
-                  setValue("mode", check);
-                  setStateForm(check ? "edit" : "add");
-                  reset();
-                }}
+                onChange={onChangeCheckProductsOA(
+                  setValue,
+                  reset,
+                  setStateForm
+                )}
                 checkBoxName="mode"
               />
             </Grid>
@@ -117,4 +128,4 @@ function FormSourcesAdding() {
   );
 }
 
-export default FormSourcesAdding;
+export default FormProductsAdding;

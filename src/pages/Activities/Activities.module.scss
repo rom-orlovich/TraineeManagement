@@ -5,15 +5,27 @@
   @include heightAndWidth(100%, 100%);
   display: flex;
   justify-content: center;
+
   .upper_section {
-    @include heightAndWidth(100%, 85%);
+    @include heightAndWidth(100%, 80%);
     @include flex_column();
 
     .select_input {
     }
     .table {
       margin-top: 0.7rem;
-      @include heightAndWidth(90%, 100%);
+      @include heightAndWidth(88%, 100%);
     }
   }
+}
+
+section[class*="Activities"] {
+  //root input warrper
+  div[class*="MuiFormControl-root MuiTextField-root"] {
+    //select input
+    div[class*="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"] {
+      padding: 7px 14px;
+    }
+  }
+  //chart
 }

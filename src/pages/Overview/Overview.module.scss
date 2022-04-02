@@ -14,17 +14,17 @@
   .data_charts {
     @extend %oneBlock_section;
     @include heightAndWidth(null, 80%);
-
+    align-items: center;
     justify-self: center;
     gap: 1rem;
 
     .dailyTasks {
       flex: 45%;
-      @include heightAndWidth(17.5rem, 15rem);
+      @include heightAndWidth(19rem, 15rem);
     }
 
     .charts_display {
-      @include heightAndWidth(17.5rem, 15rem);
+      @include heightAndWidth(19rem, 15rem);
       flex: 55%;
     }
   }

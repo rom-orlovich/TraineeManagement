@@ -2,3 +2,7 @@
 .chartBar {
   @include heightAndWidth(86%, 98%);
 }
+
+.heading_card {
+  margin: 0.5rem 0 0.5rem 1rem;
+}

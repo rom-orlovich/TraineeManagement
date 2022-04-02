@@ -27,7 +27,7 @@ function AddActivityPage({ className }: propsType) {
     expense: <AddExpenseForm />,
   };
   const { Grid } = UIComponentsExportMui;
-  const { state, el: SelectInputMui } = useGetManageSelectInputState<
+  const { selectState, SelectInputEL } = useGetManageSelectInputState<
     "income" | "expense"
   >(optionSelect[11]);
 
@@ -56,11 +56,11 @@ function AddActivityPage({ className }: propsType) {
               <Grid container height="100%">
                 <Grid container item justifyContent="flex-end">
                   <Grid item>
-                    <SelectInputMui />
+                    <SelectInputEL />
                   </Grid>
                 </Grid>
                 <Grid item md={12}>
-                  {incomeOrExpenseDisplay[state]}
+                  {incomeOrExpenseDisplay[selectState]}
                 </Grid>
 
                 <Grid item md={12} marginTop="0.5rem">

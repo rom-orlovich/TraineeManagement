@@ -16,12 +16,16 @@ import ST from "./Analytics.module.scss";
 import AnalyticsSelectInputs from "./AnalyticsSelectInputs/AnalyticsSelectInputsTypes";
 
 function Analytics({ className }: propsType) {
-  const { state: stateSelectPage, el: SelectInputPage } =
+  const { selectState: stateSelectPage, SelectInputEL: SelectInputPage } =
     useGetManageSelectInputState<PageDataValueType>(optionSelect[1]);
-  const { state: stateSelectTimeline, el: SelectInputSelectTimeline } =
-    useGetManageSelectInputState<TimeLinePeriodValueType>(optionSelect[2]);
-  const { state: stateSelectActivities, el: SelectInputActivities } =
-    useGetManageSelectInputState<ActivitiesDataValueType>(optionSelect[3]);
+  const {
+    selectState: stateSelectTimeline,
+    SelectInputEL: SelectInputSelectTimeline,
+  } = useGetManageSelectInputState<TimeLinePeriodValueType>(optionSelect[2]);
+  const {
+    selectState: stateSelectActivities,
+    SelectInputEL: SelectInputActivities,
+  } = useGetManageSelectInputState<ActivitiesDataValueType>(optionSelect[3]);
 
   const { dataProvider: analyticsData, cardInnerData } = getAnalyticsData(
     stateSelectPage,

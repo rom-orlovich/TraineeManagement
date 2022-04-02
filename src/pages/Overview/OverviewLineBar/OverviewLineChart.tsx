@@ -1,48 +1,42 @@
-import React, { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { classNameMaker } from "../../../helpers/helperFunction";
 import { propsType } from "../../../helpers/GlobalType";
-
-import { ChartData, ChartOptions } from "chart.js";
 
 import Card from "../../../components/UI/Card/Card";
 import LineChart from "../../../components/Charts/LineChart/LineChart";
 
-import { chartDataType, SelectOptions } from "../../../DummyData/DummyDataType";
+import { SelectOptions } from "../../../DummyData/DummyDataType";
+
+import { dataProvider } from "../../../DummyData/DummyData";
+
+import { useGetManageSelectInputState } from "../../../helpers/HelperHooks";
 import ST from "./OverviewLineChart.module.scss";
-import SelectInput from "../../../components/Form/SelectInput/SelectInput";
-import { dataProvider, optionSelect } from "../../../DummyData/DummyData";
 function OverviewLineChart({
   data,
 
-  select,
   selectOptions,
   className,
 }: propsType & {
-  data: typeof dataProvider;
+  data: Omit<typeof dataProvider, "balance">;
 
   select?: boolean;
-  selectOptions?: SelectOptions;
+  selectOptions: SelectOptions;
 }) {
-  const [selectState, setSelectState] = useState("");
+  const {
+    selectState,
 
-  let fitData =
-    selectState === "leads"
-      ? data.leads
-      : selectState === "earning"
-      ? data.activities
-      : data.trainees;
+    SelectInputEL,
+  } = useGetManageSelectInputState(selectOptions);
+
+  let dataRes = data[selectState as "leads" | "trainees" | "activities"];
 
   return (
     <Card className={classNameMaker(className)}>
-      {selectOptions && (
-        <SelectInput
-          data={selectOptions}
-          SetValueOnChange={setSelectState}
-        ></SelectInput>
-      )}
+      {<SelectInputEL />}
       <LineChart
-        data={fitData.chartLine.data}
-        options={fitData.chartLine.options}
+        className={classNameMaker(ST)}
+        data={dataRes.chartLine.data}
+        options={dataRes.chartLine.options}
       ></LineChart>
     </Card>
   );

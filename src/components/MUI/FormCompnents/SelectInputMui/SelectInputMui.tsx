@@ -12,6 +12,7 @@ function SelectInputMui({
   className,
   ...rest
 }: SelectInputPropsMui) {
+  console.log(rest);
   return (
     <TextField
       select

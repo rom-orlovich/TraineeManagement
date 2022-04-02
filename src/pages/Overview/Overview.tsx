@@ -49,13 +49,14 @@ function Overview({ className }: propsType) {
         ></DataGridTable>
 
         <OverviewLineChart
-          data={dataProvider}
+          data={{
+            leads: dataProvider["leads"],
+            activities: dataProvider["activities"],
+            trainees: dataProvider["trainees"],
+          }}
           selectOptions={{
             ...optionSelect[1],
-            options: [
-              ...optionSelect[1].options.slice(0, 2),
-              { label: "Earning", value: "earning" },
-            ],
+            options: optionSelect[1].options,
           }}
           className={classNameMaker(ST.charts_display)}
         ></OverviewLineChart>

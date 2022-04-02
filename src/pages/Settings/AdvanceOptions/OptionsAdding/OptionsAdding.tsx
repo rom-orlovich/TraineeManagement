@@ -2,10 +2,11 @@ import React from "react";
 import { UIComponentsExportMui } from "../../../../components/MUI/UIComponentsExport/UIComponentsExportMui";
 import { optionSelect } from "../../../../DummyData/DummyData";
 import { useGetSelectInputMui } from "../../../../helpers/HelperHooks";
-import FormExpensesAdding from "./FormExpensesAdding";
-import FormProductsAdding from "./FormProductsAdding";
-import FormSourcesAdding from "./FormSourcesAdding";
-import { EditOptionsType } from "./OptionAddingTypes";
+import FormExpensesAdding from "./FormsOA/FormExpensesAdding";
+import FormProductsAdding from "./FormsOA/FormProductsAdding";
+import FormSourcesAdding from "./FormsOA/FormSourcesAdding";
+
+import { EditOrAddOptionsFormsType } from "./FormsOA/FormsOATypes";
 const { Grid } = UIComponentsExportMui;
 
 function OptionsAdding() {
@@ -13,8 +14,8 @@ function OptionsAdding() {
     optionSelect[12].options
   );
 
-  const StateSelect = stateSelect as EditOptionsType;
-  const FormDisplay: { [keyof in EditOptionsType]: JSX.Element } = {
+  const StateSelect = stateSelect as EditOrAddOptionsFormsType;
+  const FormDisplay: { [keyof in EditOrAddOptionsFormsType]: JSX.Element } = {
     products: <FormProductsAdding />,
     expenses: <FormExpensesAdding />,
     sources: <FormSourcesAdding />,

@@ -1,16 +1,18 @@
-import { AnyFun, ReactDispatch } from "../../../../helpers/GlobalType";
+import { AnyFun, ReactDispatch } from "../../../../../helpers/GlobalType";
 import {
   filterById,
   findByID,
   idGenertor,
-} from "../../../../helpers/helperFunction";
+} from "../../../../../helpers/helperFunction";
 import {
+  FormValuesExpenses,
   FormValuesProducts,
   FormValuesSources,
+  OnChangeCheckBoxOAType,
   OptionTypeData,
   ProductsInterface,
   SourcesInterface,
-} from "./OptionAddingTypes";
+} from "../FormsOA/FormsOATypes";
 
 export function addOrEdit<T>(
   arr: T[],
@@ -84,3 +86,25 @@ export function setDataSource(
 
   setState((pre) => [...addOrEdit(pre, id || "", funEdit, funAdd)]);
 }
+
+export const onChangeCheckProductsOA: OnChangeCheckBoxOAType<
+  FormValuesProducts
+> = (setValue, reset, setStateForm) => (_, c) => {
+  setValue("mode", c);
+  setStateForm(c ? "edit" : "add");
+  reset();
+};
+export const onChangeCheckBoxOAExpenses: OnChangeCheckBoxOAType<
+  FormValuesExpenses
+> = (setValue, reset, setStateForm) => (_, c) => {
+  setValue("mode", c);
+  setStateForm(c ? "edit" : "add");
+  reset();
+};
+export const onChangeCheckBoxOASources: OnChangeCheckBoxOAType<
+  FormValuesSources
+> = (setValue, reset, setStateForm) => (_, c) => {
+  setValue("mode", c);
+  setStateForm(c ? "edit" : "add");
+  reset();
+};

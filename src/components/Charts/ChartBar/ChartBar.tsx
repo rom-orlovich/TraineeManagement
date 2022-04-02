@@ -16,10 +16,12 @@ import {
 
 import Card from "../../UI/Card/Card";
 
-import SelectInput from "../../Form/SelectInput/SelectInput";
-import { optionSelect } from "../../../DummyData/DummyData";
 import ST from "./ChartBar.module.scss";
 import { SelectOptions } from "../../../DummyData/DummyDataType";
+import {
+  useFollowState,
+  useGetManageSelectInputState,
+} from "../../../helpers/HelperHooks";
 function ChartBar({
   data,
   options,
@@ -41,31 +43,29 @@ function ChartBar({
     Legend
   );
 
-  const [selectOption, setSelectOption] = useState(
-    selectOptions ? `${selectOptions.options.length}` : ""
+  const { SelectInputEL, selectState } = useGetManageSelectInputState(
+    selectOptions
+      ? selectOptions
+      : { name: "", options: [{ value: "", label: "" }] }
   );
+  // useFollowState({ chartbar: "chartbar" }, { selectState });
 
   return (
     <Card className={classNameMaker(className)}>
       {headerEl || (
         <div className={classNameMaker(ST.heading_card)}>
-          {selectOptions && (
-            <SelectInput
-              data={selectOptions}
-              SetValueOnChange={setSelectOption}
-            ></SelectInput>
-          )}
+          <SelectInputEL />
         </div>
       )}
 
       <div className={classNameMaker(ST.chartBar)}>
         <Bar
-          style={{ position: "absolute", bottom: "3px" }}
+          style={{ position: "absolute", bottom: "6px" }}
           className={classNameMaker(className)}
           data={{
             ...data,
-            labels: selectOption
-              ? data.labels?.slice(0, parseInt(selectOption))
+            labels: selectState
+              ? data.labels?.slice(0, parseInt(selectState))
               : data.labels,
           }}
           options={options}
