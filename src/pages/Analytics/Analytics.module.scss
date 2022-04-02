@@ -18,7 +18,7 @@
 //select buttons
 main[class*="Layout_main_area"] section[class*="Analytics"] {
   div[class*="MuiFormControl-root MuiTextField-root"]
-    div[class*="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"] {
+    div[class*="MuiInputBase-input"] {
     padding: 7px 14px;
   }
 }

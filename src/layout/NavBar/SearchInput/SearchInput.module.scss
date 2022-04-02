@@ -1,0 +1,16 @@
+span[class*="NavBar_navHeader"] {
+  label:not(label[class*="Mui-focused"]) {
+    top: -7px !important;
+  }
+  //input warrper
+  div[class*="MuiOutlinedInput-root"] {
+    padding: 0 0 0 0 !important;
+  }
+  //input field
+  input[class*="MuiAutocomplete-input"] {
+    background-color: white;
+  }
+}
+// input[class*="MuiAutocomplete-input"] {
+//   padding: 0 0 0 0 !important;
+// }

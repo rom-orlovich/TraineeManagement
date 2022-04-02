@@ -1,9 +1,0 @@
-@use "../../../style/utlites/utilites.scss" as *;
-.select_inputs {
-  margin-left: 6rem;
-}
-
-.select_inputs div[class*="MuiFormControl-root MuiTextField-root"] {
-  margin-left: 1rem;
-}
-/*# sourceMappingURL=AnalyticsSelectInputs.module.css.map */
