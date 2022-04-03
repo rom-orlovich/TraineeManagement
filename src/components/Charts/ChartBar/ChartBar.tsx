@@ -52,11 +52,14 @@ function ChartBar({
 
   return (
     <Card className={classNameMaker(className)}>
-      {headerEl || (
-        <div className={classNameMaker(ST.heading_card)}>
-          <SelectInputEL />
-        </div>
-      )}
+      {
+        headerEl
+        // ||  (
+        //   <div className={classNameMaker(ST.heading_card)}>
+        //     <SelectInputEL />
+        //   </div>
+        // )
+      }
 
       <div className={classNameMaker(ST.chartBar)}>
         <Bar
@@ -64,9 +67,9 @@ function ChartBar({
           className={classNameMaker(className)}
           data={{
             ...data,
-            labels: selectState
-              ? data.labels?.slice(0, parseInt(selectState))
-              : data.labels,
+            // labels: selectState
+            //   ? data.labels?.slice(0, parseInt(selectState))
+            //   : data.labels,
           }}
           options={options}
         ></Bar>

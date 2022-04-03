@@ -14,6 +14,7 @@ import { getAnalyticsData } from "./AnalyticsHelper";
 import AnalyticsBlocks from "./AnalyticsBlocks/AnalyticsBlocks";
 import ST from "./Analytics.module.scss";
 import AnalyticsSelectInputs from "./AnalyticsSelectInputs/AnalyticsSelectInputsTypes";
+import AnalyticsChartBar from "./AnalyticsChartBar/AnalyticsChartBar";
 
 function Analytics({ className }: propsType) {
   const { selectState: stateSelectPage, SelectInputEL: SelectInputPage } =
@@ -54,12 +55,17 @@ function Analytics({ className }: propsType) {
       </div>
 
       <div className={classNameMaker(ST.lower_section)}>
-        <ChartBar
+        {/* <ChartBar
           className={classNameMaker(ST.chart)}
           data={chartBar.data}
           options={chartBar.options}
           selectOptions={optionSelect[0]}
-        ></ChartBar>
+        ></ChartBar> */}
+        <AnalyticsChartBar
+          data={chartBar.data}
+          options={chartBar.options}
+          selectOptions={optionSelect[0]}
+        />
       </div>
     </section>
   );

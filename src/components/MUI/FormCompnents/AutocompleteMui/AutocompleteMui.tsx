@@ -17,11 +17,20 @@ function AutocompleteMui<T>({
       options={options}
       {...AutoCompleteProps}
       onChange={onChange}
-      renderInput={(parma) => {
+      renderInput={({ ...parma }) => {
         return (
           <TextField
             {...parma}
             {...textFieldProps}
+            InputProps={{
+              ...parma.InputProps,
+              endAdornment: (
+                <>
+                  {textFieldProps?.InputProps?.endAdornment}
+                  {parma.InputProps.endAdornment}
+                </>
+              ),
+            }}
             onChange={(e) => {
               const onChange = textFieldProps?.onChange;
               if (!AutoCompleteProps.freeSolo) return;

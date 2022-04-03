@@ -5,11 +5,13 @@ const { InputAdornment } = FormComponetsExportMui;
 function InputAdormentMui({
   position,
   text,
+  children,
   ...props
 }: InputAdornmentProps & { text?: string }) {
   return (
     <InputAdornment position={position} {...props}>
       {text}
+      {children}
     </InputAdornment>
   );
 }
