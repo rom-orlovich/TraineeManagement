@@ -29,7 +29,7 @@ main[class*="Layout_main_area"] section[class*="Financial"] {
   //select input
   div[class*="MuiFormControl-root MuiTextField-root"] {
     margin-top: 0.2rem;
-    div[class*="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input"] {
+    div[class*="MuiInputBase-input"] {
       padding: 7px 14px;
     }
     //date picker
