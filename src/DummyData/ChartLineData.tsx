@@ -4,7 +4,7 @@ import { chartDataType } from "./DummyDataType";
 
 export const optionsLineChart: ChartOptions<"line"> = {
   responsive: true,
-  maintainAspectRatio: false,
+  maintainAspectRatio: true,
   scales: {
     x: {
       title: {
@@ -12,6 +12,14 @@ export const optionsLineChart: ChartOptions<"line"> = {
         text: "Months",
       },
     },
+  },
+  elements: {
+    point: {
+      hitRadius: 15,
+    },
+  },
+  interaction: {
+    mode: "point",
   },
 };
 export const OverviewLineChartData: chartDataType<"line">[] = [
