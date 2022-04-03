@@ -54,6 +54,7 @@ export const chartsBarData: chartDataType<"bar">[] = [
       datasets: [
         {
           label: "Joined",
+
           data: [2, 4, 0, 3, 9, 12, 4, 1, 2, 3, 1, 2],
           backgroundColor: Colors.green["A700"],
 
@@ -61,6 +62,7 @@ export const chartsBarData: chartDataType<"bar">[] = [
         },
         {
           label: "Left",
+
           data: [-2, -1, -1, -2, -1, -3, -2, -1, -2, -2, -1, -2],
           backgroundColor: Colors.red["A400"],
 
@@ -69,7 +71,7 @@ export const chartsBarData: chartDataType<"bar">[] = [
         {
           label: "Total Trainees",
 
-          data: [8, 11, 10, 11, 19, 28, 30, 30, 30, 31, 31, 31],
+          data: [8, 11, 10, 10, 19, 28, 30, 30, 30, 31, 31, 31],
 
           backgroundColor: Colors.blue["A700"],
 

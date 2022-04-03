@@ -1,5 +1,6 @@
 span[class*="NavBar_navHeader"] {
-  label:not(label[class*="Mui-focused"]) {
+  //labels
+  label:not(label[class*="Mui-focused"], label[class*="MuiFormLabel-filled"]) {
     top: -7px !important;
   }
   //input warrper
@@ -9,8 +10,23 @@ span[class*="NavBar_navHeader"] {
   //input field
   input[class*="MuiAutocomplete-input"] {
     background-color: white;
+    padding: 7.5px 4px 7.5px 11px !important;
+  }
+  //input adorment
+  div[class*="MuiAutocomplete-endAdornment"] {
+    right: 24px !important;
+    button[class*="MuiAutocomplete-popupIndicator"] {
+      display: none;
+    }
   }
 }
-// input[class*="MuiAutocomplete-input"] {
-//   padding: 0 0 0 0 !important;
-// }
+
+.searchInput {
+  position: relative;
+  &_icon {
+    position: absolute;
+    right: 0;
+    top: 6px;
+    color: grey;
+  }
+}

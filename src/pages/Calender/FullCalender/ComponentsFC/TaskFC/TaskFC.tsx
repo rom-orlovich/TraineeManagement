@@ -43,14 +43,14 @@ function TaskFC({
       <b>Time: </b>
       {TimeLocal}
 
-      {description ? (
+      {/* {description ? (
         <div>
           <b>Description:</b>
           <div> {description}</div>
         </div>
       ) : (
         ""
-      )}
+      )} */}
       <div>
         <b>Status:</b> {status ? "Finish" : "In Process"}
       </div>
