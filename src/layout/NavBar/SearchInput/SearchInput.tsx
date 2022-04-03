@@ -1,12 +1,17 @@
 import React from "react";
 import AutocompleteMui from "../../../components/MUI/FormCompnents/AutocompleteMui/AutocompleteMui";
-
+import { classNameMaker } from "../../../helpers/helperFunction";
+import ST from "./SearchInput.module.scss";
 function SearchInput() {
   return (
     <AutocompleteMui
-      style={{ width: "14rem", height: "1rem" }}
+      className={classNameMaker(ST)}
+      style={{ width: "10rem" }}
       freeSolo
-      textFieldProps={{ name: "SearchInput", label: "Search" }}
+      textFieldProps={{
+        name: "SearchInput",
+        label: "Search",
+      }}
       options={[]}
     />
   );

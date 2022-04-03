@@ -11,9 +11,11 @@ import NavList from "../../components/Nav/NavList/NavList";
 import UserProfileIcon from "./UserProfile/UserProfileIcon";
 import { Link } from "react-router-dom";
 import { addButtonlinks, profileLinks } from "./UserProfile/NavBarLinks";
-import ST from "./NavBar.module.scss";
+
 import { navBarRedcuer, initialStateNavBar } from "./NavBarRedcuer";
 import { alertsList } from "./AlertBar/AlertsList";
+import SearchInput from "./SearchInput/SearchInput";
+import ST from "./NavBar.module.scss";
 const { IoIosAddCircle } = iconsLinks;
 
 function NavBar({ className }: propsType) {
@@ -26,7 +28,8 @@ function NavBar({ className }: propsType) {
     <header className={classNameMaker(className)}>
       <nav className={classNameMaker(ST.navHeader)}>
         <span className={classNameMaker(ST.navHeader_search)}>
-          <input placeholder="search"></input>
+          {/* <input placeholder="search"></input> */}
+          <SearchInput />
         </span>
 
         <span className={classNameMaker(ST.userMenu)}>
