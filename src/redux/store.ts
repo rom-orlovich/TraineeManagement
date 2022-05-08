@@ -1,7 +1,12 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
+import reducerAddTrainee from "./formsSlice/addTraineeSlices";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: reducerAddTrainee,
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export type AppDispatch = typeof store.dispatch;
