@@ -17,16 +17,21 @@ import SuscribeDetailsFormAT from "./SuscribeDetailsFormAT/SuscribeDetailsFormAT
 import ST from "./AddTraineePage.module.scss";
 import { FormComponetsExportMui } from "../../../components/MUI/FormComponetsExport/FormComponetsExportMui";
 import FooterFormButtons from "../FooterFormButtons/FooterFormButtons";
+import { useDispatch, useSelector } from "react-redux";
+import { addTrainee } from "../../../redux/formsSlice/addTraineeSlices";
 function AddTraineePage({ className }: propsType) {
   const { Grid } = UIComponentsExportMui;
   const { Button } = FormComponetsExportMui;
+  const dispatch = useDispatch();
+  const stateTrainee = useSelector((state) => state);
+  console.log(stateTrainee);
   return (
     <section className={classNameMaker(ST.page_form, className)}>
       <FormProviderRHF
         values={{
           defaultValues: FormValuesAddTrainee,
           mode: "onBlur",
-          resolver: schema,
+          // resolver: schema,
         }}
       >
         {({ handleSubmit }: UseFormReturn<FormValuesAddTraineeInterface>) => {
@@ -35,6 +40,7 @@ function AddTraineePage({ className }: propsType) {
               style={{ height: "100%" }}
               submitFun={handleSubmit((data) => {
                 console.log(data);
+                dispatch(addTrainee(data));
               })}
             >
               <Grid container height="100%" marginTop="0.5rem">
