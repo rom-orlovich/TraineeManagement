@@ -21,10 +21,10 @@ function DatePickerRHF<T>({
         return (
           <DatePickerMui
             textFieldProps={{
-              error: !!error,
-              helperText: !!error
-                ? error.message
-                : datePicker?.textFieldProps?.helperText,
+              // error: !!error,
+              // helperText: !!error
+              //   ? error.message
+              //   : datePicker?.textFieldProps?.helperText,
               ...datePicker?.textFieldProps,
             }}
             {...field}
