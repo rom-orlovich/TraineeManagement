@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,IAAI,CAAJ,iDAAI;AAEJ,AAAA,YAAY,CAAC;EACX,WAAW,EAAE,GAAG;EAChB,OAAO,EAAE,QAAQ;EACjB,aAAa,EAAE,MAAM;CACtB",
-    "sources": [
-        "PersonalDetails.module.scss"
-    ],
-    "names": [],
-    "file": "PersonalDetails.module.css"
-}
