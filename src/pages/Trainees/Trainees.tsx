@@ -1,5 +1,7 @@
+import { GridRowsProp } from "@mui/x-data-grid";
 import React from "react";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 import { Outlet, useLocation } from "react-router";
 import CardData from "../../components/CardData/CardData";
 import ChartPie from "../../components/Charts/ChartPie/ChartPie";
@@ -9,10 +11,14 @@ import { TraineeTable } from "../../DummyData/TablesData";
 
 import { propsType } from "../../helpers/GlobalType";
 import { classNameMaker } from "../../helpers/helperFunction";
+import { RootState } from "../../redux/store";
 import ST from "./Trainees.module.scss";
 function Trainees({ className }: propsType) {
-  const { columns, rows } = TraineeTable;
-
+  const {
+    columns,
+    // rows
+  } = TraineeTable;
+  const rows = useSelector<RootState>((state) => state.traineeArr);
   const location = useLocation();
 
   return (
@@ -47,7 +53,7 @@ function Trainees({ className }: propsType) {
           className={classNameMaker(ST.trainees_listCard)}
           columns={[...columns]}
           actions={[{ action: "delete" }]}
-          rows={rows}
+          rows={rows as GridRowsProp}
           toolBar
         ></DataGridTable>
       </div>

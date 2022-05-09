@@ -39,7 +39,6 @@ function AddTraineePage({ className }: propsType) {
             <FormRHF
               style={{ height: "100%" }}
               submitFun={handleSubmit((data) => {
-                console.log(data);
                 dispatch(addTrainee(data));
               })}
             >

@@ -15,6 +15,7 @@ import { ActionsKindsColumns } from "./DataGridTypes";
 import ST from "./DataGridTable.module.scss";
 import { localDate } from "../../helpers/DatesHelpers";
 import ToolBar from "./ToolBar";
+import { useSelector } from "react-redux";
 
 function DataGridTable({
   className,
@@ -35,6 +36,8 @@ function DataGridTable({
   toolBar?: boolean;
 }) {
   const [rowsNew, setRowsNew] = useState(rows);
+  const state = useSelector((state) => state);
+  console.log(state);
   useEffect(() => {
     setRowsNew(rows);
   }, [rows]);
